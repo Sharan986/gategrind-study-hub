@@ -1,0 +1,68 @@
+# Logs & build errors
+logs
+*.log
+*.err
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Dependencies & environments
+node_modules
+.venv
+.venv-ocr/
+
+# Build & framework outputs
+dist
+dist-ssr
+.output
+.vinxi
+.tanstack/**
+.nitro
+*.local
+.env
+.env.*
+.dev.vars
+
+# Temporary scratch & backup folders
+scratch/
+deployment_backups/
+.tmp*
+.pytest_cache/
+
+# Python caches
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Wrangler / Cloudflare
+.wrangler/
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# SQLite databases
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+
+# Intermediate OCR crops and review directories
+seed/*-crops/
+seed/glyph-review/
+seed/glyph-audit-*-assets/
+seed/repair-queues/
+
+# Large offline extraction candidate queues and dumps (>50MB)
+seed/*candidate*.json
+seed/*queue*
+seed/*placements*.json
