@@ -1,8 +1,11 @@
 import { Link, useNavigate } from "@tanstack/react-router";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { loadAccount, signOutAccount, useAccount } from "@/lib/account-client";
 import { Menu, Moon, Search, Sun, X } from "lucide-react";
 import { useEffect, useState, type ReactNode } from "react";
 
 export const NAV = [
+  { to: "/dashboard", label: "Dashboard" },
   { to: "/browse", label: "Browse" },
   { to: "/pyq", label: "PYQ" },
   { to: "/papers", label: "Papers" },
@@ -39,6 +42,26 @@ export function ThemeToggle() {
 const navCls = "px-2.5 py-1.5 text-[13px] text-muted-foreground hover:text-text-h border border-transparent";
 const activeCls = "!text-text-h !border-border bg-surface shadow-[2px_2px_0_var(--border)]";
 
+function AccountButton() {
+  const { user } = useAccount();
+  const navigate = useNavigate();
+  useEffect(() => void loadAccount(), []);
+  if (!user) return <Link to="/login" className="neo-btn neo-btn-primary hidden sm:inline-flex">Log in</Link>;
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger className="neo-btn px-1.5" aria-label="Account menu">
+        {user.avatarUrl ? <img src={user.avatarUrl} alt="" className="size-6" referrerPolicy="no-referrer" /> : <span className="px-1 text-xs">{user.name.slice(0, 1)}</span>}
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end" className="rounded-none border-border shadow-[3px_3px_0_var(--border)]">
+        <DropdownMenuLabel className="text-xs">{user.name}</DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem onSelect={() => void navigate({ to: "/dashboard" })}>Dashboard</DropdownMenuItem>
+        <DropdownMenuItem onSelect={async () => { await signOutAccount(); void navigate({ to: "/login", replace: true }); }}>Log out</DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+}
+
 function Header() {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
@@ -71,7 +94,7 @@ function Header() {
             <kbd className="neo-pill ml-2 px-1">/</kbd>
           </Link>
           <ThemeToggle />
-          <Link to="/login" className="neo-btn neo-btn-primary hidden sm:inline-flex">Log in</Link>
+          <AccountButton />
           <button className="neo-btn px-2 lg:hidden" onClick={() => setOpen(true)} aria-label="Open menu">
             <Menu className="size-4" />
           </button>
@@ -94,7 +117,7 @@ function Header() {
                 </Link>
               ))}
             </nav>
-            <Link to="/login" onClick={() => setOpen(false)} className="neo-btn neo-btn-primary mt-auto">Log in</Link>
+            <Link to="/dashboard" onClick={() => setOpen(false)} className="neo-btn neo-btn-primary mt-auto">Dashboard</Link>
           </div>
         </div>
       )}

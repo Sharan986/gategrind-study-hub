@@ -18,7 +18,7 @@ describe("Catalog, Practice & Analytics Services", () => {
         name: "GATE Candidate",
       },
       db,
-      "test-secret"
+      "test-secret-key-12345678901234567890"
     );
     testUser = user;
   });
@@ -49,9 +49,9 @@ describe("Catalog, Practice & Analytics Services", () => {
     const qList = await getQuestions(db, { pageSize: 1 });
     const firstQ = qList.questions[0];
 
-    const q = await getQuestionById(firstQ.id, db, testUser.id);
+    const q = await getQuestionById(firstQ!.id, db, testUser.id);
     expect(q).not.toBeNull();
-    expect(q.id).toBe(firstQ.id);
+    expect(q.id).toBe(firstQ!.id);
     expect(typeof q.options).toBe("object");
     expect(Array.isArray(q.tags)).toBe(true);
   });
@@ -63,7 +63,7 @@ describe("Catalog, Practice & Analytics Services", () => {
     const result = await recordAttempt(
       {
         userId: testUser.id,
-        questionId: q1.id,
+        questionId: q1!.id,
         selectedAnswer: "D",
         timeTakenSeconds: 45,
         mode: "study",
@@ -76,9 +76,9 @@ describe("Catalog, Practice & Analytics Services", () => {
     expect(result.streakDays).toBeGreaterThanOrEqual(1);
 
     // Toggle bookmark
-    const bm1 = await toggleBookmark(testUser.id, q1.id, db);
+    const bm1 = await toggleBookmark(testUser.id, q1!.id, db);
     expect(bm1.isBookmarked).toBe(true);
-    const bm2 = await toggleBookmark(testUser.id, q1.id, db);
+    const bm2 = await toggleBookmark(testUser.id, q1!.id, db);
     expect(bm2.isBookmarked).toBe(false);
 
     // Analytics

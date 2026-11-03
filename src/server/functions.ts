@@ -10,7 +10,14 @@
 
 import { createServerFn } from "@tanstack/react-start";
 import { getCookie, setCookie, deleteCookie, getRequestHeaders } from "@tanstack/react-start/server";
-import { getDatabase } from "./db";
+import { getAppDatabase } from "./d1-http.server";
+import type { D1Database } from "./db";
+
+function getDatabase(): D1Database {
+  const db = getAppDatabase();
+  if (!db) throw new Error("Database is not configured yet.");
+  return db;
+}
 import {
   authenticateGoogleUser,
   resolveSessionFromCookie,
@@ -20,7 +27,6 @@ import {
 } from "./auth";
 import {
   getSubjects,
-  getSubjectTopicsBySlug,
   getQuestions,
   getQuestionById,
   getPastPaperYears,
@@ -30,7 +36,7 @@ import { recordAttempt, toggleBookmark, getUserAnalytics } from "./practice";
 import { generateMockExam, evaluateMockSubmission, type MockConfig, type MockSubmissionInput } from "./mock";
 
 const SESSION_COOKIE_NAME = "gategrind_session";
-const SESSION_SECRET = process.env.SESSION_SECRET || "gategrind-dev-session-secret-key-must-be-changed-in-production-64char";
+const sessionSecret = () => process.env["SESSION_SECRET"] ?? "";
 
 // Helper: resolve user from current session cookie
 async function resolveCurrentUser() {
@@ -41,7 +47,7 @@ async function resolveCurrentUser() {
   const sessionData = await resolveSessionFromCookie(
     `gategrind_session=${cookieHeader}`,
     db,
-    SESSION_SECRET
+    sessionSecret()
   );
   return sessionData?.user ?? null;
 }
@@ -55,25 +61,24 @@ export const getCurrentUser = createServerFn({ method: "GET" }).handler(async ()
 });
 
 export const verifyGoogleAuth = createServerFn({ method: "POST" })
-  .validator((d: unknown) => d as { idToken: string })
+  .inputValidator((d: unknown) => d as { idToken: string })
   .handler(async ({ data }): Promise<{ user: UserProfile; success: boolean }> => {
     const db = getDatabase();
-    const headers = getRequestHeaders();
-    const userAgent = headers ? headers["user-agent"] : undefined;
+    const userAgent = getRequestHeaders().get("user-agent") ?? undefined;
 
-    const payload = await verifyGoogleIdToken(data.idToken, process.env.GOOGLE_CLIENT_ID);
+    const payload = await verifyGoogleIdToken(data.idToken, process.env["GOOGLE_CLIENT_ID"] ?? "");
     const { user, cookieValue } = await authenticateGoogleUser(
       payload,
       db,
-      SESSION_SECRET,
-      { userAgent }
+      sessionSecret(),
+      userAgent ? { userAgent } : {}
     );
 
     // Set signed HttpOnly session cookie (30 days)
     setCookie(SESSION_COOKIE_NAME, cookieValue, {
       path: "/",
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
+      secure: true,
       sameSite: "lax",
       maxAge: 30 * 24 * 60 * 60,
     });
@@ -106,32 +111,25 @@ export const fetchSubjects = createServerFn({ method: "GET" }).handler(async () 
 });
 
 export const fetchSubjectTopics = createServerFn({ method: "GET" })
-  .validator((d: unknown) => d as { subjectSlug: string })
+  .inputValidator((d: unknown) => d as { subjectSlug: string })
   .handler(async ({ data }) => {
     const user = await resolveCurrentUser();
     const db = getDatabase();
-    const topics = await getSubjectTopicsBySlug
-      ? await (async () => {
-          const { getTopicsBySubjectSlug } = await import("./catalog");
-          return await getTopicsBySubjectSlug(data.subjectSlug, db, user?.id);
-        })()
-      : [];
+    const { getTopicsBySubjectSlug } = await import("./catalog");
+    const topics = await getTopicsBySubjectSlug(data.subjectSlug, db, user?.id);
     return topics;
   });
 
 export const fetchQuestions = createServerFn({ method: "POST" })
-  .validator((d: unknown) => d as QuestionFilterOptions)
+  .inputValidator((d: unknown) => d as QuestionFilterOptions)
   .handler(async ({ data }) => {
     const user = await resolveCurrentUser();
     const db = getDatabase();
-    return await getQuestions(db, {
-      ...data,
-      userId: user?.id,
-    });
+    return await getQuestions(db, { ...data, ...(user ? { userId: user.id } : {}) });
   });
 
 export const fetchQuestion = createServerFn({ method: "POST" })
-  .validator((d: unknown) => d as { questionId: string })
+  .inputValidator((d: unknown) => d as { questionId: string })
   .handler(async ({ data }) => {
     const user = await resolveCurrentUser();
     const db = getDatabase();
@@ -148,7 +146,7 @@ export const fetchPastPaperYears = createServerFn({ method: "GET" }).handler(asy
 // ─────────────────────────────────────────────
 
 export const submitQuestionAttempt = createServerFn({ method: "POST" })
-  .validator(
+  .inputValidator(
     (d: unknown) =>
       d as {
         questionId: string;
@@ -177,7 +175,7 @@ export const submitQuestionAttempt = createServerFn({ method: "POST" })
   });
 
 export const toggleQuestionBookmark = createServerFn({ method: "POST" })
-  .validator((d: unknown) => d as { questionId: string; note?: string })
+  .inputValidator((d: unknown) => d as { questionId: string; note?: string })
   .handler(async ({ data }) => {
     const user = await resolveCurrentUser();
     if (!user) {
@@ -203,7 +201,7 @@ export const fetchUserAnalytics = createServerFn({ method: "GET" }).handler(asyn
 // ─────────────────────────────────────────────
 
 export const startMockExam = createServerFn({ method: "POST" })
-  .validator((d: unknown) => d as { type: "full" | "subject" | "topic"; subjectSlug?: string; topicSlug?: string })
+  .inputValidator((d: unknown) => d as { type: "full" | "subject" | "topic"; subjectSlug?: string; topicSlug?: string })
   .handler(async ({ data }) => {
     const user = await resolveCurrentUser();
     if (!user) {
@@ -214,8 +212,8 @@ export const startMockExam = createServerFn({ method: "POST" })
     return await generateMockExam(
       {
         type: data.type,
-        subjectSlug: data.subjectSlug,
-        topicSlug: data.topicSlug,
+        ...(data.subjectSlug ? { subjectSlug: data.subjectSlug } : {}),
+        ...(data.topicSlug ? { topicSlug: data.topicSlug } : {}),
         userId: user.id,
       },
       db
@@ -223,7 +221,7 @@ export const startMockExam = createServerFn({ method: "POST" })
   });
 
 export const submitMockExam = createServerFn({ method: "POST" })
-  .validator((d: unknown) => d as { mockId: string; timeTakenSeconds: number; answers: Record<string, string> })
+  .inputValidator((d: unknown) => d as { mockId: string; timeTakenSeconds: number; answers: Record<string, string> })
   .handler(async ({ data }) => {
     const user = await resolveCurrentUser();
     if (!user) {

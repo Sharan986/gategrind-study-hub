@@ -5,6 +5,7 @@
  * Zero client-side secret exposure.
  */
 
+import { createRemoteJWKSet, jwtVerify } from "jose";
 import type { D1Database } from "./db";
 
 export interface UserProfile {
@@ -29,13 +30,17 @@ export interface UserSession {
   created_at: number;
 }
 
-const DEFAULT_SECRET = "gategrind-dev-session-secret-key-must-be-changed-in-production-64char";
+
+function requireSecret(secret: string): string {
+  if (!secret || secret.length < 32) throw new Error("SESSION_SECRET must be set (32+ chars).");
+  return secret;
+}
 
 export async function hmacSign(data: string, secret: string): Promise<string> {
   const encoder = new TextEncoder();
   const key = await crypto.subtle.importKey(
     "raw",
-    encoder.encode(secret || DEFAULT_SECRET),
+    encoder.encode(requireSecret(secret)),
     { name: "HMAC", hash: "SHA-256" },
     false,
     ["sign"]
@@ -48,7 +53,10 @@ export async function hmacSign(data: string, secret: string): Promise<string> {
 
 export async function hmacVerify(data: string, signature: string, secret: string): Promise<boolean> {
   const expected = await hmacSign(data, secret);
-  return expected === signature;
+  if (expected.length !== signature.length) return false;
+  let diff = 0;
+  for (let i = 0; i < expected.length; i++) diff |= expected.charCodeAt(i) ^ signature.charCodeAt(i);
+  return diff === 0;
 }
 
 export interface GoogleTokenPayload {
@@ -61,70 +69,33 @@ export interface GoogleTokenPayload {
   exp?: number;
 }
 
+const GOOGLE_JWKS_URL = new URL("https://www.googleapis.com/oauth2/v3/certs");
+let googleJwks: ReturnType<typeof createRemoteJWKSet> | null = null;
+
 /**
- * Verify Google ID Token payload (client-side or server-side).
- * In production, checks Google's public certs or tokeninfo endpoint.
+ * Verify a Google ID token's signature (Google JWKS), issuer, audience and expiry.
+ * There is deliberately no unverified fallback: an unverifiable token is rejected.
  */
-export async function verifyGoogleIdToken(
-  idToken: string,
-  expectedClientId?: string
-): Promise<GoogleTokenPayload> {
-  if (!idToken || typeof idToken !== "string") {
-    throw new Error("Invalid token format.");
-  }
-
-  // 1. Try Google TokenInfo endpoint for authoritative signature & audience validation
-  try {
-    const res = await fetch(`https://oauth2.googleapis.com/tokeninfo?id_token=${encodeURIComponent(idToken)}`);
-    if (res.ok) {
-      const data = (await res.json()) as any;
-      if (expectedClientId && data.aud !== expectedClientId) {
-        throw new Error(`Audience mismatch: expected ${expectedClientId}, got ${data.aud}`);
-      }
-      if (data.email_verified !== "true" && data.email_verified !== true) {
-        throw new Error("Google email is not verified.");
-      }
-      return {
-        sub: data.sub,
-        email: data.email,
-        email_verified: true,
-        name: data.name || data.email.split("@")[0],
-        picture: data.picture || "",
-        aud: data.aud,
-        exp: parseInt(data.exp, 10),
-      };
-    }
-  } catch (err: any) {
-    if (err.message?.includes("Audience mismatch") || err.message?.includes("not verified")) {
-      throw err;
-    }
-    // Fallback to JWT payload decoding if offline / local dev mock
-  }
-
-  // 2. Decode JWT payload fallback (for testing/dev)
-  const parts = idToken.split(".");
-  if (parts.length !== 3) {
-    throw new Error("Malformed JWT token.");
-  }
-
-  try {
-    const payloadJson = atob(parts[1].replace(/-/g, "+").replace(/_/g, "/"));
-    const payload = JSON.parse(payloadJson);
-    if (!payload.sub || !payload.email) {
-      throw new Error("Incomplete Google ID token claims.");
-    }
-    return {
-      sub: payload.sub,
-      email: payload.email,
-      email_verified: Boolean(payload.email_verified),
-      name: payload.name || payload.email.split("@")[0],
-      picture: payload.picture || "",
-      aud: payload.aud,
-      exp: payload.exp,
-    };
-  } catch {
-    throw new Error("Failed to parse Google ID token payload.");
-  }
+export async function verifyGoogleIdToken(idToken: string, expectedClientId: string): Promise<GoogleTokenPayload> {
+  if (!idToken || typeof idToken !== "string") throw new Error("Invalid token format.");
+  if (!expectedClientId) throw new Error("GOOGLE_CLIENT_ID is not configured.");
+  googleJwks ??= createRemoteJWKSet(GOOGLE_JWKS_URL);
+  const { payload } = await jwtVerify(idToken, googleJwks, {
+    issuer: ["https://accounts.google.com", "accounts.google.com"],
+    audience: expectedClientId,
+  });
+  const email = typeof payload["email"] === "string" ? payload["email"] : "";
+  if (!payload.sub || !email) throw new Error("Incomplete Google ID token claims.");
+  if (payload["email_verified"] !== true && payload["email_verified"] !== "true") throw new Error("Google email is not verified.");
+  return {
+    sub: payload.sub,
+    email,
+    email_verified: true,
+    name: typeof payload["name"] === "string" ? payload["name"] : email.split("@")[0] ?? email,
+    picture: typeof payload["picture"] === "string" ? payload["picture"] : "",
+    aud: expectedClientId,
+    ...(payload.exp !== undefined ? { exp: payload.exp } : {}),
+  };
 }
 
 /**
@@ -209,7 +180,7 @@ export async function resolveSessionFromCookie(
   const match = cookieHeader.match(/gategrind_session=([^;]+)/);
   if (!match) return null;
 
-  const raw = match[1].trim();
+  const raw = (match[1] ?? "").trim();
   const [sessionId, signature] = raw.split(".");
   if (!sessionId || !signature) return null;
 
