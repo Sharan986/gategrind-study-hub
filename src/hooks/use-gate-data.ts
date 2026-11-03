@@ -99,8 +99,7 @@ export function useSubmitAttempt() {
 export function useToggleBookmark() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: { questionId: string; note?: string }) =>
-      toggleQuestionBookmark({ data }),
+    mutationFn: (data: { questionId: string; note?: string }) => toggleQuestionBookmark({ data }),
     onSuccess: (_, vars) => {
       queryClient.invalidateQueries({ queryKey: ["catalog", "question", vars.questionId] });
       queryClient.invalidateQueries({ queryKey: ["catalog", "questions"] });

@@ -16,6 +16,7 @@ export interface Subject {
   description: string;
   weightage: string;
   topics: Topic[];
+  slug?: string;
 }
 
 export interface Option {
