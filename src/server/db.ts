@@ -110,6 +110,8 @@ export function getDatabase(env?: any): D1Database {
   if (isBun) {
     const { Database } = require("bun:sqlite");
     const db = fs.existsSync(localDbPath) ? new Database(localDbPath) : new Database(":memory:");
+    db.run("PRAGMA journal_mode = WAL;");
+    db.run("PRAGMA busy_timeout = 10000;");
     db.run("PRAGMA foreign_keys = ON;");
     if (!fs.existsSync(localDbPath)) {
       const schemaPath = path.resolve(rootDir, "migrations", "0001_initial_schema.sql");
@@ -126,6 +128,8 @@ export function getDatabase(env?: any): D1Database {
     // Node.js native sqlite (Node 22+)
     const { DatabaseSync } = require("node:sqlite");
     const db = fs.existsSync(localDbPath) ? new DatabaseSync(localDbPath) : new DatabaseSync(":memory:");
+    db.exec("PRAGMA journal_mode = WAL;");
+    db.exec("PRAGMA busy_timeout = 10000;");
     db.exec("PRAGMA foreign_keys = ON;");
     if (!fs.existsSync(localDbPath)) {
       const schemaPath = path.resolve(rootDir, "migrations", "0001_initial_schema.sql");
