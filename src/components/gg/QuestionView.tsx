@@ -2,6 +2,7 @@ import { Check, X } from "lucide-react";
 import type { Question } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { CodeBlock, RichText } from "./RichText";
+import { buildExplainPrompt, chatgptUrl, claudeUrl } from "@/lib/ai-prompt";
 
 export type Response = string[] | string | undefined;
 
@@ -100,7 +101,7 @@ export function QuestionView({
   );
 }
 
-export function SolutionPanel({ q, correct }: { q: Question; correct: boolean }) {
+export function SolutionPanel({ q, correct, response }: { q: Question; correct: boolean; response?: Response }) {
   return (
     <section className="neo-box mt-6" aria-live="polite">
       <div className={cn("mb-3 inline-flex items-center gap-2 border px-2 py-1 text-xs font-bold", correct ? "border-success bg-success-bg text-success" : "border-danger bg-danger-bg text-danger")}>
@@ -110,7 +111,22 @@ export function SolutionPanel({ q, correct }: { q: Question; correct: boolean })
       </div>
       <h3 className="mb-2 text-lg">Solution</h3>
       <RichText text={q.solution} className="text-sm leading-7" />
+      <ExplainWithAI q={q} response={response} revealed />
       <p className="mt-4 font-hand text-lg text-text-h">→ revisit this topic if it felt shaky.</p>
     </section>
+  );
+}
+
+export function ExplainWithAI({ q, response, revealed }: { q: Question; response?: Response; revealed?: boolean }) {
+  const prompt = buildExplainPrompt(q, response, revealed);
+  return (
+    <div className="mt-5 border-t border-border pt-4">
+      <div className="neo-label mb-2">Get a step-by-step explanation</div>
+      <div className="flex flex-wrap gap-2">
+        <a href={chatgptUrl(prompt)} target="_blank" rel="noopener noreferrer" className="neo-btn">Ask ChatGPT ↗</a>
+        <a href={claudeUrl(prompt)} target="_blank" rel="noopener noreferrer" className="neo-btn">Ask Claude ↗</a>
+      </div>
+      <p className="mt-2 text-[11px] text-muted-foreground">Opens in a new tab with the question already filled in.</p>
+    </div>
   );
 }
