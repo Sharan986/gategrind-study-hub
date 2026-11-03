@@ -27,7 +27,7 @@ function Home() {
   const correct = list.filter((a) => a.correct).length;
   const accuracy = solved ? Math.round((correct / solved) * 100) : 0;
   const today = list.filter((a) => new Date(a.at).toDateString() === new Date().toDateString()).length;
-  const next = questions.find((q) => !attempts[q.id]) ?? questions[0];
+  const next = questions.find((q) => !attempts[q.id]) ?? questions[0]!;
 
   // weak areas: subjects with lowest accuracy among attempted
   const bySub = new Map<string, { n: number; c: number }>();

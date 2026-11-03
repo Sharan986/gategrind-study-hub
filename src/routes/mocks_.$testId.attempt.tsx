@@ -36,11 +36,11 @@ function Attempt() {
   const [i, setI] = useState(0);
   const [responses, setResponses] = useState<Record<string, Response>>({});
   const [review, setReview] = useState<Set<string>>(new Set());
-  const [visited, setVisited] = useState<Set<string>>(new Set([qs[0]?.id]));
+  const [visited, setVisited] = useState<Set<string>>(new Set([qs[0]?.id ?? ""]));
   const [left, setLeft] = useState(test.durationMin * 60);
   const [confirm, setConfirm] = useState(false);
   const started = useRef(Date.now());
-  const q = qs[i];
+  const q = qs[i]!;
 
   const finish = () => {
     const clean: Record<string, string[] | string> = {};
@@ -60,7 +60,7 @@ function Attempt() {
 
   const goto = (n: number) => {
     setI(n);
-    setVisited((v) => new Set(v).add(qs[n].id));
+    setVisited((v) => new Set(v).add(qs[n]!.id));
   };
   const answered = (id: string) => {
     const r = responses[id];

@@ -42,7 +42,7 @@ export function RichText({ text, className, as = "div" }: { text: string; classN
     <div className={cn("space-y-3", className)}>
       {blocks.map((b, i) => {
         const m = b.trim().match(/^\$\$([\s\S]+)\$\$$/);
-        if (m) return <div key={i} className="overflow-x-auto py-1" dangerouslySetInnerHTML={{ __html: renderMath(m[1], true) }} />;
+        if (m) return <div key={i} className="overflow-x-auto py-1" dangerouslySetInnerHTML={{ __html: renderMath(m[1] ?? "", true) }} />;
         return <p key={i}>{inline(b, String(i))}</p>;
       })}
     </div>

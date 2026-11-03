@@ -10,10 +10,15 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AptitudeRouteImport } from './routes/aptitude'
 import { Route as BrowseRouteImport } from './routes/browse'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as MocksRouteImport } from './routes/mocks'
 import { Route as PapersRouteImport } from './routes/papers'
+import { Route as PlannerRouteImport } from './routes/planner'
 import { Route as PyqRouteImport } from './routes/pyq'
+import { Route as SearchRouteImport } from './routes/search'
+import { Route as SyllabusRouteImport } from './routes/syllabus'
 import { Route as PapersPaperIdRouteImport } from './routes/papers_.$paperId'
 import { Route as PracticeQuestionIdRouteImport } from './routes/practice.$questionId'
 import { Route as MocksTestIdAttemptRouteImport } from './routes/mocks_.$testId.attempt'
@@ -24,9 +29,19 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AptitudeRoute = AptitudeRouteImport.update({
+  id: '/aptitude',
+  path: '/aptitude',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BrowseRoute = BrowseRouteImport.update({
   id: '/browse',
   path: '/browse',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MocksRoute = MocksRouteImport.update({
@@ -39,9 +54,24 @@ const PapersRoute = PapersRouteImport.update({
   path: '/papers',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PlannerRoute = PlannerRouteImport.update({
+  id: '/planner',
+  path: '/planner',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PyqRoute = PyqRouteImport.update({
   id: '/pyq',
   path: '/pyq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SearchRoute = SearchRouteImport.update({
+  id: '/search',
+  path: '/search',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SyllabusRoute = SyllabusRouteImport.update({
+  id: '/syllabus',
+  path: '/syllabus',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PapersPaperIdRoute = PapersPaperIdRouteImport.update({
@@ -67,10 +97,15 @@ const MocksTestIdResultRoute = MocksTestIdResultRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/aptitude': typeof AptitudeRoute
   '/browse': typeof BrowseRoute
+  '/login': typeof LoginRoute
   '/mocks': typeof MocksRoute
   '/papers': typeof PapersRoute
+  '/planner': typeof PlannerRoute
   '/pyq': typeof PyqRoute
+  '/search': typeof SearchRoute
+  '/syllabus': typeof SyllabusRoute
   '/papers/$paperId': typeof PapersPaperIdRoute
   '/practice/$questionId': typeof PracticeQuestionIdRoute
   '/mocks/$testId/attempt': typeof MocksTestIdAttemptRoute
@@ -78,10 +113,15 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/aptitude': typeof AptitudeRoute
   '/browse': typeof BrowseRoute
+  '/login': typeof LoginRoute
   '/mocks': typeof MocksRoute
   '/papers': typeof PapersRoute
+  '/planner': typeof PlannerRoute
   '/pyq': typeof PyqRoute
+  '/search': typeof SearchRoute
+  '/syllabus': typeof SyllabusRoute
   '/papers/$paperId': typeof PapersPaperIdRoute
   '/practice/$questionId': typeof PracticeQuestionIdRoute
   '/mocks/$testId/attempt': typeof MocksTestIdAttemptRoute
@@ -90,10 +130,15 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/aptitude': typeof AptitudeRoute
   '/browse': typeof BrowseRoute
+  '/login': typeof LoginRoute
   '/mocks': typeof MocksRoute
   '/papers': typeof PapersRoute
+  '/planner': typeof PlannerRoute
   '/pyq': typeof PyqRoute
+  '/search': typeof SearchRoute
+  '/syllabus': typeof SyllabusRoute
   '/papers_/$paperId': typeof PapersPaperIdRoute
   '/practice/$questionId': typeof PracticeQuestionIdRoute
   '/mocks_/$testId/attempt': typeof MocksTestIdAttemptRoute
@@ -103,10 +148,15 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/aptitude'
     | '/browse'
+    | '/login'
     | '/mocks'
     | '/papers'
+    | '/planner'
     | '/pyq'
+    | '/search'
+    | '/syllabus'
     | '/papers/$paperId'
     | '/practice/$questionId'
     | '/mocks/$testId/attempt'
@@ -114,10 +164,15 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/aptitude'
     | '/browse'
+    | '/login'
     | '/mocks'
     | '/papers'
+    | '/planner'
     | '/pyq'
+    | '/search'
+    | '/syllabus'
     | '/papers/$paperId'
     | '/practice/$questionId'
     | '/mocks/$testId/attempt'
@@ -125,10 +180,15 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/aptitude'
     | '/browse'
+    | '/login'
     | '/mocks'
     | '/papers'
+    | '/planner'
     | '/pyq'
+    | '/search'
+    | '/syllabus'
     | '/papers_/$paperId'
     | '/practice/$questionId'
     | '/mocks_/$testId/attempt'
@@ -137,10 +197,15 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AptitudeRoute: typeof AptitudeRoute
   BrowseRoute: typeof BrowseRoute
+  LoginRoute: typeof LoginRoute
   MocksRoute: typeof MocksRoute
   PapersRoute: typeof PapersRoute
+  PlannerRoute: typeof PlannerRoute
   PyqRoute: typeof PyqRoute
+  SearchRoute: typeof SearchRoute
+  SyllabusRoute: typeof SyllabusRoute
   PapersPaperIdRoute: typeof PapersPaperIdRoute
   PracticeQuestionIdRoute: typeof PracticeQuestionIdRoute
   MocksTestIdAttemptRoute: typeof MocksTestIdAttemptRoute
@@ -156,11 +221,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/aptitude': {
+      id: '/aptitude'
+      path: '/aptitude'
+      fullPath: '/aptitude'
+      preLoaderRoute: typeof AptitudeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/browse': {
       id: '/browse'
       path: '/browse'
       fullPath: '/browse'
       preLoaderRoute: typeof BrowseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/mocks': {
@@ -177,11 +256,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PapersRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/planner': {
+      id: '/planner'
+      path: '/planner'
+      fullPath: '/planner'
+      preLoaderRoute: typeof PlannerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/pyq': {
       id: '/pyq'
       path: '/pyq'
       fullPath: '/pyq'
       preLoaderRoute: typeof PyqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/search': {
+      id: '/search'
+      path: '/search'
+      fullPath: '/search'
+      preLoaderRoute: typeof SearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/syllabus': {
+      id: '/syllabus'
+      path: '/syllabus'
+      fullPath: '/syllabus'
+      preLoaderRoute: typeof SyllabusRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/papers_/$paperId': {
@@ -217,10 +317,15 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AptitudeRoute: AptitudeRoute,
   BrowseRoute: BrowseRoute,
+  LoginRoute: LoginRoute,
   MocksRoute: MocksRoute,
   PapersRoute: PapersRoute,
+  PlannerRoute: PlannerRoute,
   PyqRoute: PyqRoute,
+  SearchRoute: SearchRoute,
+  SyllabusRoute: SyllabusRoute,
   PapersPaperIdRoute: PapersPaperIdRoute,
   PracticeQuestionIdRoute: PracticeQuestionIdRoute,
   MocksTestIdAttemptRoute: MocksTestIdAttemptRoute,

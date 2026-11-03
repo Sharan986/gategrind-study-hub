@@ -7,11 +7,11 @@ import { useAttempts, useBookmarks } from "@/hooks/use-local-store";
 import type { QuestionType } from "@/lib/types";
 
 interface Search {
-  subject?: string;
-  topic?: string;
-  year?: number;
-  type?: QuestionType;
-  status?: "unsolved" | "solved" | "bookmarked";
+  subject?: string | undefined;
+  topic?: string | undefined;
+  year?: number | undefined;
+  type?: QuestionType | undefined;
+  status?: "unsolved" | "solved" | "bookmarked" | undefined;
 }
 
 export const Route = createFileRoute("/pyq")({

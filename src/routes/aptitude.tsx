@@ -27,7 +27,7 @@ function Aptitude() {
   const [attempts] = useAttempts();
   const ga = questions.filter((q) => q.subjectId === "ga");
   const solved = ga.filter((q) => attempts[q.id]).length;
-  const daily = ga[new Date().getDate() % ga.length];
+  const daily = ga[new Date().getDate() % ga.length]!;
   const list = aptitudeConcepts.filter((c) => cat === "All" || c.category === cat);
   const active = aptitudeConcepts.find((c) => c.id === open);
 
@@ -72,7 +72,7 @@ function Aptitude() {
               )}
               <ul className="list-disc space-y-1 pl-5 text-sm">{active.keyPoints.map((k) => <li key={k}>{k}</li>)}</ul>
               {active.questionIds.length > 0 ? (
-                <Link to="/practice/$questionId" params={{ questionId: active.questionIds[0] }} className="neo-btn neo-btn-primary mt-5 w-full">Practise this concept</Link>
+                <Link to="/practice/$questionId" params={{ questionId: active.questionIds[0]! }} className="neo-btn neo-btn-primary mt-5 w-full">Practise this concept</Link>
               ) : (
                 <p className="mt-5 text-xs text-muted-foreground">Practice questions for this concept are coming soon.</p>
               )}
