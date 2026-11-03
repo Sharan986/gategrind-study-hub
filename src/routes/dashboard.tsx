@@ -80,7 +80,7 @@ function Dashboard() {
 
       <section className="neo-box mb-8">
         <h2 className="mb-4 text-lg">Activity · last 12 weeks</h2>
-        <div className="grid grid-flow-col grid-rows-7 gap-1 overflow-x-auto" role="img" aria-label="Daily activity heatmap">
+        <div className="grid w-fit max-w-full auto-cols-max grid-flow-col grid-rows-7 gap-1 overflow-x-auto" role="img" aria-label="Daily activity heatmap">
           {a.heatmap.map((d) => (
             <div key={d.day} title={`${d.day}: ${d.count} questions`} className="size-3.5 border border-border sm:size-4" style={{ background: d.count ? `color-mix(in oklab, var(--text-h) ${20 + (d.count / max) * 80}%, transparent)` : "transparent" }} />
           ))}
