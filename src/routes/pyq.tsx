@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Bookmark, Check, X } from "lucide-react";
+import { useEffect, useState } from "react";
 import { Chip, EmptyState, PageHeader, QuestionMeta } from "@/components/gg/primitives";
 import { questions } from "@/data/questions";
 import { subjectById, subjects, topicName } from "@/data/subjects";
@@ -51,8 +52,13 @@ function Pyq() {
   const navigate = Route.useNavigate();
   const [attempts] = useAttempts();
   const { has } = useBookmarks();
+  const [visibleCount, setVisibleCount] = useState(40);
   const set = (patch: Partial<Search>) =>
     navigate({ search: (p: Search) => ({ ...p, ...patch }), replace: true });
+
+  useEffect(() => {
+    setVisibleCount(40);
+  }, [s.subject, s.topic, s.year, s.type, s.status]);
 
   const list = questions.filter((q) => {
     const subjectMatches =
@@ -112,7 +118,7 @@ function Pyq() {
           </div>
           <div>
             <div className="neo-label mb-1.5">Year</div>
-            <div className="flex flex-wrap gap-1.5">
+            <div className="flex max-h-52 flex-wrap gap-1.5 overflow-y-auto pr-1">
               <Chip active={!s.year} onClick={() => set({ year: undefined })}>
                 All
               </Chip>
@@ -166,47 +172,59 @@ function Pyq() {
               }
             />
           ) : (
-            <ol className="space-y-3">
-              {list.map((q) => {
-                const a = attempts[q.id];
-                return (
-                  <li key={q.id}>
-                    <Link
-                      to="/practice/$questionId"
-                      params={{ questionId: q.id }}
-                      className="neo-box-sm flex gap-4 p-4 hover:-translate-y-px"
-                    >
-                      <div className="w-10 shrink-0 font-heading text-lg font-semibold text-text-h">
-                        Q{q.number}
-                      </div>
-                      <div className="min-w-0 flex-1">
-                        <QuestionMeta q={q} />
-                        <p className="mt-2 line-clamp-2 text-sm text-text-h">
-                          {q.body.replace(/\$|\\/g, "")}
-                        </p>
-                        <div className="mt-1 text-[11px] text-muted-foreground">
-                          {topicName(q.subjectId, q.topicId)}
+            <>
+              <ol className="space-y-3">
+                {list.slice(0, visibleCount).map((q) => {
+                  const a = attempts[q.id];
+                  return (
+                    <li key={q.id}>
+                      <Link
+                        to="/practice/$questionId"
+                        params={{ questionId: q.id }}
+                        className="neo-box-sm flex gap-4 p-4 hover:-translate-y-px"
+                      >
+                        <div className="w-10 shrink-0 font-heading text-lg font-semibold text-text-h">
+                          Q{q.number}
                         </div>
-                      </div>
-                      <div className="flex shrink-0 flex-col items-end gap-2">
-                        {a &&
-                          (a.correct ? (
-                            <Check className="size-4 text-success" aria-label="Solved correctly" />
-                          ) : (
-                            <X className="size-4 text-danger" aria-label="Answered wrong" />
-                          ))}
-                        {has(q.id) && (
-                          <Bookmark
-                            className="size-4 fill-current text-text-h"
-                            aria-label="Bookmarked"
-                          />
-                        )}
-                      </div>
-                    </Link>
-                  </li>
-                );
-              })}
-            </ol>
+                        <div className="min-w-0 flex-1">
+                          <QuestionMeta q={q} />
+                          <p className="mt-2 line-clamp-2 text-sm text-text-h">
+                            {q.body.replace(/\$|\\/g, "")}
+                          </p>
+                          <div className="mt-1 text-[11px] text-muted-foreground">
+                            {topicName(q.subjectId, q.topicId)}
+                          </div>
+                        </div>
+                        <div className="flex shrink-0 flex-col items-end gap-2">
+                          {a &&
+                            (a.correct ? (
+                              <Check
+                                className="size-4 text-success"
+                                aria-label="Solved correctly"
+                              />
+                            ) : (
+                              <X className="size-4 text-danger" aria-label="Answered wrong" />
+                            ))}
+                          {has(q.id) && (
+                            <Bookmark
+                              className="size-4 fill-current text-text-h"
+                              aria-label="Bookmarked"
+                            />
+                          )}
+                        </div>
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ol>
+              {visibleCount < list.length && (
+                <div className="mt-6 flex justify-center">
+                  <button className="neo-btn" onClick={() => setVisibleCount((c) => c + 40)}>
+                    Load more questions ({list.length - visibleCount} remaining)
+                  </button>
+                </div>
+              )}
+            </>
           )}
         </section>
       </div>
