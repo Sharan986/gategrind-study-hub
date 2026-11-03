@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AptitudeRouteImport } from './routes/aptitude'
 import { Route as BrowseRouteImport } from './routes/browse'
+import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as MocksRouteImport } from './routes/mocks'
 import { Route as PapersRouteImport } from './routes/papers'
@@ -37,6 +38,11 @@ const AptitudeRoute = AptitudeRouteImport.update({
 const BrowseRoute = BrowseRouteImport.update({
   id: '/browse',
   path: '/browse',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRoute = LoginRouteImport.update({
@@ -99,6 +105,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/aptitude': typeof AptitudeRoute
   '/browse': typeof BrowseRoute
+  '/dashboard': typeof DashboardRoute
   '/login': typeof LoginRoute
   '/mocks': typeof MocksRoute
   '/papers': typeof PapersRoute
@@ -115,6 +122,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/aptitude': typeof AptitudeRoute
   '/browse': typeof BrowseRoute
+  '/dashboard': typeof DashboardRoute
   '/login': typeof LoginRoute
   '/mocks': typeof MocksRoute
   '/papers': typeof PapersRoute
@@ -132,6 +140,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/aptitude': typeof AptitudeRoute
   '/browse': typeof BrowseRoute
+  '/dashboard': typeof DashboardRoute
   '/login': typeof LoginRoute
   '/mocks': typeof MocksRoute
   '/papers': typeof PapersRoute
@@ -150,6 +159,7 @@ export interface FileRouteTypes {
     | '/'
     | '/aptitude'
     | '/browse'
+    | '/dashboard'
     | '/login'
     | '/mocks'
     | '/papers'
@@ -166,6 +176,7 @@ export interface FileRouteTypes {
     | '/'
     | '/aptitude'
     | '/browse'
+    | '/dashboard'
     | '/login'
     | '/mocks'
     | '/papers'
@@ -182,6 +193,7 @@ export interface FileRouteTypes {
     | '/'
     | '/aptitude'
     | '/browse'
+    | '/dashboard'
     | '/login'
     | '/mocks'
     | '/papers'
@@ -199,6 +211,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AptitudeRoute: typeof AptitudeRoute
   BrowseRoute: typeof BrowseRoute
+  DashboardRoute: typeof DashboardRoute
   LoginRoute: typeof LoginRoute
   MocksRoute: typeof MocksRoute
   PapersRoute: typeof PapersRoute
@@ -233,6 +246,13 @@ declare module '@tanstack/react-router' {
       path: '/browse'
       fullPath: '/browse'
       preLoaderRoute: typeof BrowseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login': {
@@ -319,6 +339,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AptitudeRoute: AptitudeRoute,
   BrowseRoute: BrowseRoute,
+  DashboardRoute: DashboardRoute,
   LoginRoute: LoginRoute,
   MocksRoute: MocksRoute,
   PapersRoute: PapersRoute,
