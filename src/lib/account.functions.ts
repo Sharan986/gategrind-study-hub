@@ -96,7 +96,7 @@ const rowSchema = z.object({
 /** Upserts the caller's rows (newest wins) and returns the caller's full server snapshot. */
 export const syncProgress = createServerFn({ method: "POST" })
   .inputValidator((d: unknown) => z.object({ rows: z.array(rowSchema).max(3000) }).parse(d))
-  .handler(async ({ data }): Promise<ProgressRow[]> => {
+  .handler(async ({ data }): Promise<{ kind: ProgressRow["kind"]; key: string; payloadJson: string; updatedAt: number }[]> => {
     const { db, user } = await requireUser();
     for (const r of data.rows) {
       const payload = JSON.stringify(r.payload ?? null);
@@ -114,7 +114,7 @@ export const syncProgress = createServerFn({ method: "POST" })
       .prepare("SELECT kind, item_key, payload, updated_at FROM user_progress WHERE user_id = ?")
       .bind(user.id)
       .all<{ kind: ProgressRow["kind"]; item_key: string; payload: string; updated_at: number }>();
-    return res.results.map((r) => ({ kind: r.kind, key: r.item_key, payload: JSON.parse(r.payload) as unknown, updatedAt: Number(r.updated_at) }));
+    return res.results.map((r) => ({ kind: r.kind, key: r.item_key, payloadJson: r.payload, updatedAt: Number(r.updated_at) }));
   });
 
 export const updateProfile = createServerFn({ method: "POST" })

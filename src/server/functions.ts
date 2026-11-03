@@ -27,7 +27,6 @@ import {
 } from "./auth";
 import {
   getSubjects,
-  getSubjectTopicsBySlug,
   getQuestions,
   getQuestionById,
   getPastPaperYears,
@@ -116,12 +115,8 @@ export const fetchSubjectTopics = createServerFn({ method: "GET" })
   .handler(async ({ data }) => {
     const user = await resolveCurrentUser();
     const db = getDatabase();
-    const topics = await getSubjectTopicsBySlug
-      ? await (async () => {
-          const { getTopicsBySubjectSlug } = await import("./catalog");
-          return await getTopicsBySubjectSlug(data.subjectSlug, db, user?.id);
-        })()
-      : [];
+    const { getTopicsBySubjectSlug } = await import("./catalog");
+    const topics = await getTopicsBySubjectSlug(data.subjectSlug, db, user?.id);
     return topics;
   });
 

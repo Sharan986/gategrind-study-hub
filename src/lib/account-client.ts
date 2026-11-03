@@ -78,7 +78,7 @@ export async function syncNow(opts: { union?: boolean } = {}) {
   set({ syncing: true, error: null });
   try {
     const local = localSnapshot();
-    const remote = await syncProgress({ data: { rows: local } });
+    const remote = (await syncProgress({ data: { rows: local } })).map((r) => ({ kind: r.kind, key: r.key, payload: JSON.parse(r.payloadJson) as unknown, updatedAt: r.updatedAt }));
     applySnapshot(mergeProgress(local, remote, opts));
     set({ syncing: false, lastSync: Date.now() });
   } catch (e) {

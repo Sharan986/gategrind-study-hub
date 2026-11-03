@@ -180,7 +180,7 @@ export async function resolveSessionFromCookie(
   const match = cookieHeader.match(/gategrind_session=([^;]+)/);
   if (!match) return null;
 
-  const raw = match[1].trim();
+  const raw = (match[1] ?? "").trim();
   const [sessionId, signature] = raw.split(".");
   if (!sessionId || !signature) return null;
 
