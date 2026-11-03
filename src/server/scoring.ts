@@ -151,8 +151,8 @@ export function evaluateQuestionAttempt(
     let maxVal = 0;
     if (correctAnswer.includes(":")) {
       const parts = correctAnswer.split(":");
-      minVal = parseFloat(parts[0].trim());
-      maxVal = parseFloat(parts[1].trim());
+      minVal = parseFloat((parts[0] ?? "").trim());
+      maxVal = parseFloat((parts[1] ?? "").trim());
     } else {
       const single = parseFloat(correctAnswer.trim());
       minVal = single;
