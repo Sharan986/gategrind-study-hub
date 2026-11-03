@@ -2,6 +2,27 @@ import { useCallback, useEffect, useState } from "react";
 
 // Demo-state persistence in localStorage. Hydration-safe: reads after mount.
 const listeners = new Map<string, Set<() => void>>();
+let changeHook: ((key: string) => void) | null = null;
+/** Registered by the account sync client so local edits get pushed when signed in. */
+export function onLocalChange(fn: (key: string) => void) {
+  changeHook = fn;
+}
+export function notifyKey(key: string) {
+  listeners.get(key)?.forEach((l) => l());
+}
+export function readLocal<T>(key: string, fallback: T): T {
+  return read(key, fallback);
+}
+export function writeLocal(key: string, value: unknown, silent = false) {
+  window.localStorage.setItem(key, JSON.stringify(value));
+  if (!silent) {
+    const meta = read<Record<string, number>>("gg:meta", {});
+    meta[key] = Date.now();
+    window.localStorage.setItem("gg:meta", JSON.stringify(meta));
+    changeHook?.(key);
+  }
+  notifyKey(key);
+}
 
 function read<T>(key: string, fallback: T): T {
   try {
@@ -30,8 +51,7 @@ export function useLocalStore<T>(key: string, fallback: T) {
     (next: T | ((prev: T) => T)) => {
       const prev = read(key, fallback);
       const v = typeof next === "function" ? (next as (p: T) => T)(prev) : next;
-      window.localStorage.setItem(key, JSON.stringify(v));
-      listeners.get(key)?.forEach((l) => l());
+      writeLocal(key, v);
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [key],
@@ -49,6 +69,24 @@ export interface Attempt {
 export function useAttempts() {
   return useLocalStore<Record<string, Attempt>>("gg:attempts", {});
 }
+export interface HistoryEntry {
+  qid: string;
+  correct: boolean;
+  at: number;
+}
+/** Records an attempt: latest result per question plus an append-only history for analytics. */
+export function recordAttemptLocal(qid: string, correct: boolean) {
+  const at = Date.now();
+  const attempts = read<Record<string, Attempt>>("gg:attempts", {});
+  writeLocal("gg:attempts", { ...attempts, [qid]: { qid, correct, at } });
+  const hist = read<HistoryEntry[]>("gg:history", []);
+  writeLocal("gg:history", [...hist, { qid, correct, at }].slice(-5000));
+}
+
+export function useHistory() {
+  return useLocalStore<HistoryEntry[]>("gg:history", []);
+}
+
 export function useBookmarks() {
   const [list, set] = useLocalStore<string[]>("gg:bookmarks", []);
   const toggle = (id: string) => set((l) => (l.includes(id) ? l.filter((x) => x !== id) : [...l, id]));

@@ -5,7 +5,7 @@ import { QuestionView, SolutionPanel, type Response } from "@/components/gg/Ques
 import { QuestionMeta } from "@/components/gg/primitives";
 import { isCorrect, questionById, questions } from "@/data/questions";
 import { subjectById, topicName } from "@/data/subjects";
-import { useAttempts, useBookmarks } from "@/hooks/use-local-store";
+import { recordAttemptLocal, useAttempts, useBookmarks } from "@/hooks/use-local-store";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/practice/$questionId")({
@@ -36,7 +36,6 @@ export const Route = createFileRoute("/practice/$questionId")({
 function Practice() {
   const { q } = Route.useLoaderData();
   const navigate = useNavigate();
-  const [, setAttempts] = useAttempts();
   const [attempts] = useAttempts();
   const { has, toggle } = useBookmarks();
   const [response, setResponse] = useState<Response>(undefined);
@@ -56,7 +55,7 @@ function Practice() {
   const submit = () => {
     if (!hasAnswer || revealed) return;
     setRevealed(true);
-    setAttempts((a) => ({ ...a, [q.id]: { qid: q.id, correct: isCorrect(q, response), at: Date.now() } }));
+    recordAttemptLocal(q.id, isCorrect(q, response));
   };
   const go = (id?: string) => id && navigate({ to: "/practice/$questionId", params: { questionId: id } });
 
