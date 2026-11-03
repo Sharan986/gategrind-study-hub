@@ -59,3 +59,12 @@ export const aptitudeConcepts: AptitudeConcept[] = [
   { id: "syllogism", category: "Analytical", title: "Syllogisms", summary: "Venn diagrams for all/some/none.", keyPoints: ["Draw the minimum overlap", "‘Some’ never implies ‘all’", "Check every possibility"], questionIds: [] },
   { id: "folding", category: "Spatial", title: "Paper Folding & Rotation", summary: "Track one corner through each step.", keyPoints: ["Holes mirror across fold lines", "Rotate in 90° steps", "Count symmetric copies"], questionIds: [] },
 ];
+
+/** Resolves a mock id or "paper-<paperId>" into an attemptable test. */
+export function getTest(id: string): { id: string; title: string; durationMin: number; questionIds: string[] } | undefined {
+  if (id.startsWith("paper-")) {
+    const p = papers.find((x) => x.id === id.slice(6));
+    return p && { id, title: p.title, durationMin: Math.max(10, p.questionIds.length * 3), questionIds: p.questionIds };
+  }
+  return mocks.find((m) => m.id === id);
+}
