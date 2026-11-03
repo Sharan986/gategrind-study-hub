@@ -16,11 +16,11 @@ interface Search {
 
 export const Route = createFileRoute("/pyq")({
   validateSearch: (s: Record<string, unknown>): Search => ({
-    subject: typeof s.subject === "string" ? s.subject : undefined,
-    topic: typeof s.topic === "string" ? s.topic : undefined,
-    year: s.year ? Number(s.year) : undefined,
-    type: ["MCQ", "MSQ", "NAT"].includes(s.type as string) ? (s.type as QuestionType) : undefined,
-    status: ["unsolved", "solved", "bookmarked"].includes(s.status as string) ? (s.status as Search["status"]) : undefined,
+    subject: typeof s["subject"] === "string" ? s["subject"] : undefined,
+    topic: typeof s["topic"] === "string" ? s["topic"] : undefined,
+    year: s["year"] ? Number(s["year"]) : undefined,
+    type: ["MCQ", "MSQ", "NAT"].includes(s["type"] as string) ? (s["type"] as QuestionType) : undefined,
+    status: ["unsolved", "solved", "bookmarked"].includes(s["status"] as string) ? (s["status"] as Search["status"]) : undefined,
   }),
   head: () => ({
     meta: [

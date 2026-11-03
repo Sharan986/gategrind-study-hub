@@ -7,9 +7,9 @@ import { subjects, subjectById } from "@/data/subjects";
 
 type Kind = "all" | "questions" | "topics" | "papers" | "mocks";
 export const Route = createFileRoute("/search")({
-  validateSearch: (s: Record<string, unknown>): { q?: string; kind?: Kind } => ({
-    q: typeof s.q === "string" ? s.q : undefined,
-    kind: ["all", "questions", "topics", "papers", "mocks"].includes(s.kind as string) ? (s.kind as Kind) : undefined,
+  validateSearch: (s: Record<string, unknown>): { q?: string | undefined; kind?: Kind | undefined } => ({
+    q: typeof s["q"] === "string" ? s["q"] : undefined,
+    kind: ["all", "questions", "topics", "papers", "mocks"].includes(s["kind"] as string) ? (s["kind"] as Kind) : undefined,
   }),
   head: () => ({
     meta: [

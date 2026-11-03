@@ -36,7 +36,7 @@ function Result() {
   const qs = test.questionIds.map((id) => questionById(id)!);
   const max = qs.reduce((n, q) => n + q.marks, 0);
   const score = qs.reduce((n, q) => n + scoreFor(q, r.responses[q.id]), 0);
-  const attempted = qs.filter((q) => r.responses[q.id] !== undefined && r.responses[q.id] !== "" && !(Array.isArray(r.responses[q.id]) && r.responses[q.id].length === 0));
+  const attempted = qs.filter((q) => r.responses[q.id] !== undefined && r.responses[q.id] !== "" && !(Array.isArray(r.responses[q.id]) && (r.responses[q.id] as string[]).length === 0));
   const right = attempted.filter((q) => isCorrect(q, r.responses[q.id]));
   const bySub = new Map<string, { s: number; m: number }>();
   qs.forEach((q) => {
