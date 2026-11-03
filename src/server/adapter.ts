@@ -69,7 +69,7 @@ export function toFrontendQuestion(d1Row: any): Question {
     answer,
     solution: d1Row.explanation_html || "Official answer key verified from GATE official examination paper.",
     tags: typeof d1Row.tags === "string" ? d1Row.tags.split(",").filter(Boolean) : d1Row.tags || [],
-  };
+  } as Question;;
 }
 
 export function toFrontendSubject(d1Sub: any, topics: any[] = []): Subject {
