@@ -92,7 +92,7 @@ function Result() {
                   {open === q.id && (
                     <div className="border-t border-border p-4">
                       <QuestionView q={q} response={resp} onChange={() => {}} revealed />
-                      <SolutionPanel q={q} correct={ok} />
+                      <SolutionPanel q={q} correct={ok} response={resp} />
                     </div>
                   )}
                 </li>

@@ -114,7 +114,7 @@ function Practice() {
           <button className="neo-btn ml-auto" onClick={() => go(next?.id)} disabled={!next}>Next <ArrowRight className="size-4" /></button>
         </div>
 
-        {revealed && <SolutionPanel q={q} correct={correct} />}
+        {revealed && <SolutionPanel q={q} correct={correct} response={response} />}
       </div>
 
       <aside className="space-y-4 lg:sticky lg:top-20 lg:self-start">
