@@ -11,8 +11,13 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BrowseRouteImport } from './routes/browse'
+import { Route as MocksRouteImport } from './routes/mocks'
+import { Route as PapersRouteImport } from './routes/papers'
 import { Route as PyqRouteImport } from './routes/pyq'
+import { Route as PapersPaperIdRouteImport } from './routes/papers_.$paperId'
 import { Route as PracticeQuestionIdRouteImport } from './routes/practice.$questionId'
+import { Route as MocksTestIdAttemptRouteImport } from './routes/mocks_.$testId.attempt'
+import { Route as MocksTestIdResultRouteImport } from './routes/mocks_.$testId.result'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -24,9 +29,24 @@ const BrowseRoute = BrowseRouteImport.update({
   path: '/browse',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MocksRoute = MocksRouteImport.update({
+  id: '/mocks',
+  path: '/mocks',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PapersRoute = PapersRouteImport.update({
+  id: '/papers',
+  path: '/papers',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PyqRoute = PyqRouteImport.update({
   id: '/pyq',
   path: '/pyq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PapersPaperIdRoute = PapersPaperIdRouteImport.update({
+  id: '/papers_/$paperId',
+  path: '/papers/$paperId',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PracticeQuestionIdRoute = PracticeQuestionIdRouteImport.update({
@@ -34,39 +54,97 @@ const PracticeQuestionIdRoute = PracticeQuestionIdRouteImport.update({
   path: '/practice/$questionId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MocksTestIdAttemptRoute = MocksTestIdAttemptRouteImport.update({
+  id: '/mocks_/$testId/attempt',
+  path: '/mocks/$testId/attempt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MocksTestIdResultRoute = MocksTestIdResultRouteImport.update({
+  id: '/mocks_/$testId/result',
+  path: '/mocks/$testId/result',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/browse': typeof BrowseRoute
+  '/mocks': typeof MocksRoute
+  '/papers': typeof PapersRoute
   '/pyq': typeof PyqRoute
+  '/papers/$paperId': typeof PapersPaperIdRoute
   '/practice/$questionId': typeof PracticeQuestionIdRoute
+  '/mocks/$testId/attempt': typeof MocksTestIdAttemptRoute
+  '/mocks/$testId/result': typeof MocksTestIdResultRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/browse': typeof BrowseRoute
+  '/mocks': typeof MocksRoute
+  '/papers': typeof PapersRoute
   '/pyq': typeof PyqRoute
+  '/papers/$paperId': typeof PapersPaperIdRoute
   '/practice/$questionId': typeof PracticeQuestionIdRoute
+  '/mocks/$testId/attempt': typeof MocksTestIdAttemptRoute
+  '/mocks/$testId/result': typeof MocksTestIdResultRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/browse': typeof BrowseRoute
+  '/mocks': typeof MocksRoute
+  '/papers': typeof PapersRoute
   '/pyq': typeof PyqRoute
+  '/papers_/$paperId': typeof PapersPaperIdRoute
   '/practice/$questionId': typeof PracticeQuestionIdRoute
+  '/mocks_/$testId/attempt': typeof MocksTestIdAttemptRoute
+  '/mocks_/$testId/result': typeof MocksTestIdResultRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/browse' | '/pyq' | '/practice/$questionId'
+  fullPaths:
+    | '/'
+    | '/browse'
+    | '/mocks'
+    | '/papers'
+    | '/pyq'
+    | '/papers/$paperId'
+    | '/practice/$questionId'
+    | '/mocks/$testId/attempt'
+    | '/mocks/$testId/result'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/browse' | '/pyq' | '/practice/$questionId'
-  id: '__root__' | '/' | '/browse' | '/pyq' | '/practice/$questionId'
+  to:
+    | '/'
+    | '/browse'
+    | '/mocks'
+    | '/papers'
+    | '/pyq'
+    | '/papers/$paperId'
+    | '/practice/$questionId'
+    | '/mocks/$testId/attempt'
+    | '/mocks/$testId/result'
+  id:
+    | '__root__'
+    | '/'
+    | '/browse'
+    | '/mocks'
+    | '/papers'
+    | '/pyq'
+    | '/papers_/$paperId'
+    | '/practice/$questionId'
+    | '/mocks_/$testId/attempt'
+    | '/mocks_/$testId/result'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BrowseRoute: typeof BrowseRoute
+  MocksRoute: typeof MocksRoute
+  PapersRoute: typeof PapersRoute
   PyqRoute: typeof PyqRoute
+  PapersPaperIdRoute: typeof PapersPaperIdRoute
   PracticeQuestionIdRoute: typeof PracticeQuestionIdRoute
+  MocksTestIdAttemptRoute: typeof MocksTestIdAttemptRoute
+  MocksTestIdResultRoute: typeof MocksTestIdResultRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -85,11 +163,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BrowseRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/mocks': {
+      id: '/mocks'
+      path: '/mocks'
+      fullPath: '/mocks'
+      preLoaderRoute: typeof MocksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/papers': {
+      id: '/papers'
+      path: '/papers'
+      fullPath: '/papers'
+      preLoaderRoute: typeof PapersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/pyq': {
       id: '/pyq'
       path: '/pyq'
       fullPath: '/pyq'
       preLoaderRoute: typeof PyqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/papers_/$paperId': {
+      id: '/papers_/$paperId'
+      path: '/papers/$paperId'
+      fullPath: '/papers/$paperId'
+      preLoaderRoute: typeof PapersPaperIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/practice/$questionId': {
@@ -99,14 +198,33 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PracticeQuestionIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/mocks_/$testId/attempt': {
+      id: '/mocks_/$testId/attempt'
+      path: '/mocks/$testId/attempt'
+      fullPath: '/mocks/$testId/attempt'
+      preLoaderRoute: typeof MocksTestIdAttemptRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mocks_/$testId/result': {
+      id: '/mocks_/$testId/result'
+      path: '/mocks/$testId/result'
+      fullPath: '/mocks/$testId/result'
+      preLoaderRoute: typeof MocksTestIdResultRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BrowseRoute: BrowseRoute,
+  MocksRoute: MocksRoute,
+  PapersRoute: PapersRoute,
   PyqRoute: PyqRoute,
+  PapersPaperIdRoute: PapersPaperIdRoute,
   PracticeQuestionIdRoute: PracticeQuestionIdRoute,
+  MocksTestIdAttemptRoute: MocksTestIdAttemptRoute,
+  MocksTestIdResultRoute: MocksTestIdResultRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
