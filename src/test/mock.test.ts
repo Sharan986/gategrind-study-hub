@@ -17,7 +17,7 @@ describe("GATE Mock Exam Generator & Evaluation Engine", () => {
         name: "Mock Taker",
       },
       db,
-      "test-secret"
+      "test-secret-key-12345678901234567890"
     );
     testUser = user;
   });

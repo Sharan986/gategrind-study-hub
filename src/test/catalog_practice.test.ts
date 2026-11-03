@@ -18,7 +18,7 @@ describe("Catalog, Practice & Analytics Services", () => {
         name: "GATE Candidate",
       },
       db,
-      "test-secret"
+      "test-secret-key-12345678901234567890"
     );
     testUser = user;
   });
