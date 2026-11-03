@@ -8,6 +8,41 @@
 import type { D1Database } from "./db";
 import { evaluateQuestionAttempt, type QuestionEvaluationResult } from "./scoring";
 
+interface PracticeQuestionRow {
+  id: string;
+  topic_id: string;
+  question_type: string;
+  marks: number;
+  correct_answer: string;
+  is_mta: number | null;
+  explanation_html: string | null;
+}
+
+interface OverallStatsRow {
+  total_attempted: number;
+  total_correct: number;
+  attempted_today: number;
+}
+
+interface UserProfileRow {
+  daily_goal_questions: number;
+  streak_days: number;
+}
+
+interface SubjectPerfRow {
+  subject_name: string;
+  subject_slug: string;
+  attempted: number;
+  correct: number;
+}
+
+interface WeakTopicRow {
+  topic_name: string;
+  subject_name: string;
+  attempted: number;
+  accuracy: number;
+}
+
 export interface RecordAttemptInput {
   userId: string;
   questionId: string;
@@ -20,21 +55,28 @@ export interface RecordAttemptInput {
 export interface AttemptSubmissionResult extends QuestionEvaluationResult {
   attemptId: string;
   correctAnswer: string;
-  explanationHtml?: string;
+  explanationHtml?: string | undefined;
   streakDays: number;
 }
 
 export async function recordAttempt(
   input: RecordAttemptInput,
-  db: D1Database
+  db: D1Database,
 ): Promise<AttemptSubmissionResult> {
-  const { userId, questionId, selectedAnswer, timeTakenSeconds = 0, mode = "study", mockId } = input;
+  const {
+    userId,
+    questionId,
+    selectedAnswer,
+    timeTakenSeconds = 0,
+    mode = "study",
+    mockId,
+  } = input;
 
   // 1. Fetch question from DB
   const q = await db
     .prepare("SELECT * FROM questions WHERE id = ?")
     .bind(questionId)
-    .first<any>();
+    .first<PracticeQuestionRow>();
 
   if (!q) {
     throw new Error(`Question not found: ${questionId}`);
@@ -45,7 +87,7 @@ export async function recordAttempt(
     questionType: q.question_type,
     marks: q.marks,
     correctAnswer: q.correct_answer,
-    isMta: q.is_mta,
+    isMta: Boolean(q.is_mta),
     selectedAnswer,
   });
 
@@ -57,7 +99,7 @@ export async function recordAttempt(
   await db
     .prepare(
       `INSERT INTO attempts (id, user_id, question_id, selected_answer, is_correct, time_taken_seconds, mode, mock_id, attempted_at)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
     )
     .bind(
       attemptId,
@@ -68,7 +110,7 @@ export async function recordAttempt(
       timeTakenSeconds,
       mode,
       mockId || null,
-      now
+      now,
     )
     .run();
 
@@ -95,7 +137,9 @@ export async function recordAttempt(
     }
 
     await db
-      .prepare("UPDATE user_profiles SET streak_days = ?, last_active_date = ?, updated_at = ? WHERE id = ?")
+      .prepare(
+        "UPDATE user_profiles SET streak_days = ?, last_active_date = ?, updated_at = ? WHERE id = ?",
+      )
       .bind(newStreak, today, now, userId)
       .run();
   }
@@ -110,7 +154,7 @@ export async function recordAttempt(
        VALUES (?, ?, ?, ?, ?)
        ON CONFLICT(user_id, topic_id) DO UPDATE SET
          status = excluded.status,
-         updated_at = excluded.updated_at`
+         updated_at = excluded.updated_at`,
     )
     .bind(progressId, userId, q.topic_id, status, now)
     .run();
@@ -128,7 +172,7 @@ export async function toggleBookmark(
   userId: string,
   questionId: string,
   db: D1Database,
-  note?: string
+  note?: string,
 ): Promise<{ isBookmarked: boolean }> {
   const existing = await db
     .prepare("SELECT id FROM bookmarks WHERE user_id = ? AND question_id = ?")
@@ -170,10 +214,7 @@ export interface UserAnalytics {
   }[];
 }
 
-export async function getUserAnalytics(
-  userId: string,
-  db: D1Database
-): Promise<UserAnalytics> {
+export async function getUserAnalytics(userId: string, db: D1Database): Promise<UserAnalytics> {
   const today = new Date().toISOString().slice(0, 10);
 
   // 1. Overall stats
@@ -185,13 +226,13 @@ export async function getUserAnalytics(
     FROM attempts
     WHERE user_id = ?
   `;
-  const overall = await db.prepare(overallQuery).bind(userId).first<any>();
+  const overall = await db.prepare(overallQuery).bind(userId).first<OverallStatsRow>();
 
   // 2. User profile
   const profile = await db
     .prepare("SELECT daily_goal_questions, streak_days FROM user_profiles WHERE id = ?")
     .bind(userId)
-    .first<any>();
+    .first<UserProfileRow>();
 
   // 3. Subject performance
   const subQuery = `
@@ -207,7 +248,7 @@ export async function getUserAnalytics(
     GROUP BY s.id
     ORDER BY attempted DESC
   `;
-  const subRes = await db.prepare(subQuery).bind(userId).all<any>();
+  const subRes = await db.prepare(subQuery).bind(userId).all<SubjectPerfRow>();
 
   // 4. Weak topics (accuracy < 50% with at least 3 attempts)
   const weakQuery = `
@@ -226,7 +267,7 @@ export async function getUserAnalytics(
     ORDER BY accuracy ASC, attempted DESC
     LIMIT 5
   `;
-  const weakRes = await db.prepare(weakQuery).bind(userId).all<any>();
+  const weakRes = await db.prepare(weakQuery).bind(userId).all<WeakTopicRow>();
 
   const totalAttempted = Number(overall?.total_attempted) || 0;
   const totalCorrect = Number(overall?.total_correct) || 0;

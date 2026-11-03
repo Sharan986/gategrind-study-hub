@@ -62,7 +62,7 @@ describe("D1 to Frontend Type Adapter", () => {
   it("converts D1 subject and topics to frontend Subject shape", () => {
     const sub = toFrontendSubject(
       { slug: "algorithms", name: "Algorithms", weightage_marks: 8.5 },
-      [{ slug: "sorting", name: "Sorting", total_questions: 42 }]
+      [{ slug: "sorting", name: "Sorting", total_questions: 42 }],
     );
     expect(sub.id).toBe("algorithms");
     expect(sub.name).toBe("Algorithms");

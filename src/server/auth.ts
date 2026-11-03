@@ -30,7 +30,6 @@ export interface UserSession {
   created_at: number;
 }
 
-
 function requireSecret(secret: string): string {
   if (!secret || secret.length < 32) throw new Error("SESSION_SECRET must be set (32+ chars).");
   return secret;
@@ -43,7 +42,7 @@ export async function hmacSign(data: string, secret: string): Promise<string> {
     encoder.encode(requireSecret(secret)),
     { name: "HMAC", hash: "SHA-256" },
     false,
-    ["sign"]
+    ["sign"],
   );
   const signature = await crypto.subtle.sign("HMAC", key, encoder.encode(data));
   return Array.from(new Uint8Array(signature))
@@ -51,11 +50,16 @@ export async function hmacSign(data: string, secret: string): Promise<string> {
     .join("");
 }
 
-export async function hmacVerify(data: string, signature: string, secret: string): Promise<boolean> {
+export async function hmacVerify(
+  data: string,
+  signature: string,
+  secret: string,
+): Promise<boolean> {
   const expected = await hmacSign(data, secret);
   if (expected.length !== signature.length) return false;
   let diff = 0;
-  for (let i = 0; i < expected.length; i++) diff |= expected.charCodeAt(i) ^ signature.charCodeAt(i);
+  for (let i = 0; i < expected.length; i++)
+    diff |= expected.charCodeAt(i) ^ signature.charCodeAt(i);
   return diff === 0;
 }
 
@@ -76,7 +80,10 @@ let googleJwks: ReturnType<typeof createRemoteJWKSet> | null = null;
  * Verify a Google ID token's signature (Google JWKS), issuer, audience and expiry.
  * There is deliberately no unverified fallback: an unverifiable token is rejected.
  */
-export async function verifyGoogleIdToken(idToken: string, expectedClientId: string): Promise<GoogleTokenPayload> {
+export async function verifyGoogleIdToken(
+  idToken: string,
+  expectedClientId: string,
+): Promise<GoogleTokenPayload> {
   if (!idToken || typeof idToken !== "string") throw new Error("Invalid token format.");
   if (!expectedClientId) throw new Error("GOOGLE_CLIENT_ID is not configured.");
   googleJwks ??= createRemoteJWKSet(GOOGLE_JWKS_URL);
@@ -86,12 +93,13 @@ export async function verifyGoogleIdToken(idToken: string, expectedClientId: str
   });
   const email = typeof payload["email"] === "string" ? payload["email"] : "";
   if (!payload.sub || !email) throw new Error("Incomplete Google ID token claims.");
-  if (payload["email_verified"] !== true && payload["email_verified"] !== "true") throw new Error("Google email is not verified.");
+  if (payload["email_verified"] !== true && payload["email_verified"] !== "true")
+    throw new Error("Google email is not verified.");
   return {
     sub: payload.sub,
     email,
     email_verified: true,
-    name: typeof payload["name"] === "string" ? payload["name"] : email.split("@")[0] ?? email,
+    name: typeof payload["name"] === "string" ? payload["name"] : (email.split("@")[0] ?? email),
     picture: typeof payload["picture"] === "string" ? payload["picture"] : "",
     aud: expectedClientId,
     ...(payload.exp !== undefined ? { exp: payload.exp } : {}),
@@ -105,7 +113,7 @@ export async function authenticateGoogleUser(
   tokenPayload: GoogleTokenPayload,
   db: D1Database,
   sessionSecret: string,
-  clientMeta?: { userAgent?: string; ipAddress?: string }
+  clientMeta?: { userAgent?: string; ipAddress?: string },
 ): Promise<{ user: UserProfile; cookieValue: string; sessionId: string }> {
   const userId = `usr_${tokenPayload.sub.slice(0, 16)}`;
   const now = new Date().toISOString();
@@ -120,7 +128,7 @@ export async function authenticateGoogleUser(
          display_name = excluded.display_name,
          avatar_url = excluded.avatar_url,
          last_active_date = excluded.last_active_date,
-         updated_at = excluded.updated_at`
+         updated_at = excluded.updated_at`,
     )
     .bind(
       userId,
@@ -129,7 +137,7 @@ export async function authenticateGoogleUser(
       tokenPayload.name || tokenPayload.email.split("@")[0],
       tokenPayload.picture || "",
       today,
-      now
+      now,
     )
     .run();
 
@@ -146,7 +154,7 @@ export async function authenticateGoogleUser(
   await db
     .prepare(
       `INSERT INTO user_sessions (id, user_id, email, role, user_agent, ip_address, expires_at)
-       VALUES (?, ?, ?, ?, ?, ?, ?)`
+       VALUES (?, ?, ?, ?, ?, ?, ?)`,
     )
     .bind(
       sessionId,
@@ -155,7 +163,7 @@ export async function authenticateGoogleUser(
       user.role || "student",
       clientMeta?.userAgent || null,
       clientMeta?.ipAddress || null,
-      expiresAt
+      expiresAt,
     )
     .run();
 
@@ -172,7 +180,7 @@ export async function authenticateGoogleUser(
 export async function resolveSessionFromCookie(
   cookieHeader: string | null | undefined,
   db: D1Database,
-  sessionSecret: string
+  sessionSecret: string,
 ): Promise<{ user: UserProfile; session: UserSession } | null> {
   if (!cookieHeader) return null;
 
@@ -211,13 +219,7 @@ export async function resolveSessionFromCookie(
 /**
  * Invalidate session on logout.
  */
-export async function invalidateSession(
-  sessionId: string,
-  db: D1Database
-): Promise<boolean> {
-  const res = await db
-    .prepare("DELETE FROM user_sessions WHERE id = ?")
-    .bind(sessionId)
-    .run();
+export async function invalidateSession(sessionId: string, db: D1Database): Promise<boolean> {
+  const res = await db.prepare("DELETE FROM user_sessions WHERE id = ?").bind(sessionId).run();
   return res.success;
 }

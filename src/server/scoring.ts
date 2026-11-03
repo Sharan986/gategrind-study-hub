@@ -13,7 +13,7 @@ export interface QuestionEvaluationInput {
   questionType: "MCQ" | "MSQ" | "NAT" | "DESCRIPTIVE" | string;
   marks: number;
   correctAnswer: string; // e.g. "B", "A;C", "195:195", "X", "N/A"
-  isMta?: boolean | number;
+  isMta?: boolean | number | null;
   selectedAnswer: string; // Candidate submission, e.g. "B", "A;C", "195.0", ""
 }
 
@@ -26,9 +26,7 @@ export interface QuestionEvaluationResult {
   feedback: string;
 }
 
-export function evaluateQuestionAttempt(
-  input: QuestionEvaluationInput
-): QuestionEvaluationResult {
+export function evaluateQuestionAttempt(input: QuestionEvaluationInput): QuestionEvaluationResult {
   const { questionType, marks, correctAnswer, isMta, selectedAnswer } = input;
   const maxMarks = Number(marks) || 1.0;
   const isCancelled = Boolean(isMta) || correctAnswer === "X";
@@ -90,14 +88,14 @@ export function evaluateQuestionAttempt(
       correctAnswer
         .split(";")
         .map((s) => s.trim().toUpperCase())
-        .filter(Boolean)
+        .filter(Boolean),
     );
 
     const selectedSet = new Set(
       trimmedSelection
         .split(";")
         .map((s) => s.trim().toUpperCase())
-        .filter(Boolean)
+        .filter(Boolean),
     );
 
     // Official GATE Rule: FULL MARKS ONLY IF ALL CORRECT AND NO WRONG. ZERO NEGATIVE.

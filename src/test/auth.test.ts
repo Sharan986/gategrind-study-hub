@@ -1,5 +1,11 @@
 import { describe, it, expect } from "vitest";
-import { hmacSign, hmacVerify, authenticateGoogleUser, resolveSessionFromCookie, invalidateSession } from "../server/auth";
+import {
+  hmacSign,
+  hmacVerify,
+  authenticateGoogleUser,
+  resolveSessionFromCookie,
+  invalidateSession,
+} from "../server/auth";
 import { getDatabase } from "../server/db";
 
 describe("Authentication & Session Security", () => {
@@ -32,7 +38,7 @@ describe("Authentication & Session Security", () => {
       googlePayload,
       db,
       secret,
-      { userAgent: "Vitest/TestRunner" }
+      { userAgent: "Vitest/TestRunner" },
     );
 
     expect(user).toBeDefined();
@@ -42,11 +48,7 @@ describe("Authentication & Session Security", () => {
     expect(cookieValue.startsWith(sessionId)).toBe(true);
 
     // Resolve session back from cookie
-    const resolved = await resolveSessionFromCookie(
-      `gategrind_session=${cookieValue}`,
-      db,
-      secret
-    );
+    const resolved = await resolveSessionFromCookie(`gategrind_session=${cookieValue}`, db, secret);
     expect(resolved).not.toBeNull();
     expect(resolved?.user.id).toBe(user.id);
     expect(resolved?.session.id).toBe(sessionId);
@@ -56,7 +58,7 @@ describe("Authentication & Session Security", () => {
     const resolvedAfterLogout = await resolveSessionFromCookie(
       `gategrind_session=${cookieValue}`,
       db,
-      secret
+      secret,
     );
     expect(resolvedAfterLogout).toBeNull();
   });

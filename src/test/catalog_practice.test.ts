@@ -1,12 +1,12 @@
 import { describe, it, expect, beforeAll } from "vitest";
-import { getDatabase } from "../server/db";
+import { getDatabase, type D1Database } from "../server/db";
 import { getSubjects, getQuestions, getQuestionById, getPastPaperYears } from "../server/catalog";
 import { recordAttempt, toggleBookmark, getUserAnalytics } from "../server/practice";
-import { authenticateGoogleUser } from "../server/auth";
+import { authenticateGoogleUser, type UserProfile } from "../server/auth";
 
 describe("Catalog, Practice & Analytics Services", () => {
-  let db: any;
-  let testUser: any;
+  let db: D1Database;
+  let testUser: UserProfile;
 
   beforeAll(async () => {
     db = getDatabase();
@@ -18,7 +18,7 @@ describe("Catalog, Practice & Analytics Services", () => {
         name: "GATE Candidate",
       },
       db,
-      "test-secret-key-12345678901234567890"
+      "test-secret-key-12345678901234567890",
     );
     testUser = user;
   });
@@ -48,17 +48,19 @@ describe("Catalog, Practice & Analytics Services", () => {
   it("retrieves individual question with parsed options and tags", async () => {
     const qList = await getQuestions(db, { pageSize: 1 });
     const firstQ = qList.questions[0];
+    expect(firstQ).toBeDefined();
 
     const q = await getQuestionById(firstQ!.id, db, testUser.id);
     expect(q).not.toBeNull();
-    expect(q.id).toBe(firstQ!.id);
-    expect(typeof q.options).toBe("object");
-    expect(Array.isArray(q.tags)).toBe(true);
+    expect(q!.id).toBe(firstQ!.id);
+    expect(typeof q!.options).toBe("object");
+    expect(Array.isArray(q!.tags)).toBe(true);
   });
 
   it("records attempts, calculates scores, updates streak, and reflects in analytics", async () => {
     const qList = await getQuestions(db, { pageSize: 2 });
     const q1 = qList.questions[0];
+    expect(q1).toBeDefined();
 
     const result = await recordAttempt(
       {
@@ -68,7 +70,7 @@ describe("Catalog, Practice & Analytics Services", () => {
         timeTakenSeconds: 45,
         mode: "study",
       },
-      db
+      db,
     );
 
     expect(result.attemptId).toBeDefined();

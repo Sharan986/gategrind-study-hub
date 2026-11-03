@@ -8,10 +8,27 @@
 import type { D1Database } from "./db";
 import { evaluateQuestionAttempt } from "./scoring";
 
+/** Raw D1 row shape for mock exam question queries (includes joined subject/topic names). */
+interface MockQuestionRow {
+  id: string;
+  external_code: string;
+  question_type: string;
+  marks: number;
+  difficulty: string;
+  question_html: string;
+  correct_answer: string;
+  options: string | Record<string, string>;
+  has_image: number;
+  is_mta: number | null;
+  subject_name: string;
+  topic_name: string;
+  subject_slug: string;
+}
+
 export interface MockConfig {
   type: "full" | "subject" | "topic";
-  subjectSlug?: string;
-  topicSlug?: string;
+  subjectSlug?: string | undefined;
+  topicSlug?: string | undefined;
   userId: string;
 }
 
@@ -40,7 +57,7 @@ export interface GeneratedMockExam {
 
 export async function generateMockExam(
   config: MockConfig,
-  db: D1Database
+  db: D1Database,
 ): Promise<GeneratedMockExam> {
   const mockId = `mock_${crypto.randomUUID().replace(/-/g, "")}`;
 
@@ -54,9 +71,9 @@ export async function generateMockExam(
          JOIN subjects s ON q.subject_id = s.id
          JOIN topics t ON q.topic_id = t.id
          WHERE s.slug LIKE '%aptitude%' AND q.marks = 1.0
-         ORDER BY RANDOM() LIMIT 5`
+         ORDER BY RANDOM() LIMIT 5`,
       )
-      .all<any>();
+      .all<MockQuestionRow>();
 
     const ga2Mark = await db
       .prepare(
@@ -65,9 +82,9 @@ export async function generateMockExam(
          JOIN subjects s ON q.subject_id = s.id
          JOIN topics t ON q.topic_id = t.id
          WHERE s.slug LIKE '%aptitude%' AND q.marks = 2.0
-         ORDER BY RANDOM() LIMIT 5`
+         ORDER BY RANDOM() LIMIT 5`,
       )
-      .all<any>();
+      .all<MockQuestionRow>();
 
     // 2. Core CS & Math: 55 questions (25 1-mark, 30 2-mark)
     const cs1Mark = await db
@@ -77,9 +94,9 @@ export async function generateMockExam(
          JOIN subjects s ON q.subject_id = s.id
          JOIN topics t ON q.topic_id = t.id
          WHERE s.slug NOT LIKE '%aptitude%' AND q.marks = 1.0
-         ORDER BY RANDOM() LIMIT 25`
+         ORDER BY RANDOM() LIMIT 25`,
       )
-      .all<any>();
+      .all<MockQuestionRow>();
 
     const cs2Mark = await db
       .prepare(
@@ -88,9 +105,9 @@ export async function generateMockExam(
          JOIN subjects s ON q.subject_id = s.id
          JOIN topics t ON q.topic_id = t.id
          WHERE s.slug NOT LIKE '%aptitude%' AND q.marks = 2.0
-         ORDER BY RANDOM() LIMIT 30`
+         ORDER BY RANDOM() LIMIT 30`,
       )
-      .all<any>();
+      .all<MockQuestionRow>();
 
     const gaQuestions = [...ga1Mark.results, ...ga2Mark.results].map((q, idx) => ({
       section: "GA" as const,
@@ -128,14 +145,14 @@ export async function generateMockExam(
     await db
       .prepare(
         `INSERT INTO mocks (id, user_id, title, config, status, total_marks, created_at)
-         VALUES (?, ?, ?, ?, 'created', ?, datetime('now'))`
+         VALUES (?, ?, ?, ?, 'created', ?, datetime('now'))`,
       )
       .bind(
         mockId,
         config.userId,
         "GATE Full Length Mock Test",
         JSON.stringify({ duration_minutes: 180, total_questions: 65 }),
-        100
+        100,
       )
       .run();
 
@@ -161,10 +178,10 @@ export async function generateMockExam(
        JOIN subjects s ON q.subject_id = s.id
        JOIN topics t ON q.topic_id = t.id
        ${where}
-       ORDER BY RANDOM() LIMIT 20`
+       ORDER BY RANDOM() LIMIT 20`,
     )
     .bind(...params)
-    .all<any>();
+    .all<MockQuestionRow>();
 
   const questions = rawQuestions.results.map((q, idx) => ({
     section: "CS" as const,
@@ -186,14 +203,14 @@ export async function generateMockExam(
   await db
     .prepare(
       `INSERT INTO mocks (id, user_id, title, config, status, total_marks, created_at)
-       VALUES (?, ?, ?, ?, 'created', ?, datetime('now'))`
+       VALUES (?, ?, ?, ?, 'created', ?, datetime('now'))`,
     )
     .bind(
       mockId,
       config.userId,
       `Subject Test: ${config.subjectSlug || "Mixed"}`,
       JSON.stringify({ duration_minutes: 45, total_questions: questions.length }),
-      totalMarks
+      totalMarks,
     )
     .run();
 
@@ -239,7 +256,7 @@ export interface MockEvaluationResult {
 
 export async function evaluateMockSubmission(
   input: MockSubmissionInput,
-  db: D1Database
+  db: D1Database,
 ): Promise<MockEvaluationResult> {
   const { mockId, userId, timeTakenSeconds, answers } = input;
   const questionIds = Object.keys(answers);
@@ -255,10 +272,10 @@ export async function evaluateMockSubmission(
       `SELECT q.*, s.slug as subject_slug
        FROM questions q
        JOIN subjects s ON q.subject_id = s.id
-       WHERE q.id IN (${placeholders})`
+       WHERE q.id IN (${placeholders})`,
     )
     .bind(...questionIds)
-    .all<any>();
+    .all<MockQuestionRow>();
 
   let totalScore = 0;
   let maxScore = 0;
@@ -280,7 +297,7 @@ export async function evaluateMockSubmission(
       questionType: q.question_type,
       marks: q.marks,
       correctAnswer: q.correct_answer,
-      isMta: q.is_mta,
+      isMta: Boolean(q.is_mta),
       selectedAnswer: selected,
     });
 
@@ -306,7 +323,7 @@ export async function evaluateMockSubmission(
     await db
       .prepare(
         `INSERT INTO attempts (id, user_id, question_id, selected_answer, is_correct, time_taken_seconds, mode, mock_id, attempted_at)
-         VALUES (?, ?, ?, ?, ?, ?, 'mock', ?, datetime('now'))`
+         VALUES (?, ?, ?, ?, ?, ?, 'mock', ?, datetime('now'))`,
       )
       .bind(
         `att_${crypto.randomUUID().replace(/-/g, "")}`,
@@ -315,7 +332,7 @@ export async function evaluateMockSubmission(
         selected,
         evalRes.isCorrect ? 1 : 0,
         Math.round(timeTakenSeconds / questionsRes.results.length),
-        mockId
+        mockId,
       )
       .run();
 
@@ -338,7 +355,7 @@ export async function evaluateMockSubmission(
     .prepare(
       `UPDATE mocks
        SET score = ?, status = 'completed', completed_at = datetime('now')
-       WHERE id = ?`
+       WHERE id = ?`,
     )
     .bind(finalScore, mockId)
     .run();

@@ -1,11 +1,13 @@
 import { describe, it, expect, beforeAll } from "vitest";
 import { getDatabase } from "../server/db";
+import type { D1Database } from "../server/db";
 import { generateMockExam, evaluateMockSubmission } from "../server/mock";
 import { authenticateGoogleUser } from "../server/auth";
+import type { UserProfile } from "../server/auth";
 
 describe("GATE Mock Exam Generator & Evaluation Engine", () => {
-  let db: any;
-  let testUser: any;
+  let db: D1Database;
+  let testUser: UserProfile;
 
   beforeAll(async () => {
     db = getDatabase();
@@ -17,7 +19,7 @@ describe("GATE Mock Exam Generator & Evaluation Engine", () => {
         name: "Mock Taker",
       },
       db,
-      "test-secret-key-12345678901234567890"
+      "test-secret-key-12345678901234567890",
     );
     testUser = user;
   });
@@ -28,7 +30,7 @@ describe("GATE Mock Exam Generator & Evaluation Engine", () => {
         type: "full",
         userId: testUser.id,
       },
-      db
+      db,
     );
 
     expect(mock.id).toBeDefined();
@@ -65,7 +67,7 @@ describe("GATE Mock Exam Generator & Evaluation Engine", () => {
         subjectSlug: "algorithms",
         userId: testUser.id,
       },
-      db
+      db,
     );
 
     const answers: Record<string, string> = {};
@@ -80,7 +82,7 @@ describe("GATE Mock Exam Generator & Evaluation Engine", () => {
         timeTakenSeconds: 600,
         answers,
       },
-      db
+      db,
     );
 
     expect(evalResult.mockId).toBe(mock.id);

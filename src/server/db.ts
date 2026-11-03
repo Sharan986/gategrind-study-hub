@@ -1,15 +1,15 @@
 /**
- * GATE Grind - Unified Cloudflare D1, Bun & Node SQLite Client
- * ============================================================
+ * GATE Grind - Unified Cloudflare D1 & Local SQLite Client
+ * ========================================================
  * Production: Binds directly to `env.DB` (Cloudflare D1).
- * Local / Tests:
- *   - Uses `bun:sqlite` when running under Bun.
- *   - Uses native `node:sqlite` (DatabaseSync) when running under Node / Vitest.
+ * Local / Tests: Uses native `node:sqlite` (DatabaseSync), supported in both
+ * Node 22+ and Bun 1.1+.
  * Zero external native C dependencies required.
  */
 
 import path from "node:path";
 import fs from "node:fs";
+import { DatabaseSync } from "node:sqlite";
 
 export interface D1PreparedStatement {
   bind(...values: unknown[]): D1PreparedStatement;
@@ -20,16 +20,18 @@ export interface D1PreparedStatement {
 
 export interface D1Database {
   prepare(query: string): D1PreparedStatement;
-  batch<T = unknown>(statements: D1PreparedStatement[]): Promise<{ results: T[]; success: boolean }[]>;
+  batch<T = unknown>(
+    statements: D1PreparedStatement[],
+  ): Promise<{ results: T[]; success: boolean }[]>;
   exec(query: string): Promise<{ count: number; duration: number }>;
 }
 
 let localDbInstance: D1Database | null = null;
 
 function createD1AdapterFromEngine(engine: {
-  get: (query: string, params: unknown[]) => Record<string, any> | null;
-  all: (query: string, params: unknown[]) => any[];
-  run: (query: string, params: unknown[]) => any;
+  get: (query: string, params: unknown[]) => Record<string, unknown> | null;
+  all: (query: string, params: unknown[]) => unknown[];
+  run: (query: string, params: unknown[]) => unknown;
   exec: (sql: string) => void;
 }): D1Database {
   return {
@@ -72,7 +74,9 @@ function createD1AdapterFromEngine(engine: {
       };
       return stmt;
     },
-    async batch<T = unknown>(statements: D1PreparedStatement[]): Promise<{ results: T[]; success: boolean }[]> {
+    async batch<T = unknown>(
+      statements: D1PreparedStatement[],
+    ): Promise<{ results: T[]; success: boolean }[]> {
       const results: { results: T[]; success: boolean }[] = [];
       engine.exec("BEGIN TRANSACTION;");
       try {
@@ -94,9 +98,9 @@ function createD1AdapterFromEngine(engine: {
   };
 }
 
-export function getDatabase(env?: any): D1Database {
+export function getDatabase(env?: { DB?: D1Database }): D1Database {
   if (env?.DB) {
-    return env.DB as D1Database;
+    return env.DB;
   }
 
   if (localDbInstance) {
@@ -105,44 +109,29 @@ export function getDatabase(env?: any): D1Database {
 
   const rootDir = process.cwd();
   const localDbPath = path.resolve(rootDir, "gategrind-local.db");
-  const isBun = typeof (process.versions as any)?.bun === "string";
 
-  if (isBun) {
-    const { Database } = require("bun:sqlite");
-    const db = fs.existsSync(localDbPath) ? new Database(localDbPath) : new Database(":memory:");
-    db.run("PRAGMA journal_mode = WAL;");
-    db.run("PRAGMA busy_timeout = 10000;");
-    db.run("PRAGMA foreign_keys = ON;");
-    if (!fs.existsSync(localDbPath)) {
-      const schemaPath = path.resolve(rootDir, "migrations", "0001_initial_schema.sql");
-      if (fs.existsSync(schemaPath)) db.run(fs.readFileSync(schemaPath, "utf-8"));
-    }
+  const db = fs.existsSync(localDbPath)
+    ? new DatabaseSync(localDbPath)
+    : new DatabaseSync(":memory:");
+  db.exec("PRAGMA journal_mode = WAL;");
+  db.exec("PRAGMA busy_timeout = 10000;");
+  db.exec("PRAGMA foreign_keys = ON;");
 
-    localDbInstance = createD1AdapterFromEngine({
-      get: (q, params) => db.query(q).get(...(params as any[])) as Record<string, any> | null,
-      all: (q, params) => db.query(q).all(...(params as any[])),
-      run: (q, params) => db.query(q).run(...(params as any[])),
-      exec: (sql) => db.run(sql),
-    });
-  } else {
-    // Node.js native sqlite (Node 22+)
-    const { DatabaseSync } = require("node:sqlite");
-    const db = fs.existsSync(localDbPath) ? new DatabaseSync(localDbPath) : new DatabaseSync(":memory:");
-    db.exec("PRAGMA journal_mode = WAL;");
-    db.exec("PRAGMA busy_timeout = 10000;");
-    db.exec("PRAGMA foreign_keys = ON;");
-    if (!fs.existsSync(localDbPath)) {
-      const schemaPath = path.resolve(rootDir, "migrations", "0001_initial_schema.sql");
-      if (fs.existsSync(schemaPath)) db.exec(fs.readFileSync(schemaPath, "utf-8"));
-    }
-
-    localDbInstance = createD1AdapterFromEngine({
-      get: (q, params) => db.prepare(q).get(...params) as Record<string, any> | null,
-      all: (q, params) => db.prepare(q).all(...params),
-      run: (q, params) => db.prepare(q).run(...params),
-      exec: (sql) => db.exec(sql),
-    });
+  if (!fs.existsSync(localDbPath)) {
+    const schemaPath = path.resolve(rootDir, "migrations", "0001_initial_schema.sql");
+    if (fs.existsSync(schemaPath)) db.exec(fs.readFileSync(schemaPath, "utf-8"));
   }
+
+  localDbInstance = createD1AdapterFromEngine({
+    get: (q, params) =>
+      db.prepare(q).get(...(params as (string | number | bigint | null)[])) as Record<
+        string,
+        unknown
+      > | null,
+    all: (q, params) => db.prepare(q).all(...(params as (string | number | bigint | null)[])),
+    run: (q, params) => db.prepare(q).run(...(params as (string | number | bigint | null)[])),
+    exec: (sql) => db.exec(sql),
+  });
 
   return localDbInstance;
 }

@@ -9,15 +9,14 @@
  */
 
 import { createServerFn } from "@tanstack/react-start";
-import { getCookie, setCookie, deleteCookie, getRequestHeaders } from "@tanstack/react-start/server";
+import {
+  getCookie,
+  setCookie,
+  deleteCookie,
+  getRequestHeaders,
+} from "@tanstack/react-start/server";
 import { getAppDatabase } from "./d1-http.server";
 import type { D1Database } from "./db";
-
-function getDatabase(): D1Database {
-  const db = getAppDatabase();
-  if (!db) throw new Error("Database is not configured yet.");
-  return db;
-}
 import {
   authenticateGoogleUser,
   resolveSessionFromCookie,
@@ -33,7 +32,18 @@ import {
   type QuestionFilterOptions,
 } from "./catalog";
 import { recordAttempt, toggleBookmark, getUserAnalytics } from "./practice";
-import { generateMockExam, evaluateMockSubmission, type MockConfig, type MockSubmissionInput } from "./mock";
+import {
+  generateMockExam,
+  evaluateMockSubmission,
+  type MockConfig,
+  type MockSubmissionInput,
+} from "./mock";
+
+function getDatabase(): D1Database {
+  const db = getAppDatabase();
+  if (!db) throw new Error("Database is not configured yet.");
+  return db;
+}
 
 const SESSION_COOKIE_NAME = "gategrind_session";
 const sessionSecret = () => process.env["SESSION_SECRET"] ?? "";
@@ -47,7 +57,7 @@ async function resolveCurrentUser() {
   const sessionData = await resolveSessionFromCookie(
     `gategrind_session=${cookieHeader}`,
     db,
-    sessionSecret()
+    sessionSecret(),
   );
   return sessionData?.user ?? null;
 }
@@ -56,9 +66,11 @@ async function resolveCurrentUser() {
 // 1. AUTHENTICATION SERVER FUNCTIONS
 // ─────────────────────────────────────────────
 
-export const getCurrentUser = createServerFn({ method: "GET" }).handler(async (): Promise<UserProfile | null> => {
-  return await resolveCurrentUser();
-});
+export const getCurrentUser = createServerFn({ method: "GET" }).handler(
+  async (): Promise<UserProfile | null> => {
+    return await resolveCurrentUser();
+  },
+);
 
 export const verifyGoogleAuth = createServerFn({ method: "POST" })
   .inputValidator((d: unknown) => d as { idToken: string })
@@ -71,7 +83,7 @@ export const verifyGoogleAuth = createServerFn({ method: "POST" })
       payload,
       db,
       sessionSecret(),
-      userAgent ? { userAgent } : {}
+      userAgent ? { userAgent } : {},
     );
 
     // Set signed HttpOnly session cookie (30 days)
@@ -153,7 +165,7 @@ export const submitQuestionAttempt = createServerFn({ method: "POST" })
         selectedAnswer: string;
         timeTakenSeconds: number;
         mode?: "study" | "mock" | "paper";
-      }
+      },
   )
   .handler(async ({ data }) => {
     const user = await resolveCurrentUser();
@@ -170,7 +182,7 @@ export const submitQuestionAttempt = createServerFn({ method: "POST" })
         timeTakenSeconds: data.timeTakenSeconds,
         mode: data.mode || "study",
       },
-      db
+      db,
     );
   });
 
@@ -201,7 +213,10 @@ export const fetchUserAnalytics = createServerFn({ method: "GET" }).handler(asyn
 // ─────────────────────────────────────────────
 
 export const startMockExam = createServerFn({ method: "POST" })
-  .inputValidator((d: unknown) => d as { type: "full" | "subject" | "topic"; subjectSlug?: string; topicSlug?: string })
+  .inputValidator(
+    (d: unknown) =>
+      d as { type: "full" | "subject" | "topic"; subjectSlug?: string; topicSlug?: string },
+  )
   .handler(async ({ data }) => {
     const user = await resolveCurrentUser();
     if (!user) {
@@ -216,12 +231,15 @@ export const startMockExam = createServerFn({ method: "POST" })
         ...(data.topicSlug ? { topicSlug: data.topicSlug } : {}),
         userId: user.id,
       },
-      db
+      db,
     );
   });
 
 export const submitMockExam = createServerFn({ method: "POST" })
-  .inputValidator((d: unknown) => d as { mockId: string; timeTakenSeconds: number; answers: Record<string, string> })
+  .inputValidator(
+    (d: unknown) =>
+      d as { mockId: string; timeTakenSeconds: number; answers: Record<string, string> },
+  )
   .handler(async ({ data }) => {
     const user = await resolveCurrentUser();
     if (!user) {
@@ -236,6 +254,6 @@ export const submitMockExam = createServerFn({ method: "POST" })
         timeTakenSeconds: data.timeTakenSeconds,
         answers: data.answers,
       },
-      db
+      db,
     );
   });

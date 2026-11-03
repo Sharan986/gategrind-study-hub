@@ -29,13 +29,19 @@ async function query<T>(cfg: D1Config, sql: string, params: unknown[]): Promise<
       body: JSON.stringify({ sql, params: params.map((p) => (p === undefined ? null : p)) }),
     },
   );
-  const body = (await res.json().catch(() => null)) as
-    | { success: boolean; errors?: { message: string }[]; result?: { results: T[]; success: boolean }[] }
-    | null;
+  const body = (await res.json().catch(() => null)) as {
+    success: boolean;
+    errors?: { message: string }[];
+    result?: { results: T[]; success: boolean }[];
+  } | null;
   if (!res.ok || !body?.success) {
     const msg = body?.errors?.map((e) => e.message).join("; ") || res.statusText;
     console.error(`D1 query failed [${res.status}]: ${msg}`);
-    throw new Error(res.status === 403 ? "D1 access denied — check the API token has D1 Edit permission." : `Database error: ${msg}`);
+    throw new Error(
+      res.status === 403
+        ? "D1 access denied — check the API token has D1 Edit permission."
+        : `Database error: ${msg}`,
+    );
   }
   return body.result?.[0]?.results ?? [];
 }

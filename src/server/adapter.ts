@@ -7,6 +7,45 @@
 
 import type { Question, QuestionType, Difficulty, Option, Subject, Topic } from "@/lib/types";
 
+/** Raw D1 row shape returned from the `questions` table (with joined fields). */
+export interface D1QuestionRow {
+  id?: string;
+  external_code?: string;
+  question_type?: string;
+  marks?: number;
+  difficulty?: string | null;
+  question_html?: string;
+  correct_answer?: string;
+  options?: string | Record<string, string> | null;
+  tags?: string | string[] | null;
+  explanation_html?: string | null;
+  gate_year?: number | null;
+  gate_set?: string | number | null;
+  gate_question_number?: string | number | null;
+  subject_slug?: string | null;
+  subject_id?: string;
+  topic_slug?: string | null;
+  topic_id?: string;
+}
+
+/** Raw D1 row shape returned from the `subjects` table. */
+export interface D1SubjectRow {
+  slug?: string;
+  id?: string;
+  code?: string | null;
+  name: string;
+  description?: string | null;
+  weightage_marks?: number | null;
+}
+
+/** Raw D1 row shape returned from the `topics` table. */
+export interface D1TopicRow {
+  slug?: string;
+  id?: string;
+  name: string;
+  total_questions?: number;
+}
+
 export function toFrontendDifficulty(diff?: string | null): Difficulty {
   const d = (diff || "normal").toLowerCase();
   if (d === "easy") return "Easy";
@@ -14,7 +53,7 @@ export function toFrontendDifficulty(diff?: string | null): Difficulty {
   return "Medium";
 }
 
-export function toFrontendQuestion(d1Row: any): Question {
+export function toFrontendQuestion(d1Row: D1QuestionRow): Question {
   const rawType = (d1Row.question_type || "MCQ").toUpperCase();
   const qType: QuestionType = rawType === "MSQ" ? "MSQ" : rawType === "NAT" ? "NAT" : "MCQ";
 
@@ -43,7 +82,9 @@ export function toFrontendQuestion(d1Row: any): Question {
   } else if (qType === "NAT") {
     if (rawAns.includes(":")) {
       const parts = rawAns.split(":");
-      answer = { min: parseFloat(parts[0].trim()) || 0, max: parseFloat(parts[1].trim()) || 0 };
+      const p0 = parts[0]?.trim() ?? "0";
+      const p1 = parts[1]?.trim() ?? p0;
+      answer = { min: parseFloat(p0) || 0, max: parseFloat(p1) || 0 };
     } else {
       const v = parseFloat(rawAns.trim()) || 0;
       answer = { min: v, max: v };
@@ -51,37 +92,49 @@ export function toFrontendQuestion(d1Row: any): Question {
   }
 
   const qNumber = parseInt(String(d1Row.gate_question_number || "").replace(/\D/g, ""), 10) || 1;
-  const setNumber = d1Row.gate_set ? parseInt(String(d1Row.gate_set).replace(/\D/g, ""), 10) || undefined : undefined;
+  const rawSet = d1Row.gate_set
+    ? parseInt(String(d1Row.gate_set).replace(/\D/g, ""), 10)
+    : undefined;
   const marks = Number(d1Row.marks) === 2.0 ? 2 : 1;
 
-  return {
+  const q: Question = {
     id: d1Row.id || d1Row.external_code,
     subjectId: d1Row.subject_slug || d1Row.subject_id,
     topicId: d1Row.topic_slug || d1Row.topic_id,
     year: d1Row.gate_year || 2024,
-    set: setNumber,
     number: qNumber,
     type: qType,
     marks,
     difficulty: toFrontendDifficulty(d1Row.difficulty),
     body: d1Row.question_html || "",
-    options: optionsList.length > 0 ? optionsList : undefined,
     answer,
-    solution: d1Row.explanation_html || "Official answer key verified from GATE official examination paper.",
+    solution:
+      d1Row.explanation_html ||
+      "Official answer key verified from GATE official examination paper.",
     tags: typeof d1Row.tags === "string" ? d1Row.tags.split(",").filter(Boolean) : d1Row.tags || [],
-  } as Question;;
+  } as Question;
+
+  if (rawSet !== undefined && !isNaN(rawSet)) {
+    q.set = rawSet;
+  }
+  if (optionsList.length > 0) {
+    q.options = optionsList;
+  }
+
+  return q;
 }
 
-export function toFrontendSubject(d1Sub: any, topics: any[] = []): Subject {
+export function toFrontendSubject(d1Sub: D1SubjectRow, topics: D1TopicRow[] = []): Subject {
   return {
-    id: d1Sub.slug || d1Sub.id,
+    id: d1Sub.slug || d1Sub.id || "",
     code: d1Sub.code || (d1Sub.name ? d1Sub.name.slice(0, 4).toUpperCase() : "CS"),
     name: d1Sub.name,
     short: d1Sub.name.split(" ")[0] || d1Sub.name,
-    description: d1Sub.description || `Comprehensive GATE previous year questions for ${d1Sub.name}.`,
+    description:
+      d1Sub.description || `Comprehensive GATE previous year questions for ${d1Sub.name}.`,
     weightage: `${d1Sub.weightage_marks || 10}%`,
     topics: topics.map((t) => ({
-      id: t.slug || t.id,
+      id: t.slug || t.id || "",
       name: t.name,
       questionCount: Number(t.total_questions) || 0,
     })),

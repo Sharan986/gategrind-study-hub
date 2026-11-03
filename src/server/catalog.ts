@@ -7,18 +7,94 @@
 
 import type { D1Database } from "./db";
 
+/** Raw D1 row shape returned from joins in catalog queries — extends QuestionListItem with raw field types before post-processing. */
+interface RawQuestionRow {
+  id: string;
+  external_code: string;
+  subject_id: string;
+  subject_name: string;
+  subject_slug: string;
+  topic_id: string;
+  topic_name: string;
+  topic_slug: string;
+  gate_year: number | null;
+  gate_set: string | null;
+  gate_question_number: string | null;
+  question_type: string;
+  marks: number;
+  difficulty: string;
+  question_html: string;
+  options: string | Record<string, string>;
+  has_image: number;
+  tags: string;
+  // Optional user-context fields (present when userId is provided)
+  user_attempted?: number | boolean | null;
+  user_is_correct?: number | null;
+  is_bookmarked?: number | boolean | null;
+}
+
+/** Raw D1 row for a single question detail (includes all q.* columns + joins). */
+interface RawQuestionDetailRow {
+  id: string;
+  external_code: string;
+  subject_id: string;
+  subject_name: string;
+  subject_slug: string;
+  topic_id: string;
+  topic_name: string;
+  topic_slug: string;
+  gate_year: number | null;
+  gate_set: string | null;
+  gate_question_number: string | null;
+  question_type: string;
+  marks: number;
+  difficulty: string;
+  question_html: string;
+  correct_answer: string;
+  explanation_html: string | null;
+  options: string | Record<string, string>;
+  has_image: number;
+  tags: string;
+  is_mta: number | null;
+}
+
+export type QuestionDetailItem = Omit<RawQuestionDetailRow, "tags" | "options"> & {
+  options: Record<string, string>;
+  tags: string[];
+  userAttempt: RawAttemptRow | null;
+  isBookmarked: boolean;
+};
+
+/** Raw D1 row for attempt lookup. */
+interface RawAttemptRow {
+  id: string;
+  user_id: string;
+  question_id: string;
+  selected_answer: string;
+  is_correct: number;
+  time_taken_seconds: number;
+  attempted_at: string;
+}
+
+/** Raw D1 row for PYQ year aggregation. */
+interface RawYearRow {
+  year: number;
+  total_questions: number;
+  sets_str: string | null;
+}
+
 export interface SubjectItem {
   id: string;
   name: string;
   slug: string;
-  code?: string;
-  description?: string;
-  icon?: string;
+  code?: string | undefined;
+  description?: string | undefined;
+  icon?: string | undefined;
   weightage_marks: number;
   total_questions: number;
-  attempted_count?: number;
-  correct_count?: number;
-  progress_percentage?: number;
+  attempted_count?: number | undefined;
+  correct_count?: number | undefined;
+  progress_percentage?: number | undefined;
 }
 
 export interface TopicItem {
@@ -27,22 +103,22 @@ export interface TopicItem {
   name: string;
   slug: string;
   total_questions: number;
-  attempted_count?: number;
-  correct_count?: number;
+  attempted_count?: number | undefined;
+  correct_count?: number | undefined;
 }
 
 export interface QuestionFilterOptions {
-  subjectSlug?: string;
-  topicSlug?: string;
-  year?: number;
-  difficulty?: "easy" | "normal" | "hard" | string;
-  questionType?: "MCQ" | "MSQ" | "NAT" | "DESCRIPTIVE" | string;
-  marks?: number;
-  status?: "all" | "attempted" | "unattempted" | "correct" | "incorrect" | "bookmarked";
-  search?: string;
-  page?: number;
-  pageSize?: number;
-  userId?: string;
+  subjectSlug?: string | undefined;
+  topicSlug?: string | undefined;
+  year?: number | undefined;
+  difficulty?: "easy" | "normal" | "hard" | string | undefined;
+  questionType?: "MCQ" | "MSQ" | "NAT" | "DESCRIPTIVE" | string | undefined;
+  marks?: number | undefined;
+  status?: "all" | "attempted" | "unattempted" | "correct" | "incorrect" | "bookmarked" | undefined;
+  search?: string | undefined;
+  page?: number | undefined;
+  pageSize?: number | undefined;
+  userId?: string | undefined;
 }
 
 export interface QuestionListItem {
@@ -64,15 +140,12 @@ export interface QuestionListItem {
   options: Record<string, string>;
   has_image: number;
   tags: string[];
-  user_attempted?: boolean;
-  user_is_correct?: boolean;
-  is_bookmarked?: boolean;
+  user_attempted?: boolean | undefined;
+  user_is_correct?: boolean | undefined;
+  is_bookmarked?: boolean | undefined;
 }
 
-export async function getSubjects(
-  db: D1Database,
-  userId?: string
-): Promise<SubjectItem[]> {
+export async function getSubjects(db: D1Database, userId?: string): Promise<SubjectItem[]> {
   if (!userId) {
     const res = await db
       .prepare("SELECT * FROM subjects ORDER BY sort_order ASC, name ASC")
@@ -93,7 +166,7 @@ export async function getSubjects(
     ORDER BY s.sort_order ASC, s.name ASC
   `;
 
-  const res = await db.prepare(query).bind(userId).all<any>();
+  const res = await db.prepare(query).bind(userId).all<SubjectItem>();
   return res.results.map((r) => {
     const attempted = Number(r.attempted_count) || 0;
     const total = Number(r.total_questions) || 1;
@@ -106,10 +179,7 @@ export async function getSubjects(
   });
 }
 
-export async function getSubjectBySlug(
-  slug: string,
-  db: D1Database
-): Promise<SubjectItem | null> {
+export async function getSubjectBySlug(slug: string, db: D1Database): Promise<SubjectItem | null> {
   const res = await db
     .prepare("SELECT * FROM subjects WHERE slug = ?")
     .bind(slug)
@@ -120,7 +190,7 @@ export async function getSubjectBySlug(
 export async function getTopicsBySubjectSlug(
   subjectSlug: string,
   db: D1Database,
-  userId?: string
+  userId?: string,
 ): Promise<TopicItem[]> {
   const subject = await getSubjectBySlug(subjectSlug, db);
   if (!subject) return [];
@@ -146,7 +216,7 @@ export async function getTopicsBySubjectSlug(
     ORDER BY t.sort_order ASC, t.name ASC
   `;
 
-  const res = await db.prepare(query).bind(userId, subject.id).all<any>();
+  const res = await db.prepare(query).bind(userId, subject.id).all<TopicItem>();
   return res.results.map((r) => ({
     ...r,
     attempted_count: Number(r.attempted_count) || 0,
@@ -156,8 +226,14 @@ export async function getTopicsBySubjectSlug(
 
 export async function getQuestions(
   db: D1Database,
-  options: QuestionFilterOptions = {}
-): Promise<{ questions: QuestionListItem[]; total: number; page: number; pageSize: number; totalPages: number }> {
+  options: QuestionFilterOptions = {},
+): Promise<{
+  questions: QuestionListItem[];
+  total: number;
+  page: number;
+  pageSize: number;
+  totalPages: number;
+}> {
   const {
     subjectSlug,
     topicSlug,
@@ -246,7 +322,10 @@ export async function getQuestions(
     WHERE ${whereClause}
   `;
 
-  const countRow = await db.prepare(countQuery).bind(...params).first<{ total: number }>();
+  const countRow = await db
+    .prepare(countQuery)
+    .bind(...params)
+    .first<{ total: number }>();
   const total = Number(countRow?.total) || 0;
 
   // 2. Data query
@@ -281,7 +360,10 @@ export async function getQuestions(
   `;
 
   const queryParams = [...params, limit, offset];
-  const res = await db.prepare(dataQuery).bind(...queryParams).all<any>();
+  const res = await db
+    .prepare(dataQuery)
+    .bind(...queryParams)
+    .all<RawQuestionRow>();
 
   const questions: QuestionListItem[] = res.results.map((row) => {
     let parsedOptions: Record<string, string> = {};
@@ -315,8 +397,8 @@ export async function getQuestions(
 export async function getQuestionById(
   questionId: string,
   db: D1Database,
-  userId?: string
-): Promise<any | null> {
+  userId?: string,
+): Promise<QuestionDetailItem | null> {
   const query = `
     SELECT 
       q.*,
@@ -330,7 +412,7 @@ export async function getQuestionById(
     WHERE q.id = ? OR q.external_code = ?
   `;
 
-  const q = await db.prepare(query).bind(questionId, questionId).first<any>();
+  const q = await db.prepare(query).bind(questionId, questionId).first<RawQuestionDetailRow>();
   if (!q) return null;
 
   let optionsObj: Record<string, string> = {};
@@ -345,9 +427,11 @@ export async function getQuestionById(
 
   if (userId) {
     const attempt = await db
-      .prepare("SELECT * FROM attempts WHERE user_id = ? AND question_id = ? ORDER BY attempted_at DESC LIMIT 1")
+      .prepare(
+        "SELECT * FROM attempts WHERE user_id = ? AND question_id = ? ORDER BY attempted_at DESC LIMIT 1",
+      )
       .bind(userId, q.id)
-      .first<any>();
+      .first<RawAttemptRow>();
     userAttempt = attempt;
 
     const bm = await db
@@ -367,7 +451,7 @@ export async function getQuestionById(
 }
 
 export async function getPastPaperYears(
-  db: D1Database
+  db: D1Database,
 ): Promise<{ year: number; total_questions: number; sets: string[] }[]> {
   const query = `
     SELECT 
@@ -380,7 +464,7 @@ export async function getPastPaperYears(
     ORDER BY gate_year DESC
   `;
 
-  const res = await db.prepare(query).all<any>();
+  const res = await db.prepare(query).all<RawYearRow>();
   return res.results.map((r) => ({
     year: Number(r.year),
     total_questions: Number(r.total_questions),
