@@ -1,0 +1,799 @@
+[
+  {
+    "id": "q_vol1_1_3_2",
+    "subjectId": "discrete-mathematics",
+    "topicId": "counting",
+    "year": 1991,
+    "number": 2,
+    "type": "MCQ",
+    "marks": 1,
+    "difficulty": "Medium",
+    "body": "Match the pairs in the following questions by writing the corresponding letters only.\n\n| | Item | | Match |\n|---|---|---|---|\n| A. | The number of distinct binary tree with $n$ nodes. | P. | $\\frac{n!}{2}$ |\n| B. | The number of binary strings of the length of $2n$ with an equal number of 0's and 1's | Q. | $\\binom{3n}{n}$ |\n| C. | The number of even permutation of $n$ objects. | R. | $\\binom{2n}{n}$ |\n| D. | The number of binary strings of length $6n$ which are palindromes with $2n$ 0's. | S. | $\\frac{1}{1+n}\\binom{2n}{n}$ |",
+    "answer": [
+      "N/A"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gate1991",
+      "combinatory",
+      "normal",
+      "match-the-following",
+      "counting"
+    ]
+  },
+  {
+    "id": "q_vol1_1_3_3",
+    "subjectId": "discrete-mathematics",
+    "topicId": "counting",
+    "year": 1994,
+    "number": 115,
+    "type": "MCQ",
+    "marks": 1,
+    "difficulty": "Medium",
+    "body": "The number of substrings (of all lengths inclusive) that can be formed from a character string of length $n$ is",
+    "answer": [
+      "D"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gate1994",
+      "combinatory",
+      "counting",
+      "normal"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "text": "$n$"
+      },
+      {
+        "id": "B",
+        "text": "$n^2$"
+      },
+      {
+        "id": "C",
+        "text": "$\\frac{n(n-1)}{2}$"
+      },
+      {
+        "id": "D",
+        "text": "$\\frac{n(n+1)}{2}$"
+      }
+    ]
+  },
+  {
+    "id": "q_vol1_1_3_4",
+    "subjectId": "discrete-mathematics",
+    "topicId": "counting",
+    "year": 2021,
+    "number": 19,
+    "type": "NAT",
+    "marks": 1,
+    "difficulty": "Medium",
+    "body": "There are $6$ jobs with distinct difficulty levels, and $3$ computers with distinct processing speeds. Each job is assigned to a computer such that:\n\n• The fastest computer gets the toughest job and the slowest computer gets the easiest job.\n• Every computer gets at least one job.\n\nThe number of ways in which this can be done is ________.",
+    "answer": {
+      "min": 65,
+      "max": 65
+    },
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gatecse-2021-set1",
+      "combinatory",
+      "counting",
+      "numerical-answers",
+      "one-mark"
+    ],
+    "set": 1
+  },
+  {
+    "id": "q_vol1_1_3_5",
+    "subjectId": "discrete-mathematics",
+    "topicId": "counting",
+    "year": 2021,
+    "number": 50,
+    "type": "NAT",
+    "marks": 2,
+    "difficulty": "Medium",
+    "body": "Let $S$ be a set consisting of $10$ elements. The number of tuples of the form $(A, B)$ such that $A$ and $B$ are subsets of $S$, and $A \\subseteq B$ is ________.",
+    "answer": {
+      "min": 59049,
+      "max": 59049
+    },
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gatecse-2021-set2",
+      "combinatory",
+      "counting",
+      "numerical-answers",
+      "two-marks"
+    ],
+    "set": 2
+  },
+  {
+    "id": "q_vol1_1_3_6",
+    "subjectId": "discrete-mathematics",
+    "topicId": "counting",
+    "year": 2023,
+    "number": 38,
+    "type": "MCQ",
+    "marks": 2,
+    "difficulty": "Medium",
+    "body": "Let $U = \\{1, 2, \\dots, n\\}$, where $n$ is a large positive integer greater than $1000$. Let $k$ be a positive integer less than $n$. Let $A, B$ be subsets of $U$ with $|A| = |B| = k$ and $A \\cap B = \\emptyset$. We say that a permutation of $U$ separates $A$ from $B$ if one of the following is true.\n\n• All members of $A$ appear in the permutation before any of the members of $B$.\n• All members of $B$ appear in the permutation before any of the members of $A$.\n\nHow many permutations of $U$ separate $A$ from $B$?",
+    "answer": [
+      "D"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gatecse-2023",
+      "combinatory",
+      "counting",
+      "two-marks"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "text": "$n!$"
+      },
+      {
+        "id": "B",
+        "text": "$\\binom{n}{2k} (n - 2k)!$"
+      },
+      {
+        "id": "C",
+        "text": "$\\binom{n}{2k} (n - 2k)! (k!)^2$"
+      },
+      {
+        "id": "D",
+        "text": "$2 \\binom{n}{2k} (n - 2k)! (k!)^2$"
+      }
+    ]
+  },
+  {
+    "id": "q_vol1_1_4_1",
+    "subjectId": "discrete-mathematics",
+    "topicId": "generating-functions",
+    "year": 1987,
+    "number": 10,
+    "type": "MCQ",
+    "marks": 1,
+    "difficulty": "Medium",
+    "body": "What is the generating function $G(z)$ for the sequence of Fibonacci numbers?",
+    "answer": [
+      "N/A"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gate1987",
+      "combinatory",
+      "generating-functions",
+      "descriptive"
+    ]
+  },
+  {
+    "id": "q_vol1_1_4_2",
+    "subjectId": "discrete-mathematics",
+    "topicId": "generating-functions",
+    "year": 2005,
+    "number": 50,
+    "type": "MCQ",
+    "marks": 2,
+    "difficulty": "Medium",
+    "body": "Let $G(x) = \\frac{1}{(1-x)^2} = \\sum_{i=0}^\\infty g(i) x^i$, where $|x| < 1$. What is $g(i)$?",
+    "answer": [
+      "B"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gatecse-2005",
+      "normal",
+      "generating-functions"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "text": "$i$"
+      },
+      {
+        "id": "B",
+        "text": "$i + 1$"
+      },
+      {
+        "id": "C",
+        "text": "$2i$"
+      },
+      {
+        "id": "D",
+        "text": "$2^i$"
+      }
+    ]
+  },
+  {
+    "id": "q_vol1_1_4_3",
+    "subjectId": "discrete-mathematics",
+    "topicId": "generating-functions",
+    "year": 2016,
+    "number": 26,
+    "type": "NAT",
+    "marks": 2,
+    "difficulty": "Medium",
+    "body": "The coefficient of $x^{12}$ in $(x^3 + x^4 + x^5 + x^6 + \\dots)^3$ is ________.",
+    "answer": {
+      "min": 10,
+      "max": 10
+    },
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gatecse-2016-set1",
+      "combinatory",
+      "generating-functions",
+      "normal",
+      "numerical-answers"
+    ],
+    "set": 1
+  },
+  {
+    "id": "q_vol1_1_4_4",
+    "subjectId": "discrete-mathematics",
+    "topicId": "generating-functions",
+    "year": 2017,
+    "number": 47,
+    "type": "NAT",
+    "marks": 2,
+    "difficulty": "Medium",
+    "body": "If the ordinary generating function of a sequence $\\{a_n\\}_{n=0}^\\infty$ is $\\frac{1+z}{(1-z)^3}$, then $a_3 - a_0$ is equal to ________.",
+    "answer": {
+      "min": 15,
+      "max": 15
+    },
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gatecse-2017-set2",
+      "combinatory",
+      "generating-functions",
+      "numerical-answers",
+      "normal"
+    ],
+    "set": 2
+  },
+  {
+    "id": "q_vol1_1_4_5",
+    "subjectId": "discrete-mathematics",
+    "topicId": "generating-functions",
+    "year": 2018,
+    "number": 1,
+    "type": "MCQ",
+    "marks": 1,
+    "difficulty": "Medium",
+    "body": "Which one of the following is a closed form expression for the generating function of the sequence $\\{a_n\\}$, where $a_n = 2n + 3$ for all $n = 0, 1, 2, \\dots$?",
+    "answer": [
+      "D"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gatecse-2018",
+      "generating-functions",
+      "normal",
+      "combinatory",
+      "one-mark"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "text": "$\\frac{3}{(1-x)^2}$"
+      },
+      {
+        "id": "B",
+        "text": "$\\frac{3x}{(1-x)^2}$"
+      },
+      {
+        "id": "C",
+        "text": "$\\frac{2-x}{(1-x)^2}$"
+      },
+      {
+        "id": "D",
+        "text": "$\\frac{3-x}{(1-x)^2}$"
+      }
+    ]
+  },
+  {
+    "id": "q_vol1_1_4_6",
+    "subjectId": "discrete-mathematics",
+    "topicId": "generating-functions",
+    "year": 2022,
+    "number": 26,
+    "type": "MCQ",
+    "marks": 2,
+    "difficulty": "Medium",
+    "body": "Which one of the following is the closed form for the generating function of the sequence $\\{a_n\\}_{n \\ge 0}$ defined below?\n\n$$a_n = \\begin{cases} n + 1, & \\text{n is odd} \\\\ 1, & \\text{otherwise} \\end{cases}$$",
+    "answer": [
+      "A"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gatecse-2022",
+      "combinatory",
+      "generating-functions",
+      "two-marks"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "text": "$\\frac{x(1+x^2)}{(1-x^2)^2} + \\frac{1}{1-x}$"
+      },
+      {
+        "id": "B",
+        "text": "$\\frac{x(3-x^2)}{(1-x^2)^2} + \\frac{1}{1-x}$"
+      },
+      {
+        "id": "C",
+        "text": "$\\frac{2x}{(1-x^2)^2} + \\frac{1}{1-x}$"
+      },
+      {
+        "id": "D",
+        "text": "$\\frac{x}{(1-x^2)^2} + \\frac{1}{1-x}$"
+      }
+    ]
+  },
+  {
+    "id": "q_vol1_1_5_1",
+    "subjectId": "discrete-mathematics",
+    "topicId": "modular-arithmetic",
+    "year": 2016,
+    "number": 29,
+    "type": "NAT",
+    "marks": 2,
+    "difficulty": "Medium",
+    "body": "The value of the expression $13^{99} \\pmod{17}$ in the range $0$ to $16$, is ________.",
+    "answer": {
+      "min": 4,
+      "max": 4
+    },
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gatecse-2016-set2",
+      "modular-arithmetic",
+      "normal",
+      "numerical-answers"
+    ],
+    "set": 2
+  },
+  {
+    "id": "q_vol1_1_5_2",
+    "subjectId": "discrete-mathematics",
+    "topicId": "modular-arithmetic",
+    "year": 2019,
+    "number": 21,
+    "type": "NAT",
+    "marks": 1,
+    "difficulty": "Medium",
+    "body": "The value of $3^{51} \\bmod 5$ is ________.",
+    "answer": {
+      "min": 2,
+      "max": 2
+    },
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gatecse-2019",
+      "numerical-answers",
+      "combinatory",
+      "modular-arithmetic",
+      "one-mark"
+    ]
+  },
+  {
+    "id": "q_vol1_1_6_1",
+    "subjectId": "discrete-mathematics",
+    "topicId": "pigeonhole-principle",
+    "year": 2000,
+    "number": 11,
+    "type": "MCQ",
+    "marks": 1,
+    "difficulty": "Easy",
+    "body": "The minimum number of cards to be dealt from an arbitrarily shuffled deck of $52$ cards to guarantee that three cards are from same suit is",
+    "answer": [
+      "C"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gatecse-2000",
+      "easy",
+      "pigeonhole-principle",
+      "combinatory"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "text": "$3$"
+      },
+      {
+        "id": "B",
+        "text": "$8$"
+      },
+      {
+        "id": "C",
+        "text": "$9$"
+      },
+      {
+        "id": "D",
+        "text": "$12$"
+      }
+    ]
+  },
+  {
+    "id": "q_vol1_1_6_2",
+    "subjectId": "discrete-mathematics",
+    "topicId": "pigeonhole-principle",
+    "year": 2005,
+    "number": 44,
+    "type": "MCQ",
+    "marks": 2,
+    "difficulty": "Medium",
+    "body": "What is the minimum number of ordered pairs of non-negative numbers that should be chosen to ensure that there are two pairs $(a, b)$ and $(c, d)$ in the chosen set such that, $a \\equiv c \\pmod 3$ and $b \\equiv d \\pmod 5$?",
+    "answer": [
+      "C"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gatecse-2005",
+      "set-theory&algebra",
+      "normal",
+      "pigeonhole-principle"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "text": "$4$"
+      },
+      {
+        "id": "B",
+        "text": "$6$"
+      },
+      {
+        "id": "C",
+        "text": "$16$"
+      },
+      {
+        "id": "D",
+        "text": "$24$"
+      }
+    ]
+  },
+  {
+    "id": "q_vol1_1_7_1",
+    "subjectId": "discrete-mathematics",
+    "topicId": "recurrence-relation",
+    "year": 1996,
+    "number": 9,
+    "type": "MCQ",
+    "marks": 1,
+    "difficulty": "Medium",
+    "body": "The Fibonacci sequence $\\{f_1, f_2, f_3 \\dots f_n\\}$ is defined by the following recurrence:\n\n$$f_{n+2} = f_{n+1} + f_n, n \\ge 1; f_2 = 1; f_1 = 1$$\n\nProve by induction that every third element of the sequence is even.",
+    "answer": [
+      "N/A"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gate1996",
+      "recurrence-relation",
+      "proof",
+      "descriptive"
+    ]
+  },
+  {
+    "id": "q_vol1_1_7_2",
+    "subjectId": "discrete-mathematics",
+    "topicId": "recurrence-relation",
+    "year": 2016,
+    "number": 2,
+    "type": "MCQ",
+    "marks": 1,
+    "difficulty": "Easy",
+    "body": "Let $a_n$ be the number of $n$-bit strings that do NOT contain two consecutive $1$'s. Which one of the following is the recurrence relation for $a_n$?",
+    "answer": [
+      "B"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gatecse-2016-set1",
+      "combinatory",
+      "recurrence-relation",
+      "easy"
+    ],
+    "set": 1,
+    "options": [
+      {
+        "id": "A",
+        "text": "$a_n = a_{n-1} + 2a_{n-2}$"
+      },
+      {
+        "id": "B",
+        "text": "$a_n = a_{n-1} + a_{n-2}$"
+      },
+      {
+        "id": "C",
+        "text": "$a_n = 2a_{n-1} + a_{n-2}$"
+      },
+      {
+        "id": "D",
+        "text": "$a_n = 2a_{n-1} + 2a_{n-2}$"
+      }
+    ]
+  },
+  {
+    "id": "q_vol1_1_7_3",
+    "subjectId": "discrete-mathematics",
+    "topicId": "recurrence-relation",
+    "year": 2016,
+    "number": 27,
+    "type": "NAT",
+    "marks": 2,
+    "difficulty": "Medium",
+    "body": "Consider the recurrence relation $a_1 = 8, a_n = 6n^2 + 2n + a_{n-1}$. Let $a_{99} = K \\times 10^4$. The value of $K$ is ________.",
+    "answer": {
+      "min": 197.9,
+      "max": 198.1
+    },
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gatecse-2016-set1",
+      "combinatory",
+      "recurrence-relation",
+      "normal",
+      "numerical-answers"
+    ],
+    "set": 1
+  },
+  {
+    "id": "q_vol1_1_7_4",
+    "subjectId": "discrete-mathematics",
+    "topicId": "recurrence-relation",
+    "year": 2022,
+    "number": 41,
+    "type": "MSQ",
+    "marks": 2,
+    "difficulty": "Medium",
+    "body": "Consider the following recurrence:\n\n$$\\begin{aligned}\nf(1) &= 1; \\\\\nf(2n) &= 2f(n) - 1, \\quad \\text{for } n \\ge 1; \\\\\nf(2n+1) &= 2f(n) + 1, \\quad \\text{for } n \\ge 1.\n\\end{aligned}$$\n\nThen, which of the following statements is/are TRUE?",
+    "answer": [
+      "A",
+      "B",
+      "C"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gatecse-2022",
+      "combinatory",
+      "recurrence-relation",
+      "multiple-selects",
+      "two-marks"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "text": "$f(2^n-1) = 2^n-1$"
+      },
+      {
+        "id": "B",
+        "text": "$f(2^n) = 1$"
+      },
+      {
+        "id": "C",
+        "text": "$f(5\\cdot 2^n) = 2^{n+1}+1$"
+      },
+      {
+        "id": "D",
+        "text": "$f(2^n+1) = 2^n+1$"
+      }
+    ]
+  },
+  {
+    "id": "q_vol1_1_7_5",
+    "subjectId": "discrete-mathematics",
+    "topicId": "recurrence-relation",
+    "year": 2023,
+    "number": 5,
+    "type": "MCQ",
+    "marks": 1,
+    "difficulty": "Medium",
+    "body": "The Lucas sequence $L_n$ is defined by the recurrence relation:\n\n$$L_n = L_{n-1} + L_{n-2}, \\quad \\text{for } n \\ge 3,$$\n\nwith $L_1 = 1$ and $L_2 = 3$.\n\nWhich one of the options given is TRUE?",
+    "answer": [
+      "A"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gatecse-2023",
+      "combinatory",
+      "recurrence-relation",
+      "one-mark"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "text": "$L_n = \\left(\\frac{1+\\sqrt{5}}{2}\\right)^n + \\left(\\frac{1-\\sqrt{5}}{2}\\right)^n$"
+      },
+      {
+        "id": "B",
+        "text": "$L_n = \\left(\\frac{1+\\sqrt{5}}{2}\\right)^n - \\left(\\frac{1-\\sqrt{5}}{3}\\right)^n$"
+      },
+      {
+        "id": "C",
+        "text": "$L_n = \\left(\\frac{1+\\sqrt{5}}{2}\\right)^n + \\left(\\frac{1-\\sqrt{5}}{3}\\right)^n$"
+      },
+      {
+        "id": "D",
+        "text": "$L_n = \\left(\\frac{1+\\sqrt{5}}{2}\\right)^n - \\left(\\frac{1-\\sqrt{5}}{2}\\right)^n$"
+      }
+    ]
+  },
+  {
+    "id": "q_vol1_1_7_6",
+    "subjectId": "discrete-mathematics",
+    "topicId": "recurrence-relation",
+    "year": 2004,
+    "number": 34,
+    "type": "MCQ",
+    "marks": 2,
+    "difficulty": "Medium",
+    "body": "Let $H_1, H_2, H_3, \\dots$ be harmonic numbers. Then, for $n \\in \\mathbb{Z}^+$, $\\sum_{j=1}^{n} H_j$ can be expressed as",
+    "answer": [
+      "B"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gateit-2004",
+      "recurrence-relation",
+      "combinatory",
+      "normal"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "text": "$n H_{n+1} - (n+1)$"
+      },
+      {
+        "id": "B",
+        "text": "$(n+1) H_n - n$"
+      },
+      {
+        "id": "C",
+        "text": "$n H_n - n$"
+      },
+      {
+        "id": "D",
+        "text": "$(n+1) H_{n+1} - (n+1)$"
+      }
+    ]
+  },
+  {
+    "id": "q_vol1_1_7_7",
+    "subjectId": "discrete-mathematics",
+    "topicId": "recurrence-relation",
+    "year": 2007,
+    "number": 76,
+    "type": "MCQ",
+    "marks": 2,
+    "difficulty": "Medium",
+    "body": "Consider the sequence $\\langle x_n\\rangle, n \\ge 0$ defined by the recurrence relation $x_{n+1} = c\\cdot x_n^2 - 2$, where $c > 0$. Suppose there exists a non-empty, open interval $(a, b)$ such that for all $x_0$ satisfying $a < x_0 < b$, the sequence converges to a limit. The sequence converges to the value?",
+    "answer": [
+      "B"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gateit-2007",
+      "combinatory",
+      "normal",
+      "recurrence-relation"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "text": "$\\frac{1+\\sqrt{1+8c}}{2c}$"
+      },
+      {
+        "id": "B",
+        "text": "$\\frac{1-\\sqrt{1+8c}}{2c}$"
+      },
+      {
+        "id": "C",
+        "text": "$2$"
+      },
+      {
+        "id": "D",
+        "text": "$\\frac{2}{2c-1}$"
+      }
+    ]
+  },
+  {
+    "id": "q_vol1_1_8_1",
+    "subjectId": "discrete-mathematics",
+    "topicId": "summation",
+    "year": 1989,
+    "number": 4,
+    "type": "MCQ",
+    "marks": 1,
+    "difficulty": "Medium",
+    "body": "How many substrings (of all lengths inclusive) can be formed from a character string of length $n$? Assume all characters to be distinct, prove your answer.",
+    "answer": [
+      "N/A"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gate1989",
+      "descriptive",
+      "combinatory",
+      "normal",
+      "proof",
+      "counting",
+      "summation"
+    ]
+  },
+  {
+    "id": "q_vol1_1_8_2",
+    "subjectId": "discrete-mathematics",
+    "topicId": "summation",
+    "year": 1994,
+    "number": 15,
+    "type": "MCQ",
+    "marks": 1,
+    "difficulty": "Medium",
+    "body": "Use the patterns given to prove that",
+    "answer": [
+      "N/A"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gate1994",
+      "combinatory",
+      "proof",
+      "summation",
+      "descriptive"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "text": "(You are not permitted to employ induction)"
+      },
+      {
+        "id": "B",
+        "text": "Use the result obtained in (A) to prove that"
+      }
+    ]
+  },
+  {
+    "id": "q_vol1_1_8_3",
+    "subjectId": "discrete-mathematics",
+    "topicId": "summation",
+    "year": 2008,
+    "number": 24,
+    "type": "MCQ",
+    "marks": 1,
+    "difficulty": "Easy",
+    "body": "Let $P = \\sum_{\\substack{1 \\le i \\le 2k \\\\ i \\text{ odd}}} i$ and $Q = \\sum_{\\substack{1 \\le i \\le 2k \\\\ i \\text{ even}}} i$, where $k$ is a positive integer. Then",
+    "answer": [
+      "A"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gatecse-2008",
+      "combinatory",
+      "easy",
+      "summation"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "text": "$P = Q - k$"
+      },
+      {
+        "id": "B",
+        "text": "$P = Q + k$"
+      },
+      {
+        "id": "C",
+        "text": "$P = Q$"
+      },
+      {
+        "id": "D",
+        "text": "$P = Q + 2k$"
+      }
+    ]
+  }
+]

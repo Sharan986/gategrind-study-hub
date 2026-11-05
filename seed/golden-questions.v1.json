@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "questions": [
+    {
+      "code": "3.12.13",
+      "class": "multi-column-options",
+      "source": "vol2:243"
+    },
+    {
+      "code": "3.12.15",
+      "class": "code-question",
+      "source": "vol2:244"
+    },
+    {
+      "code": "1.1.5",
+      "class": "NAT",
+      "source": "vol1"
+    },
+    {
+      "code": "1.3.1",
+      "class": "MSQ",
+      "source": "vol1"
+    },
+    {
+      "code": "1.1.2",
+      "class": "image-diagram",
+      "source": "vol1"
+    }
+  ],
+  "requiredClasses": [
+    "screenshot",
+    "multi-column-options",
+    "NAT",
+    "code-question",
+    "MSQ",
+    "image-diagram"
+  ]
+}

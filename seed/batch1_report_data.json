@@ -1,0 +1,219 @@
+{
+  "rows": [
+    {
+      "qid": "q_vol1_1_1_1",
+      "code": "1.1.1",
+      "page": 20,
+      "orig": "The number of binary strings of   zeros and  ones in which no two ones a...",
+      "corr": "The number of binary strings of $n$ zeros and $k$ ones in which no two o...",
+      "change": "body restored, options restored (5 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_1_1_2",
+      "code": "1.1.2",
+      "page": 21,
+      "orig": "A multiset is an unordered collection of elements where elements may rep...",
+      "corr": "A multiset is an unordered collection of elements where elements may rep...",
+      "change": "body restored (2 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_1_1_3",
+      "code": "1.1.3",
+      "page": 21,
+      "orig": "a. In how many ways can a given positive integer      be expressed as th...",
+      "corr": "a. In how many ways can a given positive integer $n \\ge 2$ be expressed ...",
+      "change": "body restored (13 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_1_1_4",
+      "code": "1.1.4",
+      "page": 21,
+      "orig": "identical balls are to be placed in    distinct bags. You are given that...",
+      "corr": "$m$ identical balls are to be placed in $n$ distinct bags. You are given...",
+      "change": "body restored, options restored (10 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_1_1_6",
+      "code": "1.1.6",
+      "page": 21,
+      "orig": "In how many ways can we distribute    distinct balls,                   ...",
+      "corr": "In how many ways can we distribute $5$ distinct balls, $B_1, B_2, \\dots,...",
+      "change": "body restored, options restored (10 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_1_2_1",
+      "code": "1.2.1",
+      "page": 22,
+      "orig": "The number of ways in which           and      can be arranged in a row is:",
+      "corr": "The number of ways in which $5$ $A's, 5$ $B's$ and $5$ $C's$ can be arra...",
+      "change": "body restored, options restored (9 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_1_2_2",
+      "code": "1.2.2",
+      "page": 22,
+      "orig": "Find the number of binary strings   of length    with an equal number of...",
+      "corr": "Find the number of binary strings $w$ of length $2n$ with an equal numbe...",
+      "change": "body restored (7 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_1_2_3",
+      "code": "1.2.3",
+      "page": 22,
+      "orig": "How many sub strings of different lengths (non-zero) can be formed from ...",
+      "corr": "How many sub strings of different lengths (non-zero) can be formed from ...",
+      "change": "body restored, options restored (5 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_1_2_4",
+      "code": "1.2.4",
+      "page": 22,
+      "orig": "Two girls have picked    roses,   sunﬂowers and    daﬀodils. What is the...",
+      "corr": "Two girls have picked $10$ roses, $15$ sunflowers and $15$ daffodils. Wh...",
+      "change": "body restored, options restored (6 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_1_2_5",
+      "code": "1.2.5",
+      "page": 22,
+      "orig": "How many  -digit even numbers have all   digits distinct?",
+      "corr": "How many $4$-digit even numbers have all $4$ digits distinct?",
+      "change": "body restored, options restored (6 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_1_2_6",
+      "code": "1.2.6",
+      "page": 22,
+      "orig": "Let   be a sequence of   distinct integers sorted in ascending order. Ho...",
+      "corr": "Let $A$ be a sequence of $8$ distinct integers sorted in ascending order...",
+      "change": "body restored, options restored (15 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_1_2_7",
+      "code": "1.2.7",
+      "page": 22,
+      "orig": "couples are invited to a party with the condition that every husband sho...",
+      "corr": "$n$ couples are invited to a party with the condition that every husband...",
+      "change": "body restored, options restored (5 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_1_2_8",
+      "code": "1.2.8",
+      "page": 23,
+      "orig": "Mala has the colouring book in which each English letter is drawn two ti...",
+      "corr": "Mala has the colouring book in which each English letter is drawn two ti...",
+      "change": "body restored, options restored (7 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_1_2_9",
+      "code": "1.2.9",
+      "page": 23,
+      "orig": "Suppose that a robot is placed on the Cartesian plane. At each step it i...",
+      "corr": "Suppose that a robot is placed on the Cartesian plane. At each step it i...",
+      "change": "body restored, options restored (8 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_1_2_10",
+      "code": "1.2.10",
+      "page": 23,
+      "orig": "Suppose that a robot is placed on the Cartesian plane. At each step it i...",
+      "corr": "Suppose that a robot is placed on the Cartesian plane. At each step it i...",
+      "change": "body restored, options restored (11 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_1_2_11",
+      "code": "1.2.11",
+      "page": 23,
+      "orig": "A pennant is a sequence of numbers, each number being   or   . An    pen...",
+      "corr": "A pennant is a sequence of numbers, each number being $1$ or $2$. An $n\\...",
+      "change": "body restored (15 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_1_2_12",
+      "code": "1.2.12",
+      "page": 23,
+      "orig": "The number of   digit numbers having their digits in non-decreasing orde...",
+      "corr": "The number of $4$ digit numbers having their digits in non-decreasing or...",
+      "change": "body restored (2 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_1_2_13",
+      "code": "1.2.13",
+      "page": 23,
+      "orig": "Let                    Let                                              ...",
+      "corr": "Let $U = \\{1, 2, \\dots, n\\}$. Let $A = \\{(x, X) \\mid x \\in X, X \\subsete...",
+      "change": "body restored (5 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_1_2_15",
+      "code": "1.2.15",
+      "page": 24,
+      "orig": "Let  be the set of all ternary strings deﬁned over the alphabet         ...",
+      "corr": "Let $S$ be the set of all ternary strings defined over the alphabet $\\{a...",
+      "change": "body restored (7 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_1_2_16",
+      "code": "1.2.16",
+      "page": 24,
+      "orig": "Consider       matrices with their elements from            . The number...",
+      "corr": "Consider $4 \\times 4$ matrices with their elements from $\\{0, 1\\}$. The ...",
+      "change": "body restored, options restored (7 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_1_2_17",
+      "code": "1.2.17",
+      "page": 24,
+      "orig": "A  line    in a circuit is said to have a                     fault  if ...",
+      "corr": "A line $L$ in a circuit is said to have a $\\text{stuck}-at-0$ fault if t...",
+      "change": "body restored, options restored (13 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_1_2_18",
+      "code": "1.2.18",
+      "page": 24,
+      "orig": "In how many ways can  blue balls and  red balls be distributed in   dist...",
+      "corr": "In how many ways can $b$ blue balls and $r$ red balls be distributed in ...",
+      "change": "body restored, options restored (7 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_1_3_1",
+      "code": "1.3.1",
+      "page": 25,
+      "orig": "The number of rooted binary trees with  nodes is,",
+      "corr": "The number of rooted binary trees with $n$ nodes is,",
+      "change": "body restored, options restored (6 symbols)",
+      "conf": "High"
+    }
+  ],
+  "stats": {
+    "total": 25,
+    "modified": 23,
+    "manual_review": 0,
+    "unchanged": 2,
+    "symbols_restored": 181,
+    "validation": "Valid JSON (25 objects, original schema preserved)"
+  }
+}

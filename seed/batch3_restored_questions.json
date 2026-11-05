@@ -1,0 +1,851 @@
+[
+  {
+    "id": "q_vol1_1_8_4",
+    "subjectId": "discrete-mathematics",
+    "topicId": "summation",
+    "year": 2015,
+    "number": 26,
+    "type": "NAT",
+    "marks": 2,
+    "difficulty": "Medium",
+    "body": "$$\\sum_{x=1}^{99} \\frac{1}{x(x+1)} = \\text{______}.$$",
+    "answer": {
+      "min": 0.99,
+      "max": 0.99
+    },
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gatecse-2015-set1",
+      "combinatory",
+      "normal",
+      "numerical-answers",
+      "summation"
+    ],
+    "set": 1
+  },
+  {
+    "id": "q_vol1_2_1_1",
+    "subjectId": "discrete-mathematics",
+    "topicId": "counting",
+    "year": 2001,
+    "number": 215,
+    "type": "MCQ",
+    "marks": 1,
+    "difficulty": "Medium",
+    "body": "How many undirected graphs (not necessarily connected) can be constructed out of a given set $V = \\{v_1, v_2, \\dots, v_n\\}$ of $n$ vertices?",
+    "answer": [
+      "D"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gatecse-2001",
+      "graph-theory",
+      "normal",
+      "counting"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "text": "$\\frac{n(n-1)}{2}$"
+      },
+      {
+        "id": "B",
+        "text": "$2^n$"
+      },
+      {
+        "id": "C",
+        "text": "$n!$"
+      },
+      {
+        "id": "D",
+        "text": "$2^{\\frac{n(n-1)}{2}}$"
+      }
+    ]
+  },
+  {
+    "id": "q_vol1_2_1_2",
+    "subjectId": "discrete-mathematics",
+    "topicId": "counting",
+    "year": 2004,
+    "number": 79,
+    "type": "MCQ",
+    "marks": 2,
+    "difficulty": "Medium",
+    "body": "How many graphs on $n$ labeled vertices exist which have at least $\\frac{n^2-3n}{2}$ edges ?",
+    "answer": [
+      "D"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gatecse-2004",
+      "graph-theory",
+      "combinatory",
+      "normal",
+      "counting"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "text": "${}^{(\\frac{n^2-n}{2})}C_{(\\frac{n^2-3n}{2})}$"
+      },
+      {
+        "id": "B",
+        "text": "$\\sum_{k=0}^{\\left(\\frac{n^2-3n}{2}\\right)} {}^{(n^2-n)}C_k$"
+      },
+      {
+        "id": "C",
+        "text": "${}^{(\\frac{n^2-n}{2})}C_n$"
+      },
+      {
+        "id": "D",
+        "text": "$\\sum_{k=0}^{n} \\cdot {}^{(\\frac{n^2-n}{2})}C_k$"
+      }
+    ]
+  },
+  {
+    "id": "q_vol1_2_1_3",
+    "subjectId": "discrete-mathematics",
+    "topicId": "counting",
+    "year": 2012,
+    "number": 38,
+    "type": "MCQ",
+    "marks": 2,
+    "difficulty": "Medium",
+    "body": "Let $G$ be a complete undirected graph on $6$ vertices. If vertices of $G$ are labeled, then the number of distinct cycles of length $4$ in $G$ is equal to",
+    "answer": [
+      "X"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gatecse-2012",
+      "graph-theory",
+      "normal",
+      "marks-to-all",
+      "counting"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "text": "$15$"
+      },
+      {
+        "id": "B",
+        "text": "$30$"
+      },
+      {
+        "id": "C",
+        "text": "$90$"
+      },
+      {
+        "id": "D",
+        "text": "$360$"
+      }
+    ]
+  },
+  {
+    "id": "q_vol1_2_2_1",
+    "subjectId": "discrete-mathematics",
+    "topicId": "degree-of-graph",
+    "year": 1987,
+    "number": 9,
+    "type": "MCQ",
+    "marks": 1,
+    "difficulty": "Medium",
+    "body": "Show that the number of odd-degree vertices in a finite graph is even.",
+    "answer": [
+      "N/A"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gate1987",
+      "graph-theory",
+      "degree-of-graph",
+      "descriptive",
+      "proof"
+    ]
+  },
+  {
+    "id": "q_vol1_2_2_2",
+    "subjectId": "discrete-mathematics",
+    "topicId": "degree-of-graph",
+    "year": 1991,
+    "number": 16,
+    "type": "MCQ",
+    "marks": 1,
+    "difficulty": "Medium",
+    "body": "Show that all vertices in an undirected ﬁnite graph cannot have distinct degrees, if the graph has at least two\r\n vertices.",
+    "answer": [
+      "N/A"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gate1991",
+      "graph-theory",
+      "degree-of-graph",
+      "descriptive",
+      "proof"
+    ]
+  },
+  {
+    "id": "q_vol1_2_2_3",
+    "subjectId": "discrete-mathematics",
+    "topicId": "degree-of-graph",
+    "year": 1995,
+    "number": 24,
+    "type": "MCQ",
+    "marks": 1,
+    "difficulty": "Medium",
+    "body": "Prove that in finite graph, the number of vertices of odd degree is always even.",
+    "answer": [
+      "N/A"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gate1995",
+      "graph-theory",
+      "degree-of-graph",
+      "proof",
+      "descriptive"
+    ]
+  },
+  {
+    "id": "q_vol1_2_2_4",
+    "subjectId": "discrete-mathematics",
+    "topicId": "degree-of-graph",
+    "year": 2003,
+    "number": 40,
+    "type": "MCQ",
+    "marks": 2,
+    "difficulty": "Medium",
+    "body": "A graph $G = (V, E)$ satisfies $|E| \\le 3|V| - 6$. The min-degree of $G$ is defined as $\\min_{v \\in V} \\{\\operatorname{degree}(v)\\}$. Therefore, min-degree of $G$ cannot be",
+    "answer": [
+      "D"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gatecse-2003",
+      "graph-theory",
+      "normal",
+      "degree-of-graph"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "text": "$3$"
+      },
+      {
+        "id": "B",
+        "text": "$4$"
+      },
+      {
+        "id": "C",
+        "text": "$5$"
+      },
+      {
+        "id": "D",
+        "text": "$6$"
+      }
+    ]
+  },
+  {
+    "id": "q_vol1_2_2_5",
+    "subjectId": "discrete-mathematics",
+    "topicId": "degree-of-graph",
+    "year": 2006,
+    "number": 71,
+    "type": "MCQ",
+    "marks": 2,
+    "difficulty": "Medium",
+    "body": "The $2^n$ vertices of a graph $G$ corresponds to all subsets of a set of size $n$, for $n \\ge 6$. Two vertices of $G$ are adjacent if and only if the corresponding sets intersect in exactly two elements.\n\nThe number of vertices of degree zero in $G$ is:",
+    "answer": [
+      "C"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gatecse-2006",
+      "graph-theory",
+      "normal",
+      "degree-of-graph"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "text": "$1$"
+      },
+      {
+        "id": "B",
+        "text": "$n$"
+      },
+      {
+        "id": "C",
+        "text": "$n + 1$"
+      },
+      {
+        "id": "D",
+        "text": "$2^n$"
+      }
+    ]
+  },
+  {
+    "id": "q_vol1_2_2_6",
+    "subjectId": "discrete-mathematics",
+    "topicId": "degree-of-graph",
+    "year": 2006,
+    "number": 72,
+    "type": "MCQ",
+    "marks": 2,
+    "difficulty": "Medium",
+    "body": "The $2^n$ vertices of a graph $G$ corresponds to all subsets of a set of size $n$, for $n \\ge 6$. Two vertices of $G$ are adjacent if and only if the corresponding sets intersect in exactly two elements.\n\nThe maximum degree of a vertex in $G$ is:",
+    "answer": [
+      "C"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gatecse-2006",
+      "graph-theory",
+      "normal",
+      "degree-of-graph"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "text": "$\\binom{\\frac{n}{2}}{2} \\cdot 2^{\\frac{n}{2}}$"
+      },
+      {
+        "id": "B",
+        "text": "$2^{n-2}$"
+      },
+      {
+        "id": "C",
+        "text": "$2^{n-3} \\times 3$"
+      },
+      {
+        "id": "D",
+        "text": "$2^{n-1}$"
+      }
+    ]
+  },
+  {
+    "id": "q_vol1_2_2_7",
+    "subjectId": "discrete-mathematics",
+    "topicId": "degree-of-graph",
+    "year": 2009,
+    "number": 3,
+    "type": "MCQ",
+    "marks": 1,
+    "difficulty": "Medium",
+    "body": "Which one of the following is TRUE for any simple connected undirected graph with more than $2$ vertices?",
+    "answer": [
+      "B"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gatecse-2009",
+      "graph-theory",
+      "normal",
+      "degree-of-graph"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "text": "No two vertices have the same degree."
+      },
+      {
+        "id": "B",
+        "text": "At least two vertices have the same degree."
+      },
+      {
+        "id": "C",
+        "text": "At least three vertices have the same degree."
+      },
+      {
+        "id": "D",
+        "text": "All vertices have the same degree."
+      }
+    ]
+  },
+  {
+    "id": "q_vol1_2_2_8",
+    "subjectId": "discrete-mathematics",
+    "topicId": "degree-of-graph",
+    "year": 2010,
+    "number": 1,
+    "type": "MCQ",
+    "marks": 1,
+    "difficulty": "Medium",
+    "body": "Let $G = (V, E)$ be a graph. Define $\\xi(G) = \\sum_d i_d * d$, where $i_d$ is the number of vertices of degree $d$ in $G$.\n\nIf $S$ and $T$ are two different trees with $\\xi(S) = \\xi(T)$, then",
+    "answer": [
+      "C"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gatecse-2010",
+      "graph-theory",
+      "normal",
+      "degree-of-graph"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "text": "$|S| = 2|T|$"
+      },
+      {
+        "id": "B",
+        "text": "$|S| = |T| - 1$"
+      },
+      {
+        "id": "C",
+        "text": "$|S| = |T|$"
+      },
+      {
+        "id": "D",
+        "text": "$|S| = |T| + 1$"
+      }
+    ]
+  },
+  {
+    "id": "q_vol1_2_2_9",
+    "subjectId": "discrete-mathematics",
+    "topicId": "degree-of-graph",
+    "year": 2010,
+    "number": 28,
+    "type": "MCQ",
+    "marks": 2,
+    "difficulty": "Medium",
+    "body": "The degree sequence of a simple graph is the sequence of the degrees of the nodes in the graph in decreasing order. Which of the following sequences can not be the degree sequence of any graph?\n\nI. $7, 6, 5, 4, 4, 3, 2, 1$\nII. $6, 6, 6, 6, 3, 3, 2, 2$\nIII. $7, 6, 6, 4, 4, 3, 2, 2$\nIV. $8, 7, 7, 6, 4, 2, 1, 1$",
+    "answer": [
+      "D"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gatecse-2010",
+      "graph-theory",
+      "degree-of-graph"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "text": "I and II"
+      },
+      {
+        "id": "B",
+        "text": "III and IV"
+      },
+      {
+        "id": "C",
+        "text": "IV only"
+      },
+      {
+        "id": "D",
+        "text": "II and IV"
+      }
+    ]
+  },
+  {
+    "id": "q_vol1_2_2_10",
+    "subjectId": "discrete-mathematics",
+    "topicId": "degree-of-graph",
+    "year": 2013,
+    "number": 25,
+    "type": "MCQ",
+    "marks": 1,
+    "difficulty": "Easy",
+    "body": "Which of the following statements is/are TRUE for undirected graphs?\n\nP: Number of odd degree vertices is even.\nQ: Sum of degrees of all vertices is even.",
+    "answer": [
+      "C"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gatecse-2013",
+      "graph-theory",
+      "easy",
+      "degree-of-graph"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "text": "P only"
+      },
+      {
+        "id": "B",
+        "text": "Q only"
+      },
+      {
+        "id": "C",
+        "text": "Both P and Q"
+      },
+      {
+        "id": "D",
+        "text": "Neither P nor Q"
+      }
+    ]
+  },
+  {
+    "id": "q_vol1_2_2_11",
+    "subjectId": "discrete-mathematics",
+    "topicId": "degree-of-graph",
+    "year": 2014,
+    "number": 52,
+    "type": "MCQ",
+    "marks": 2,
+    "difficulty": "Medium",
+    "body": "An ordered $n$-tuple $(d_1, d_2, \\dots, d_n)$ with $d_1 \\ge d_2 \\ge \\dots \\ge d_n$ is called graphic if there exists a simple undirected graph with $n$ vertices having degrees $d_1, d_2, \\dots, d_n$ respectively. Which one of the following $6$-tuples is NOT graphic?",
+    "answer": [
+      "C"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gatecse-2014-set1",
+      "graph-theory",
+      "normal",
+      "degree-of-graph"
+    ],
+    "set": 1,
+    "options": [
+      {
+        "id": "A",
+        "text": "$(1, 1, 1, 1, 1, 1)$"
+      },
+      {
+        "id": "B",
+        "text": "$(2, 2, 2, 2, 2, 2)$"
+      },
+      {
+        "id": "C",
+        "text": "$(3, 3, 3, 1, 0, 0)$"
+      },
+      {
+        "id": "D",
+        "text": "$(3, 2, 1, 1, 1, 0)$"
+      }
+    ]
+  },
+  {
+    "id": "q_vol1_2_2_12",
+    "subjectId": "discrete-mathematics",
+    "topicId": "degree-of-graph",
+    "year": 2017,
+    "number": 23,
+    "type": "NAT",
+    "marks": 1,
+    "difficulty": "Medium",
+    "body": "$G$ is an undirected graph with $n$ vertices and $25$ edges such that each vertex of $G$ has degree at least $3$. Then the maximum possible value of $n$ is ________.",
+    "answer": {
+      "min": 16,
+      "max": 16
+    },
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gatecse-2017-set2",
+      "graph-theory",
+      "numerical-answers",
+      "degree-of-graph"
+    ],
+    "set": 2
+  },
+  {
+    "id": "q_vol1_2_2_13",
+    "subjectId": "discrete-mathematics",
+    "topicId": "degree-of-graph",
+    "year": 2026,
+    "number": 37,
+    "type": "MCQ",
+    "marks": 2,
+    "difficulty": "Medium",
+    "body": "Let $G(V,E)$ be a simple, undirected graph. A vertex cover of $G$ is a subset $V' \\subseteq V$ such that for every $(u,v) \\in E, u \\in V'$ or $v \\in V'$. Let the size of the smallest vertex cover in $G$ be $k$. Let $S$ be any vertex cover of size $k$.\n\nFor a vertex $v \\in V$, which of the following constraints will always ensure that $v \\in S$?",
+    "answer": [
+      "A"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gatecse-2026-set1",
+      "graph-theory",
+      "two-marks",
+      "degree-of-graph",
+      "multiple-selects"
+    ],
+    "set": 1,
+    "options": [
+      {
+        "id": "A",
+        "text": "The degree of $v$ is at least $k + 1$"
+      },
+      {
+        "id": "B",
+        "text": "The vertex $v$ is on a path of length $k + 1$"
+      },
+      {
+        "id": "C",
+        "text": "The vertex $v$ is on a cycle of length $k + 1$"
+      },
+      {
+        "id": "D",
+        "text": "The vertex $v$ is a part of a clique of size $k$"
+      }
+    ]
+  },
+  {
+    "id": "q_vol1_2_3_1",
+    "subjectId": "discrete-mathematics",
+    "topicId": "graph-algorithms",
+    "year": 2026,
+    "number": 45,
+    "type": "MSQ",
+    "marks": 2,
+    "difficulty": "Medium",
+    "body": "An undirected, unweighted, simple graph $G(V,E)$ is said to be $2$-colorable if there exists a function $c: V \\to \\{0, 1\\}$ such that for every $(u,v) \\in E, c(u) \\ne c(v)$. Which of the following statements about $2$-colorable graphs is/are true?",
+    "answer": [
+      "B",
+      "C"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gatecse-2026-set1",
+      "graph-theory",
+      "graph-algorithms",
+      "two-marks",
+      "multiple-selects"
+    ],
+    "set": 1,
+    "options": [
+      {
+        "id": "A",
+        "text": "If $G$ is $2$-colorable, then $G$ may contain cycles of odd length"
+      },
+      {
+        "id": "B",
+        "text": "If $G$ is $2$-colorable, then $G$ may contain cycles of even length"
+      },
+      {
+        "id": "C",
+        "text": "An optimal algorithm for testing whether $G$ is $2$-colorable runs in time $\\Theta(|V| + |E|)$, if $G$ is represented as an adjacency list"
+      },
+      {
+        "id": "D",
+        "text": "An optimal algorithm for testing whether $G$ is $2$-colorable runs in time $\\Theta(|E| \\log |V|)$, if $G$ is represented as an adjacency list"
+      }
+    ]
+  },
+  {
+    "id": "q_vol1_2_4_1",
+    "subjectId": "discrete-mathematics",
+    "topicId": "graph-coloring",
+    "year": 2002,
+    "number": 14,
+    "type": "MCQ",
+    "marks": 1,
+    "difficulty": "Medium",
+    "body": "The minimum number of colours required to colour the vertices of a cycle with $n$ nodes in such a way that no two adjacent nodes have the same colour is",
+    "answer": [
+      "D"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gatecse-2002",
+      "graph-theory",
+      "graph-coloring",
+      "normal"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "text": "$2$"
+      },
+      {
+        "id": "B",
+        "text": "$3$"
+      },
+      {
+        "id": "C",
+        "text": "$4$"
+      },
+      {
+        "id": "D",
+        "text": "$n - 2\\left\\lfloor\\frac{n}{2}\\right\\rfloor + 2$"
+      }
+    ]
+  },
+  {
+    "id": "q_vol1_2_4_2",
+    "subjectId": "discrete-mathematics",
+    "topicId": "graph-coloring",
+    "year": 2004,
+    "number": 77,
+    "type": "MCQ",
+    "marks": 2,
+    "difficulty": "Easy",
+    "body": "The minimum number of colours required to colour the following graph, such that no two adjacent vertices are assigned the same color, is",
+    "answer": [
+      "C"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gatecse-2004",
+      "graph-theory",
+      "graph-coloring",
+      "easy"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "text": "$2$"
+      },
+      {
+        "id": "B",
+        "text": "$3$"
+      },
+      {
+        "id": "C",
+        "text": "$4$"
+      },
+      {
+        "id": "D",
+        "text": "$5$"
+      }
+    ]
+  },
+  {
+    "id": "q_vol1_2_4_3",
+    "subjectId": "discrete-mathematics",
+    "topicId": "graph-coloring",
+    "year": 2009,
+    "number": 2,
+    "type": "MCQ",
+    "marks": 1,
+    "difficulty": "Medium",
+    "body": "What is the chromatic number of an $n$ vertex simple connected graph which does not contain any odd length cycle? Assume $n > 2$.",
+    "answer": [
+      "A"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gatecse-2009",
+      "graph-theory",
+      "graph-coloring",
+      "normal"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "text": "$2$"
+      },
+      {
+        "id": "B",
+        "text": "$3$"
+      },
+      {
+        "id": "C",
+        "text": "$n - 1$"
+      },
+      {
+        "id": "D",
+        "text": "$n$"
+      }
+    ]
+  },
+  {
+    "id": "q_vol1_2_4_4",
+    "subjectId": "discrete-mathematics",
+    "topicId": "graph-coloring",
+    "year": 2016,
+    "number": 3,
+    "type": "NAT",
+    "marks": 1,
+    "difficulty": "Medium",
+    "body": "The minimum number of colours that is sufficient to vertex-colour any planar graph is ________.",
+    "answer": {
+      "min": 4,
+      "max": 4
+    },
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gatecse-2016-set2",
+      "graph-theory",
+      "graph-coloring",
+      "normal",
+      "numerical-answers"
+    ],
+    "set": 2
+  },
+  {
+    "id": "q_vol1_2_4_5",
+    "subjectId": "discrete-mathematics",
+    "topicId": "graph-coloring",
+    "year": 2018,
+    "number": 18,
+    "type": "NAT",
+    "marks": 1,
+    "difficulty": "Medium",
+    "body": "The chromatic number of the following graph is ________.",
+    "answer": {
+      "min": 3,
+      "max": 3
+    },
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": []
+  },
+  {
+    "id": "q_vol1_2_4_6",
+    "subjectId": "discrete-mathematics",
+    "topicId": "graph-coloring",
+    "year": 2020,
+    "number": 52,
+    "type": "NAT",
+    "marks": 2,
+    "difficulty": "Medium",
+    "body": "Graph $G$ is obtained by adding vertex $s$ to $K_{3,4}$ and making $s$ adjacent to every vertex of $K_{3,4}$. The minimum number of colours required to edge-colour $G$ is ________.",
+    "answer": {
+      "min": 7,
+      "max": 7
+    },
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gatecse-2020",
+      "numerical-answers",
+      "graph-theory",
+      "graph-coloring",
+      "two-marks"
+    ]
+  },
+  {
+    "id": "q_vol1_2_4_7",
+    "subjectId": "discrete-mathematics",
+    "topicId": "graph-coloring",
+    "year": 2023,
+    "number": 45,
+    "type": "MSQ",
+    "marks": 2,
+    "difficulty": "Medium",
+    "body": "Let $G$ be a simple, finite, undirected graph with vertex set $\\{v_1, \\dots, v_n\\}$. Let $\\Delta(G)$ denote the maximum degree of $G$ and let $\\mathbb{N} = \\{1, 2, \\dots\\}$ denote the set of all possible colors. Color the vertices of $G$ using the following greedy strategy: for $i = 1, \\dots, n$\n\n$$\\operatorname{color}(v_i) \\leftarrow \\min \\{j \\in \\mathbb{N} : \\text{no neighbour of } v_i \\text{ is colored } j\\}$$\n\nWhich of the following statements is/are TRUE?",
+    "answer": [
+      "A",
+      "B"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gatecse-2023",
+      "graph-theory",
+      "graph-coloring",
+      "multiple-selects",
+      "two-marks"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "text": "This procedure results in a proper vertex coloring of $G$."
+      },
+      {
+        "id": "B",
+        "text": "The number of colors used is at most $\\Delta(G) + 1$."
+      },
+      {
+        "id": "C",
+        "text": "The number of colors used is at most $\\Delta(G)$."
+      },
+      {
+        "id": "D",
+        "text": "The number of colors used is equal to the chromatic number of $G$."
+      }
+    ]
+  }
+]

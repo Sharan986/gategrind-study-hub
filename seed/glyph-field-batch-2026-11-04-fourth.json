@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "batch": "source-review-2026-11-04-1635",
+  "approved": 0,
+  "unresolved": 6,
+  "rejected": 0,
+  "answerOptionMismatches": 0,
+  "remainingAuditQueues": {
+    "bodyGlyphFragments": 3587,
+    "options": 1385,
+    "code": 0,
+    "diagrams": 1009
+  },
+  "repairMapEntries": 3573,
+  "baselineSha256": "f0c31a4153c8879218f440a07b84af3f972235382cd03c056e5747036f1e434e",
+  "notes": "No additional promotions: selected crops were truncated, code-dependent, descriptive/true-false, or lacked a complete A-D field."
+}

@@ -1,0 +1,202 @@
+{
+  "rows": [
+    {
+      "qid": "q_vol1_1_8_4",
+      "code": "1.8.4",
+      "page": 30,
+      "orig": "= ______.",
+      "corr": "$$\\sum_{x=1}^{99} \\frac{1}{x(x+1)} = \\text{______}.$$",
+      "change": "body restored (1 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_2_1_1",
+      "code": "2.1.1",
+      "page": 38,
+      "orig": "How many undirected graphs  (not  necessarily connected) can be construc...",
+      "corr": "How many undirected graphs (not necessarily connected) can be constructe...",
+      "change": "body restored, options restored (6 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_2_1_2",
+      "code": "2.1.2",
+      "page": 38,
+      "orig": "How many graphs on   labeled vertices exist which have at least       ed...",
+      "corr": "How many graphs on $n$ labeled vertices exist which have at least $\\frac...",
+      "change": "body restored, options restored (6 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_2_1_3",
+      "code": "2.1.3",
+      "page": 38,
+      "orig": "Let   be a complete undirected graph on   vertices. If vertices of   are...",
+      "corr": "Let $G$ be a complete undirected graph on $6$ vertices. If vertices of $...",
+      "change": "body restored, options restored (9 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_2_2_4",
+      "code": "2.2.4",
+      "page": 39,
+      "orig": "A graph              satisﬁes                              . The min-deg...",
+      "corr": "A graph $G = (V, E)$ satisfies $|E| \\le 3|V| - 6$. The min-degree of $G$...",
+      "change": "body restored, options restored (9 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_2_2_5",
+      "code": "2.2.5",
+      "page": 39,
+      "orig": "The     vertices of a graph   corresponds to all subsets of a set of siz...",
+      "corr": "The $2^n$ vertices of a graph $G$ corresponds to all subsets of a set of...",
+      "change": "body restored, options restored (10 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_2_2_6",
+      "code": "2.2.6",
+      "page": 39,
+      "orig": "The     vertices of a graph   corresponds to all subsets of a set of siz...",
+      "corr": "The $2^n$ vertices of a graph $G$ corresponds to all subsets of a set of...",
+      "change": "body restored, options restored (10 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_2_2_7",
+      "code": "2.2.7",
+      "page": 39,
+      "orig": "Which one of the following is TRUE for any simple connected undirected g...",
+      "corr": "Which one of the following is TRUE for any simple connected undirected g...",
+      "change": "body restored (1 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_2_2_8",
+      "code": "2.2.8",
+      "page": 40,
+      "orig": "Let           be a graph. Deﬁne                             , where    i...",
+      "corr": "Let $G = (V, E)$ be a graph. Define $\\xi(G) = \\sum_d i_d * d$, where $i_...",
+      "change": "body restored, options restored (12 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_2_2_9",
+      "code": "2.2.9",
+      "page": 40,
+      "orig": "The degree sequence of a simple graph is the sequence of the degrees of ...",
+      "corr": "The degree sequence of a simple graph is the sequence of the degrees of ...",
+      "change": "body restored (4 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_2_2_10",
+      "code": "2.2.10",
+      "page": 40,
+      "orig": "Which of the following statements is/are TRUE for undirected graphs?\r \r ...",
+      "corr": "Which of the following statements is/are TRUE for undirected graphs?  P:...",
+      "change": "body restored, options restored (2 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_2_2_11",
+      "code": "2.2.11",
+      "page": 40,
+      "orig": "An ordered    tuple                   with                            is...",
+      "corr": "An ordered $n$-tuple $(d_1, d_2, \\dots, d_n)$ with $d_1 \\ge d_2 \\ge \\dot...",
+      "change": "body restored, options restored (10 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_2_2_12",
+      "code": "2.2.12",
+      "page": 40,
+      "orig": "is an undirected graph with   vertices and   edges such that each vertex...",
+      "corr": "$G$ is an undirected graph with $n$ vertices and $25$ edges such that ea...",
+      "change": "body restored (6 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_2_2_13",
+      "code": "2.2.13",
+      "page": 40,
+      "orig": "Let         be a simple, undirected graph. A vertex cover of    is a sub...",
+      "corr": "Let $G(V,E)$ be a simple, undirected graph. A vertex cover of $G$ is a s...",
+      "change": "body restored, options restored (19 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_2_3_1",
+      "code": "2.3.1",
+      "page": 41,
+      "orig": "An undirected, unweighted, simple graph              is said to be  -col...",
+      "corr": "An undirected, unweighted, simple graph $G(V,E)$ is said to be $2$-color...",
+      "change": "body restored, options restored (19 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_2_4_1",
+      "code": "2.4.1",
+      "page": 41,
+      "orig": "The minimum number of colours required to colour the vertices of a cycle...",
+      "corr": "The minimum number of colours required to colour the vertices of a cycle...",
+      "change": "body restored, options restored (5 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_2_4_2",
+      "code": "2.4.2",
+      "page": 41,
+      "orig": "The minimum number of colours required to colour the following graph, su...",
+      "corr": "The minimum number of colours required to colour the following graph, su...",
+      "change": "body restored, options restored (4 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_2_4_3",
+      "code": "2.4.3",
+      "page": 42,
+      "orig": "What is the chromatic number of an   vertex simple connected graph which...",
+      "corr": "What is the chromatic number of an $n$ vertex simple connected graph whi...",
+      "change": "body restored, options restored (6 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_2_4_5",
+      "code": "2.4.5",
+      "page": 42,
+      "orig": "The chromatic number of the following graph is _____\r \r \r \r \r \r   graph-...",
+      "corr": "The chromatic number of the following graph is ________.",
+      "change": "body restored (0 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_2_4_6",
+      "code": "2.4.6",
+      "page": 42,
+      "orig": "Graph     is obtained by adding vertex    to     and making   adjacent t...",
+      "corr": "Graph $G$ is obtained by adding vertex $s$ to $K_{3,4}$ and making $s$ a...",
+      "change": "body restored (6 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_2_4_7",
+      "code": "2.4.7",
+      "page": 42,
+      "orig": "Let   be a simple, ﬁnite, undirected graph with vertex set              ...",
+      "corr": "Let $G$ be a simple, finite, undirected graph with vertex set $\\{v_1, \\d...",
+      "change": "body restored, options restored (12 symbols)",
+      "conf": "High"
+    }
+  ],
+  "manual_reviews": [],
+  "stats": {
+    "total": 25,
+    "modified": 21,
+    "manual_review": 0,
+    "unchanged": 4,
+    "symbols_restored": 157,
+    "validation": "Valid JSON (25 objects, original schema preserved)"
+  }
+}

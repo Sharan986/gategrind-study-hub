@@ -1,0 +1,240 @@
+{
+  "version": 1,
+  "generatedBy": "source-fidelity-batch-review",
+  "date": "2026-11-04",
+  "authority": "Original supplied PDF pages (filter1_volume1.pdf pages 22-25)",
+  "baseline": "seed/d1-questions.baseline-migration-2026-11-04.json",
+  "status": "batch-complete-release-blocked",
+  "repairedCount": 20,
+  "unresolvedCount": 1,
+  "rejectedCount": 0,
+  "answerOptionMismatches": 0,
+  "repaired": [
+    {
+      "key": "vol1:1.2.1",
+      "fields": [
+        "body",
+        "options"
+      ],
+      "status": "repaired",
+      "verifiedFrom": "vol1 page 22",
+      "evidencePath": "seed/option-recovery-crops/vol1-1_2_1.png",
+      "note": "Reconstructed missing counts and letter symbols 5 A's, 5 B's, 5 C's. Options A-D formatted with standard LaTeX notation. Official answer A verified."
+    },
+    {
+      "key": "vol1:1.2.2",
+      "fields": [
+        "body"
+      ],
+      "status": "repaired",
+      "verifiedFrom": "vol1 page 22",
+      "evidencePath": "seed/option-recovery-crops/vol1-1_2_1.png",
+      "note": "Descriptive question. Restored variable w, length 2n, and bit counts 1's and 0's."
+    },
+    {
+      "key": "vol1:1.2.3",
+      "fields": [
+        "body",
+        "options"
+      ],
+      "status": "repaired",
+      "verifiedFrom": "vol1 page 22",
+      "evidencePath": "seed/option-recovery-crops/vol1-1_2_3.png",
+      "note": "Restored string length parameter n and options n, n^2, 2^n, n(n+1)/2. Official answer D verified."
+    },
+    {
+      "key": "vol1:1.2.4",
+      "fields": [
+        "body",
+        "options"
+      ],
+      "status": "repaired",
+      "verifiedFrom": "vol1 page 22",
+      "evidencePath": "seed/option-recovery-crops/vol1-1_2_4.png",
+      "note": "Restored flower counts (10 roses, 15 sunflowers, 15 daffodils) and option integer values. Official answer D ('None of the above') verified."
+    },
+    {
+      "key": "vol1:1.2.5",
+      "fields": [
+        "body",
+        "options"
+      ],
+      "status": "repaired",
+      "verifiedFrom": "vol1 page 22",
+      "evidencePath": "seed/option-recovery-crops/vol1-1_2_5.png",
+      "note": "Restored digit count 4 in body and options 2240, 2296, 2620, 4536. Official answer B verified."
+    },
+    {
+      "key": "vol1:1.2.6",
+      "fields": [
+        "body",
+        "options"
+      ],
+      "status": "repaired",
+      "verifiedFrom": "vol1 page 22",
+      "evidencePath": "seed/option-recovery-crops/vol1-1_2_6.png",
+      "note": "Restored sequence labels A, B, C, element counts 8, 5, 3, and options 2, 30, 56, 256. Official answer C verified."
+    },
+    {
+      "key": "vol1:1.2.7",
+      "fields": [
+        "body",
+        "options"
+      ],
+      "status": "repaired",
+      "verifiedFrom": "vol1 pages 22-23",
+      "evidencePath": "seed/option-recovery-crops/vol1-1_2_7.png",
+      "note": "Restored leading parameter n in body on page 22, and cross-page options A-D from page 23. Official answer B (3^n) verified."
+    },
+    {
+      "key": "vol1:1.2.8",
+      "fields": [
+        "body",
+        "options"
+      ],
+      "status": "repaired",
+      "verifiedFrom": "vol1 page 23",
+      "evidencePath": "seed/option-recovery-crops/vol1-1_2_8.png",
+      "note": "Restored print count 52, colour parameter k, and options 9, 8, 7, 6. Official answer C (7) verified."
+    },
+    {
+      "key": "vol1:1.2.9",
+      "fields": [
+        "body",
+        "options"
+      ],
+      "status": "repaired",
+      "verifiedFrom": "vol1 page 23",
+      "evidencePath": "seed/option-recovery-crops/vol1-1_2_9.png",
+      "note": "Restored coordinates (i, j), (i+1, j), (i, j+1), destination (10, 10), origin (0, 0), and options 20C10, 2^20, 2^10, None. Official answer A verified."
+    },
+    {
+      "key": "vol1:1.2.10",
+      "fields": [
+        "body",
+        "options"
+      ],
+      "status": "repaired",
+      "verifiedFrom": "vol1 page 23",
+      "evidencePath": "seed/option-recovery-crops/vol1-1_2_10.png",
+      "note": "Restored coordinates, forbidden segment (4, 4) to (5, 4), target (10, 10), and options with combination expressions. Official answer D verified."
+    },
+    {
+      "key": "vol1:1.2.11",
+      "fields": [
+        "body"
+      ],
+      "status": "repaired",
+      "verifiedFrom": "vol1 page 23",
+      "evidencePath": "seed/option-recovery-crops/vol1-1_2_10.png",
+      "note": "NAT question. Restored mathematical values 1, 2, n, (1, 1, 2), 4, (1), (2), (1, 1), 3, (2, 1), (1, 1, 1), (1, 2), (1, 2), (2, 1), 10. Official NAT answer 89 verified."
+    },
+    {
+      "key": "vol1:1.2.12",
+      "fields": [
+        "body"
+      ],
+      "status": "repaired",
+      "verifiedFrom": "vol1 page 23",
+      "evidencePath": "seed/option-recovery-crops/vol1-1_2_10.png",
+      "note": "NAT question. Restored digit count 4 and digit set {1, 2, 3}. Official NAT answer 15 verified."
+    },
+    {
+      "key": "vol1:1.2.13",
+      "fields": [
+        "body",
+        "options"
+      ],
+      "status": "repaired",
+      "verifiedFrom": "vol1 pages 23-24",
+      "evidencePath": "seed/option-recovery-crops/vol1-1_2_16.png",
+      "note": "Restored universe U = {1, 2, ..., n}, set A, and statements I and II across page boundary. Official answer C ('Both I and II') verified."
+    },
+    {
+      "key": "vol1:1.2.14",
+      "fields": [
+        "body"
+      ],
+      "status": "repaired",
+      "verifiedFrom": "vol1 page 24",
+      "evidencePath": "seed/option-recovery-crops/vol1-1_2_16.png",
+      "note": "NAT question. Verified character permutation body text and blank notation. Official NAT answer 12 verified."
+    },
+    {
+      "key": "vol1:1.2.15",
+      "fields": [
+        "body"
+      ],
+      "status": "repaired",
+      "verifiedFrom": "vol1 page 24",
+      "evidencePath": "seed/option-recovery-crops/vol1-1_2_16.png",
+      "note": "NAT question. Restored set S, alphabet {a, b, c}, consecutive symbols 'aa', 'bb', 'cc', and length 5. Official NAT answer 195 verified."
+    },
+    {
+      "key": "vol1:1.2.16",
+      "fields": [
+        "body",
+        "options"
+      ],
+      "status": "repaired",
+      "verifiedFrom": "vol1 page 24",
+      "evidencePath": "seed/option-recovery-crops/vol1-1_2_16.png",
+      "note": "Restored matrix dimension 4 x 4, binary set {0, 1}, and options 512, 1025, 1023, 255. Official answer A verified."
+    },
+    {
+      "key": "vol1:1.2.17",
+      "fields": [
+        "body",
+        "options"
+      ],
+      "status": "repaired",
+      "verifiedFrom": "vol1 page 24",
+      "evidencePath": "seed/option-recovery-crops/vol1-1_2_17.png",
+      "note": "Restored line L, stuck-at-0 / stuck-at-1 / stuck-at fault terminology, line count N, and options 3^N, 3^N-1, 2^N-1, 2. Official answer B verified."
+    },
+    {
+      "key": "vol1:1.2.18",
+      "fields": [
+        "body",
+        "options"
+      ],
+      "status": "repaired",
+      "verifiedFrom": "vol1 pages 24-25",
+      "evidencePath": "seed/option-recovery-crops/vol1-1_2_18.png",
+      "note": "Removed page-furniture header from baseline body, restored ball parameters b, r, n, and full fractional options A-D across page boundary. Official answer A verified."
+    },
+    {
+      "key": "vol1:1.3.1",
+      "fields": [
+        "body",
+        "options"
+      ],
+      "status": "repaired",
+      "verifiedFrom": "vol1 page 25",
+      "evidencePath": "seed/option-recovery-crops/vol1-1_3_1.png",
+      "note": "MSQ question. Restored variable n in body and full options (n+1), n out of 2n, 1/(n+1)*(2n choose n), n!. Official answer ['A', 'C'] verified."
+    },
+    {
+      "key": "vol1:1.3.3",
+      "fields": [
+        "body",
+        "options"
+      ],
+      "status": "repaired",
+      "verifiedFrom": "vol1 page 25",
+      "evidencePath": "seed/option-recovery-crops/vol1-1_3_3.png",
+      "note": "Restored string length n in body and options n, n^2, n(n-1)/2, n(n+1)/2. Official answer D verified."
+    }
+  ],
+  "unresolved": [
+    {
+      "key": "vol1:1.3.2",
+      "field": "body/options",
+      "page": 25,
+      "reason": "Match the pairs table in source PDF requires structured visual table presentation; question is classified descriptive without individual standard options A-D.",
+      "evidencePath": "seed/option-recovery-crops/vol1-1_3_2.png",
+      "evidenceBBox": "[45, 306, 550, 520]"
+    }
+  ],
+  "baselineSha256": "f0c31a4153c8879218f440a07b84af3f972235382cd03c056e5747036f1e434e"
+}

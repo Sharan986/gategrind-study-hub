@@ -1,0 +1,7 @@
+{
+  "_schema": {
+    "key": "year:paper:set:q_num",
+    "source": "https://gate2026.iitg.ac.in/download.html",
+    "description": "Only add records after matching the complete official paper and answer key."
+  }
+}

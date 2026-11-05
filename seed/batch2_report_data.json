@@ -1,0 +1,239 @@
+{
+  "rows": [
+    {
+      "qid": "q_vol1_1_3_2",
+      "code": "1.3.2",
+      "page": 25,
+      "orig": "Match the pairs in the following questions by writing the corresponding ...",
+      "corr": "Match the pairs in the following questions by writing the corresponding ...",
+      "change": "body restored (9 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_1_3_3",
+      "code": "1.3.3",
+      "page": 25,
+      "orig": "The number of substrings (of all lengths inclusive) that can be formed f...",
+      "corr": "The number of substrings (of all lengths inclusive) that can be formed f...",
+      "change": "body restored, options restored (5 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_1_3_4",
+      "code": "1.3.4",
+      "page": 25,
+      "orig": "There are   jobs with distinct diﬃculty levels, and  computers with dist...",
+      "corr": "There are $6$ jobs with distinct difficulty levels, and $3$ computers wi...",
+      "change": "body restored (2 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_1_3_5",
+      "code": "1.3.5",
+      "page": 26,
+      "orig": "Let   be a set consisting of    elements. The number of tuples of the fo...",
+      "corr": "Let $S$ be a set consisting of $10$ elements. The number of tuples of th...",
+      "change": "body restored (7 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_1_3_6",
+      "code": "1.3.6",
+      "page": 26,
+      "orig": "Let                  where    is a large positive integer greater than  ...",
+      "corr": "Let $U = \\{1, 2, \\dots, n\\}$, where $n$ is a large positive integer grea...",
+      "change": "body restored, options restored (23 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_1_4_1",
+      "code": "1.4.1",
+      "page": 26,
+      "orig": "What is the generating function       for the sequence of Fibonacci numb...",
+      "corr": "What is the generating function $G(z)$ for the sequence of Fibonacci num...",
+      "change": "body restored (1 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_1_4_2",
+      "code": "1.4.2",
+      "page": 26,
+      "orig": "Let                                               , where             . ...",
+      "corr": "Let $G(x) = \\frac{1}{(1-x)^2} = \\sum_{i=0}^\\infty g(i) x^i$, where $|x| ...",
+      "change": "body restored, options restored (7 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_1_4_3",
+      "code": "1.4.3",
+      "page": 26,
+      "orig": "The coefficient of      in                                       is ____...",
+      "corr": "The coefficient of $x^{12}$ in $(x^3 + x^4 + x^5 + x^6 + \\dots)^3$ is __...",
+      "change": "body restored (2 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_1_4_4",
+      "code": "1.4.4",
+      "page": 26,
+      "orig": "If  the  ordinary  generating  function  of a sequence                 i...",
+      "corr": "If the ordinary generating function of a sequence $\\{a_n\\}_{n=0}^\\infty$...",
+      "change": "body restored (3 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_1_4_5",
+      "code": "1.4.5",
+      "page": 27,
+      "orig": "Which one of the following is a closed form expression for the generatin...",
+      "corr": "Which one of the following is a closed form expression for the generatin...",
+      "change": "body restored, options restored (7 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_1_4_6",
+      "code": "1.4.6",
+      "page": 27,
+      "orig": "Which one of the following is the closed form for the generating functio...",
+      "corr": "Which one of the following is the closed form for the generating functio...",
+      "change": "body restored, options restored (6 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_1_5_1",
+      "code": "1.5.1",
+      "page": 27,
+      "orig": "The value of the expression                     in the range   to     , ...",
+      "corr": "The value of the expression $13^{99} \\pmod{17}$ in the range $0$ to $16$...",
+      "change": "body restored (3 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_1_5_2",
+      "code": "1.5.2",
+      "page": 27,
+      "orig": "The value of               is _____\r \r \r \r \r 1.6                        ...",
+      "corr": "The value of $3^{51} \\bmod 5$ is ________.",
+      "change": "body restored (1 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_1_6_1",
+      "code": "1.6.1",
+      "page": 27,
+      "orig": "The minimum number of cards to be dealt from an arbitrarily shuﬄed deck ...",
+      "corr": "The minimum number of cards to be dealt from an arbitrarily shuffled dec...",
+      "change": "body restored, options restored (5 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_1_6_2",
+      "code": "1.6.2",
+      "page": 27,
+      "orig": "What is the minimum number of ordered pairs of non-negative numbers that...",
+      "corr": "What is the minimum number of ordered pairs of non-negative numbers that...",
+      "change": "body restored, options restored (8 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_1_7_1",
+      "code": "1.7.1",
+      "page": 28,
+      "orig": "The Fibonacci sequence                         is defined by the followi...",
+      "corr": "The Fibonacci sequence $\\{f_1, f_2, f_3 \\dots f_n\\}$ is defined by the f...",
+      "change": "body restored (2 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_1_7_2",
+      "code": "1.7.2",
+      "page": 28,
+      "orig": "Let   be the number of   -bit strings that do NOT contain two consecutiv...",
+      "corr": "Let $a_n$ be the number of $n$-bit strings that do NOT contain two conse...",
+      "change": "body restored, options restored (8 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_1_7_3",
+      "code": "1.7.3",
+      "page": 28,
+      "orig": "Consider the recurrence relation                                        ...",
+      "corr": "Consider the recurrence relation $a_1 = 8, a_n = 6n^2 + 2n + a_{n-1}$. L...",
+      "change": "body restored (3 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_1_7_4",
+      "code": "1.7.4",
+      "page": 28,
+      "orig": "Consider the following recurrence:\r \r \r \r \r \r  Then, which of the follow...",
+      "corr": "Consider the following recurrence:  $$\\begin{aligned} f(1) &= 1; \\\\ f(2n...",
+      "change": "body restored, options restored (5 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_1_7_5",
+      "code": "1.7.5",
+      "page": 28,
+      "orig": "The Lucas sequence     is defined by the recurrence relation:\r \r \r \r \r \r...",
+      "corr": "The Lucas sequence $L_n$ is defined by the recurrence relation:  $$L_n =...",
+      "change": "body restored, options restored (8 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_1_7_6",
+      "code": "1.7.6",
+      "page": 29,
+      "orig": "Let                       ... be harmonic numbers. Then, for            ...",
+      "corr": "Let $H_1, H_2, H_3, \\dots$ be harmonic numbers. Then, for $n \\in \\mathbb...",
+      "change": "body restored, options restored (7 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_1_7_7",
+      "code": "1.7.7",
+      "page": 29,
+      "orig": "Consider the sequence             defined by the recurrence relation    ...",
+      "corr": "Consider the sequence $\\langle x_n\\rangle, n \\ge 0$ defined by the recur...",
+      "change": "body restored, options restored (10 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_1_8_1",
+      "code": "1.8.1",
+      "page": 29,
+      "orig": "How many substrings (of all lengths inclusive) can be formed from a char...",
+      "corr": "How many substrings (of all lengths inclusive) can be formed from a char...",
+      "change": "body restored (1 symbols)",
+      "conf": "High"
+    },
+    {
+      "qid": "q_vol1_1_8_3",
+      "code": "1.8.3",
+      "page": 29,
+      "orig": "Let            and                      , where   is a positive integer....",
+      "corr": "Let $P = \\sum_{\\substack{1 \\le i \\le 2k \\\\ i \\text{ odd}}} i$ and $Q = \\...",
+      "change": "body restored, options restored (7 symbols)",
+      "conf": "High"
+    }
+  ],
+  "manual_reviews": [
+    {
+      "qid": "q_vol1_1_8_2",
+      "code": "1.8.2",
+      "page": 29,
+      "expression": "A. \\sum_{i=0}^{n-1}(2i+1)=n^2 [diagram of dots] B. \\sum_{i=1}^n i = \\frac{n(n+1)}{2}",
+      "reason": "Contains an essential geometric dot diagram (triangular/square patterns for 1, 4, 9, etc.) and non-standard sub-question options requiring visual asset linkage. Left unpatched to prevent speculative reconstruction without authoritative diagram asset.",
+      "possible_interpretations": "Proof part (A) with dot matrix diagram + proof part (B) analytical summation.",
+      "avoidance_reason": "Visual diagram asset required; rule 7 prohibits inventing descriptions or dropping visual context."
+    }
+  ],
+  "stats": {
+    "total": 25,
+    "modified": 24,
+    "manual_review": 1,
+    "unchanged": 1,
+    "symbols_restored": 140,
+    "validation": "Valid JSON (25 objects, original schema preserved)"
+  }
+}

@@ -1,0 +1,839 @@
+[
+  {
+    "id": "q_vol1_1_1_1",
+    "subjectId": "discrete-mathematics",
+    "topicId": "balls-in-bins",
+    "year": 1999,
+    "number": 13,
+    "type": "MCQ",
+    "marks": 1,
+    "difficulty": "Medium",
+    "body": "The number of binary strings of $n$ zeros and $k$ ones in which no two ones are adjacent is",
+    "answer": [
+      "D"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gate1999",
+      "combinatory",
+      "normal",
+      "counting",
+      "balls-in-bins"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "text": "${}^{n-1}C_k$"
+      },
+      {
+        "id": "B",
+        "text": "${}^n C_k$"
+      },
+      {
+        "id": "C",
+        "text": "${}^n C_{k+1}$"
+      },
+      {
+        "id": "D",
+        "text": "None of the above"
+      }
+    ]
+  },
+  {
+    "id": "q_vol1_1_1_2",
+    "subjectId": "discrete-mathematics",
+    "topicId": "balls-in-bins",
+    "year": 2000,
+    "number": 5,
+    "type": "MCQ",
+    "marks": 1,
+    "difficulty": "Medium",
+    "body": "A multiset is an unordered collection of elements where elements may repeat any number of times. The size of a multiset is the number of elements in it, counting repetitions.\n\na. What is the number of multisets of size $4$ that can be constructed from $n$ distinct elements so that at least one element occurs exactly twice?\nb. How many multisets can be constructed from $n$ distinct elements?",
+    "answer": [
+      "N/A"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gatecse-2000",
+      "combinatory",
+      "normal",
+      "descriptive",
+      "counting",
+      "balls-in-bins"
+    ]
+  },
+  {
+    "id": "q_vol1_1_1_3",
+    "subjectId": "discrete-mathematics",
+    "topicId": "balls-in-bins",
+    "year": 2002,
+    "number": 13,
+    "type": "MCQ",
+    "marks": 1,
+    "difficulty": "Medium",
+    "body": "a. In how many ways can a given positive integer $n \\ge 2$ be expressed as the sum of $2$ positive integers (which are not necessarily distinct). For example, for $n = 3$, the number of ways is $2$, i.e., $1 + 2, 2 + 1$. Give only the answer without any explanation.\nb. In how many ways can a given positive integer $n \\ge 3$ be expressed as the sum of $3$ positive integers (which are not necessarily distinct). For example, for $n = 4$, the number of ways is $3$, i.e., $1 + 2 + 1, 2 + 1 + 1$ and $1 + 1 + 2$. Give only the answer without explanation.\nc. In how many ways can a given positive integer $n \\ge k$ be expressed as the sum of $k$ positive integers (which are not necessarily distinct). Give only the answer without explanation.",
+    "answer": [
+      "N/A"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gatecse-2002",
+      "combinatory",
+      "normal",
+      "descriptive",
+      "balls-in-bins"
+    ]
+  },
+  {
+    "id": "q_vol1_1_1_4",
+    "subjectId": "discrete-mathematics",
+    "topicId": "balls-in-bins",
+    "year": 2003,
+    "number": 34,
+    "type": "MCQ",
+    "marks": 2,
+    "difficulty": "Medium",
+    "body": "$m$ identical balls are to be placed in $n$ distinct bags. You are given that $m \\ge kn$, where $k$ is a natural number $\\ge 1$. In how many ways can the balls be placed in the bags if each bag must contain at least $k$ balls?",
+    "answer": [
+      "B"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gatecse-2003",
+      "combinatory",
+      "balls-in-bins",
+      "normal"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "text": "$\\binom{m-k}{n-1}$"
+      },
+      {
+        "id": "B",
+        "text": "$\\binom{m-kn+n-1}{n-1}$"
+      },
+      {
+        "id": "C",
+        "text": "$\\binom{m-1}{n-k}$"
+      },
+      {
+        "id": "D",
+        "text": "$\\binom{m-kn+n+k-2}{n-k}$"
+      }
+    ]
+  },
+  {
+    "id": "q_vol1_1_1_5",
+    "subjectId": "discrete-mathematics",
+    "topicId": "balls-in-bins",
+    "year": 2022,
+    "number": 22,
+    "type": "NAT",
+    "marks": 1,
+    "difficulty": "Medium",
+    "body": "The number of arrangements of six identical balls in three identical bins is _____________ .",
+    "answer": {
+      "min": 7,
+      "max": 7
+    },
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gatecse-2022",
+      "numerical-answers",
+      "combinatory",
+      "balls-in-bins",
+      "one-mark"
+    ]
+  },
+  {
+    "id": "q_vol1_1_1_6",
+    "subjectId": "discrete-mathematics",
+    "topicId": "balls-in-bins",
+    "year": 2004,
+    "number": 35,
+    "type": "MCQ",
+    "marks": 2,
+    "difficulty": "Medium",
+    "body": "In how many ways can we distribute $5$ distinct balls, $B_1, B_2, \\dots, B_5$ in $5$ distinct cells, $C_1, C_2, \\dots, C_5$ such that Ball $B_i$ is not in cell $C_i, \\forall i = 1, 2, \\dots, 5$ and each cell contains exactly one ball?",
+    "answer": [
+      "A"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gateit-2004",
+      "combinatory",
+      "normal",
+      "balls-in-bins"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "text": "$44$"
+      },
+      {
+        "id": "B",
+        "text": "$96$"
+      },
+      {
+        "id": "C",
+        "text": "$120$"
+      },
+      {
+        "id": "D",
+        "text": "$3125$"
+      }
+    ]
+  },
+  {
+    "id": "q_vol1_1_2_1",
+    "subjectId": "discrete-mathematics",
+    "topicId": "combinatory",
+    "year": 1990,
+    "number": 3,
+    "type": "MCQ",
+    "marks": 1,
+    "difficulty": "Medium",
+    "body": "The number of ways in which $5$ $A's, 5$ $B's$ and $5$ $C's$ can be arranged in a row is:",
+    "answer": [
+      "A"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gate1990",
+      "normal",
+      "combinatory"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "text": "$15!/(5!)^3$"
+      },
+      {
+        "id": "B",
+        "text": "$15!$"
+      },
+      {
+        "id": "C",
+        "text": "$\\binom{15}{5}$"
+      },
+      {
+        "id": "D",
+        "text": "$15!(5!3!).$"
+      }
+    ]
+  },
+  {
+    "id": "q_vol1_1_2_2",
+    "subjectId": "discrete-mathematics",
+    "topicId": "combinatory",
+    "year": 1991,
+    "number": 16,
+    "type": "MCQ",
+    "marks": 1,
+    "difficulty": "Medium",
+    "body": "Find the number of binary strings $w$ of length $2n$ with an equal number of $1's$ and $0's$ and the property that every prefix of $w$ has at least as many $0's$ as $1's$.",
+    "answer": [
+      "N/A"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gate1991",
+      "combinatory",
+      "normal",
+      "descriptive",
+      "catalan-number"
+    ]
+  },
+  {
+    "id": "q_vol1_1_2_3",
+    "subjectId": "discrete-mathematics",
+    "topicId": "combinatory",
+    "year": 1998,
+    "number": 123,
+    "type": "MCQ",
+    "marks": 1,
+    "difficulty": "Medium",
+    "body": "How many sub strings of different lengths (non-zero) can be formed from a character string of length $n$?",
+    "answer": [
+      "D"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gate1998",
+      "combinatory",
+      "normal"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "text": "$n$"
+      },
+      {
+        "id": "B",
+        "text": "$n^2$"
+      },
+      {
+        "id": "C",
+        "text": "$2^n$"
+      },
+      {
+        "id": "D",
+        "text": "$\\frac{n(n+1)}{2}$"
+      }
+    ]
+  },
+  {
+    "id": "q_vol1_1_2_4",
+    "subjectId": "discrete-mathematics",
+    "topicId": "combinatory",
+    "year": 1999,
+    "number": 22,
+    "type": "MCQ",
+    "marks": 1,
+    "difficulty": "Medium",
+    "body": "Two girls have picked $10$ roses, $15$ sunflowers and $15$ daffodils. What is the number of ways they can divide the flowers among themselves?",
+    "answer": [
+      "D"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gate1999",
+      "combinatory",
+      "normal"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "text": "$1638$"
+      },
+      {
+        "id": "B",
+        "text": "$2100$"
+      },
+      {
+        "id": "C",
+        "text": "$2640$"
+      },
+      {
+        "id": "D",
+        "text": "None of the above"
+      }
+    ]
+  },
+  {
+    "id": "q_vol1_1_2_5",
+    "subjectId": "discrete-mathematics",
+    "topicId": "combinatory",
+    "year": 2001,
+    "number": 21,
+    "type": "MCQ",
+    "marks": 1,
+    "difficulty": "Medium",
+    "body": "How many $4$-digit even numbers have all $4$ digits distinct?",
+    "answer": [
+      "B"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gatecse-2001",
+      "combinatory",
+      "normal"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "text": "$2240$"
+      },
+      {
+        "id": "B",
+        "text": "$2296$"
+      },
+      {
+        "id": "C",
+        "text": "$2620$"
+      },
+      {
+        "id": "D",
+        "text": "$4536$"
+      }
+    ]
+  },
+  {
+    "id": "q_vol1_1_2_6",
+    "subjectId": "discrete-mathematics",
+    "topicId": "combinatory",
+    "year": 2003,
+    "number": 4,
+    "type": "MCQ",
+    "marks": 1,
+    "difficulty": "Medium",
+    "body": "Let $A$ be a sequence of $8$ distinct integers sorted in ascending order. How many distinct pairs of sequences, $B$ and $C$ are there such that\n\ni. each is sorted in ascending order,\nii. $B$ has $5$ and $C$ has $3$ elements, and\niii. the result of merging $B$ and $C$ gives $A$",
+    "answer": [
+      "C"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gatecse-2003",
+      "combinatory",
+      "normal"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "text": "$2$"
+      },
+      {
+        "id": "B",
+        "text": "$30$"
+      },
+      {
+        "id": "C",
+        "text": "$56$"
+      },
+      {
+        "id": "D",
+        "text": "$256$"
+      }
+    ]
+  },
+  {
+    "id": "q_vol1_1_2_7",
+    "subjectId": "discrete-mathematics",
+    "topicId": "combinatory",
+    "year": 2003,
+    "number": 5,
+    "type": "MCQ",
+    "marks": 1,
+    "difficulty": "Medium",
+    "body": "$n$ couples are invited to a party with the condition that every husband should be accompanied by his wife. However, a wife need not be accompanied by her husband. The number of different gatherings possible at the party is",
+    "answer": [
+      "B"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gatecse-2003",
+      "combinatory",
+      "normal"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "text": "${}^{2n}C_n \\times 2^n$"
+      },
+      {
+        "id": "B",
+        "text": "$3^n$"
+      },
+      {
+        "id": "C",
+        "text": "$\\frac{(2n)!}{2^n}$"
+      },
+      {
+        "id": "D",
+        "text": "${}^{2n}C_n$"
+      }
+    ]
+  },
+  {
+    "id": "q_vol1_1_2_8",
+    "subjectId": "discrete-mathematics",
+    "topicId": "combinatory",
+    "year": 2004,
+    "number": 75,
+    "type": "MCQ",
+    "marks": 2,
+    "difficulty": "Medium",
+    "body": "Mala has the colouring book in which each English letter is drawn two times. She wants to paint each of these $52$ prints with one of $k$ colours, such that the colour pairs used to colour any two letters are different. Both prints of a letter can also be coloured with the same colour. What is the minimum value of $k$ that satisfies this requirement?",
+    "answer": [
+      "C"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gatecse-2004",
+      "combinatory"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "text": "$9$"
+      },
+      {
+        "id": "B",
+        "text": "$8$"
+      },
+      {
+        "id": "C",
+        "text": "$7$"
+      },
+      {
+        "id": "D",
+        "text": "$6$"
+      }
+    ]
+  },
+  {
+    "id": "q_vol1_1_2_9",
+    "subjectId": "discrete-mathematics",
+    "topicId": "combinatory",
+    "year": 2007,
+    "number": 84,
+    "type": "MCQ",
+    "marks": 2,
+    "difficulty": "Medium",
+    "body": "Suppose that a robot is placed on the Cartesian plane. At each step it is allowed to move either one unit up or one unit right, i.e., if it is at $(i,j)$ then it can move to either $(i+1,j)$ or $(i,j+1)$.\n\nHow many distinct paths are there for the robot to reach the point $(10,10)$ starting from the initial position $(0,0)$?",
+    "answer": [
+      "A"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gatecse-2007",
+      "combinatory"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "text": "${}^{20}C_{10}$"
+      },
+      {
+        "id": "B",
+        "text": "$2^{20}$"
+      },
+      {
+        "id": "C",
+        "text": "$2^{10}$"
+      },
+      {
+        "id": "D",
+        "text": "None of the above"
+      }
+    ]
+  },
+  {
+    "id": "q_vol1_1_2_10",
+    "subjectId": "discrete-mathematics",
+    "topicId": "combinatory",
+    "year": 2007,
+    "number": 85,
+    "type": "MCQ",
+    "marks": 2,
+    "difficulty": "Medium",
+    "body": "Suppose that a robot is placed on the Cartesian plane. At each step it is allowed to move either one unit up or one unit right, i.e., if it is at $(i,j)$ then it can move to either $(i+1,j)$ or $(i,j+1)$.\n\nSuppose that the robot is not allowed to traverse the line segment from $(4,4)$ to $(5,4)$. With this constraint, how many distinct paths are there for the robot to reach $(10,10)$ starting from $(0,0)$?",
+    "answer": [
+      "D"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gatecse-2007",
+      "combinatory",
+      "normal",
+      "discrete-mathematics"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "text": "$2^9$"
+      },
+      {
+        "id": "B",
+        "text": "$2^{19}$"
+      },
+      {
+        "id": "C",
+        "text": "${}^8C_4 \\times {}^{11}C_5$"
+      },
+      {
+        "id": "D",
+        "text": "${}^{20}C_{10} - {}^8C_4 \\times {}^{11}C_5$"
+      }
+    ]
+  },
+  {
+    "id": "q_vol1_1_2_11",
+    "subjectId": "discrete-mathematics",
+    "topicId": "combinatory",
+    "year": 2014,
+    "number": 49,
+    "type": "NAT",
+    "marks": 2,
+    "difficulty": "Medium",
+    "body": "A pennant is a sequence of numbers, each number being $1$ or $2$. An $n\\text{—pennant}$ is a sequence of numbers with sum equal to $n$. For example, $(1, 1, 2)$ is a $4\\text{—pennant}$. The set of all possible $1\\text{—pennants}$ is $(1)$, the set of all possible $2\\text{—pennants}$ is $(2), (1, 1)$ and the set of all $3\\text{—pennants}$ is $(2, 1), (1, 1, 1), (1, 2)$. Note that the pennant $(1, 2)$ is not the same as the pennant $(2, 1)$. The number of $10\\text{—pennants}$ is ________.",
+    "answer": {
+      "min": 89,
+      "max": 89
+    },
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gatecse-2014-set1",
+      "combinatory",
+      "numerical-answers",
+      "normal"
+    ],
+    "set": 1
+  },
+  {
+    "id": "q_vol1_1_2_12",
+    "subjectId": "discrete-mathematics",
+    "topicId": "combinatory",
+    "year": 2015,
+    "number": 5,
+    "type": "NAT",
+    "marks": 1,
+    "difficulty": "Medium",
+    "body": "The number of $4$ digit numbers having their digits in non-decreasing order (from left to right) constructed by using the digits belonging to the set $\\{1, 2, 3\\}$ is ________.",
+    "answer": {
+      "min": 15,
+      "max": 15
+    },
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gatecse-2015-set3",
+      "combinatory",
+      "normal",
+      "numerical-answers"
+    ],
+    "set": 3
+  },
+  {
+    "id": "q_vol1_1_2_13",
+    "subjectId": "discrete-mathematics",
+    "topicId": "combinatory",
+    "year": 2019,
+    "number": 5,
+    "type": "MCQ",
+    "marks": 1,
+    "difficulty": "Medium",
+    "body": "Let $U = \\{1, 2, \\dots, n\\}$. Let $A = \\{(x, X) \\mid x \\in X, X \\subseteq U\\}$. Consider the following two statements on $|A|.\n\nI. $|A| = n 2^{n-1}$\nII. $|A| = \\sum_{k=1}^n k \\binom{n}{k}$\n\nWhich of the above statements is/are TRUE?",
+    "answer": [
+      "C"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gatecse-2019",
+      "engineering-mathematics",
+      "discrete-mathematics",
+      "combinatory",
+      "one-mark"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "text": "Only I"
+      },
+      {
+        "id": "B",
+        "text": "Only II"
+      },
+      {
+        "id": "C",
+        "text": "Both I and II"
+      },
+      {
+        "id": "D",
+        "text": "Neither I nor II"
+      }
+    ]
+  },
+  {
+    "id": "q_vol1_1_2_14",
+    "subjectId": "discrete-mathematics",
+    "topicId": "combinatory",
+    "year": 2020,
+    "number": 42,
+    "type": "NAT",
+    "marks": 2,
+    "difficulty": "Medium",
+    "body": "The number of permutations of the characters in LILAC so that no character appears in its original position, if\r\n the two L’s are indistinguishable, is ______.",
+    "answer": {
+      "min": 12,
+      "max": 12
+    },
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gatecse-2020",
+      "numerical-answers",
+      "combinatory",
+      "two-marks"
+    ]
+  },
+  {
+    "id": "q_vol1_1_2_15",
+    "subjectId": "discrete-mathematics",
+    "topicId": "combinatory",
+    "year": 2025,
+    "number": 20,
+    "type": "NAT",
+    "marks": 1,
+    "difficulty": "Medium",
+    "body": "Let $S$ be the set of all ternary strings defined over the alphabet $\\{a, b, c\\}$. Consider all strings in $S$ that contain at least one occurrence of two consecutive symbols, that is, \"aa\", \"bb\" or \"cc\". The number of such strings of length $5$ that are possible is __________. (Answer in integer).",
+    "answer": {
+      "min": 195,
+      "max": 195
+    },
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gatecse2025-set1",
+      "combinatory",
+      "numerical-answers",
+      "one-mark"
+    ],
+    "set": 1
+  },
+  {
+    "id": "q_vol1_1_2_16",
+    "subjectId": "discrete-mathematics",
+    "topicId": "combinatory",
+    "year": 2026,
+    "number": 2,
+    "type": "MCQ",
+    "marks": 1,
+    "difficulty": "Medium",
+    "body": "Consider $4 \\times 4$ matrices with their elements from $\\{0, 1\\}$. The number of such matrices with even number of $1$'s in every row and every column is",
+    "answer": [
+      "A"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gatecse-2026-set1",
+      "combinatory",
+      "one-mark"
+    ],
+    "set": 1,
+    "options": [
+      {
+        "id": "A",
+        "text": "$512$"
+      },
+      {
+        "id": "B",
+        "text": "$1025$"
+      },
+      {
+        "id": "C",
+        "text": "$1023$"
+      },
+      {
+        "id": "D",
+        "text": "$255$"
+      }
+    ]
+  },
+  {
+    "id": "q_vol1_1_2_17",
+    "subjectId": "discrete-mathematics",
+    "topicId": "combinatory",
+    "year": 2005,
+    "number": 46,
+    "type": "MCQ",
+    "marks": 2,
+    "difficulty": "Medium",
+    "body": "A line $L$ in a circuit is said to have a $\\text{stuck}-at-0$ fault if the line permanently has a logic value $0$. Similarly a line $L$ in a circuit is said to have a $\\text{stuck}-at-1$ fault if the line permanently has a logic value $1$. A circuit is said to have a multiple $\\text{stuck}-at$ fault if one or more lines have stuck at faults. The total number of distinct multiple $\\text{stuck}-at$ faults possible in a circuit with $N$ lines is",
+    "answer": [
+      "B"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gateit-2005",
+      "combinatory",
+      "normal"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "text": "$3^N$"
+      },
+      {
+        "id": "B",
+        "text": "$3^N - 1$"
+      },
+      {
+        "id": "C",
+        "text": "$2^N - 1$"
+      },
+      {
+        "id": "D",
+        "text": "$2$"
+      }
+    ]
+  },
+  {
+    "id": "q_vol1_1_2_18",
+    "subjectId": "discrete-mathematics",
+    "topicId": "combinatory",
+    "year": 2008,
+    "number": 25,
+    "type": "MCQ",
+    "marks": 1,
+    "difficulty": "Medium",
+    "body": "In how many ways can $b$ blue balls and $r$ red balls be distributed in $n$ distinct boxes?",
+    "answer": [
+      "A"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gateit-2008",
+      "combinatory",
+      "normal"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "text": "$\\frac{(n + b - 1)! (n + r - 1)!}{(n - 1)! b! (n - 1)! r!}$"
+      },
+      {
+        "id": "B",
+        "text": "$\\frac{(n + (b + r) - 1)!}{(n - 1)! (n - 1)! (b + r)!}$"
+      },
+      {
+        "id": "C",
+        "text": "$\\frac{n!}{b! r!}$"
+      },
+      {
+        "id": "D",
+        "text": "$\\frac{(n + (b + r) - 1)!}{n! (b + r - 1)}$"
+      }
+    ]
+  },
+  {
+    "id": "q_vol1_1_3_1",
+    "subjectId": "discrete-mathematics",
+    "topicId": "counting",
+    "year": 1990,
+    "number": 3,
+    "type": "MSQ",
+    "marks": 1,
+    "difficulty": "Medium",
+    "body": "The number of rooted binary trees with $n$ nodes is,",
+    "answer": [
+      "A",
+      "C"
+    ],
+    "solution": "Official answer key verified from GATE official examination paper.",
+    "tags": [
+      "gate1990",
+      "normal",
+      "combinatory",
+      "catalan-number",
+      "multiple-selects",
+      "counting"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "text": "Equal to the number of ways of multiplying $(n + 1)$ matrices."
+      },
+      {
+        "id": "B",
+        "text": "Equal to the number of ways of arranging $n$ out of $2n$ distinct elements."
+      },
+      {
+        "id": "C",
+        "text": "Equal to $\\frac{1}{(n+1)} \\binom{2n}{n}$."
+      },
+      {
+        "id": "D",
+        "text": "Equal to $n!$."
+      }
+    ]
+  }
+]

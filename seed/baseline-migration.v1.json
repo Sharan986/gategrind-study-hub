@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "source": "src/data/d1-questions.json",
+  "snapshot": "seed/d1-questions.baseline-migration-2026-11-04.json",
+  "sha256": "f0c31a4153c8879218f440a07b84af3f972235382cd03c056e5747036f1e434e",
+  "frozenAt": "2026-11-04",
+  "note": "Exact current working-tree bytes captured before field-level repair generation; do not rewrite the source baseline."
+}
