@@ -1,0 +1,19 @@
+name = "gategrind-study-hub"
+compatibility_date = "2024-11-01"
+compatibility_flags = ["nodejs_compat"]
+
+# Cloudflare D1 Database Binding
+[[d1_databases]]
+binding = "DB"
+database_name = "gategrind-db"
+database_id = "local-d1-gategrind" # Replace with actual Cloudflare D1 database ID when provided
+migrations_dir = "migrations"
+
+[vars]
+ENVIRONMENT = "production"
+
+# Secrets to be configured via `wrangler secret put <SECRET_NAME>` or .dev.vars locally:
+# - SESSION_SECRET (64-char random hex string)
+# - GOOGLE_CLIENT_ID
+# - GOOGLE_CLIENT_SECRET
+
